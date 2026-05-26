@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timéo Pedoussaut | Portfolio Cybersécurité & Infra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-green: #4ade80;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #334155;
+        }
+
+        nav .logo {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        header {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 60px;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        header h1 span { color: var(--accent); }
+
+        header .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: var(--bg-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: #7dd3fc;
+        }
+
+        /* Conteneur de sections */
+        section {
+            padding: 5rem 2rem max(5rem, 10vw);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            color: var(--text-main);
+        }
+
+        /* Grilles et Flexbox */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .card .company {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .card .date {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Badges Compétences */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            background-color: #334155;
+            color: var(--text-main);
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid #475569;
+        }
+
+        /* Certifications */
+        .cert-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-item {
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid #334155;
+        }
+
+        .cert-item i {
+            color: var(--accent-green);
+            font-size: 1.5rem;
+        }
+
+        /* Contact & Footer */
+        footer {
+            background-color: #020617;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            font-size: 1.8rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            nav ul { display: none; } /* Simplifié pour mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">TP . PORTFOLIO</div>
+        <ul>
+            <li><a href="#experiences">Expériences</a></li>
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
+        <div class="subtitle">Étudiant en Master Manager en Infrastructures et Cybersécurité des SI au CESI & Alternant chez Linkt</div>
+        <a href="mailto:t.pedoussaut@email.com" class="btn"><i class="fa-regular fa-envelope"></i> Me contacter</a>
+    </header>
+
+    <section id="experiences">
+        <h2><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Coordinateur Technique / Client / Support</h3>
+                <div class="company">Linkt (Alternance)</div>
+                <div class="date">Septembre 2024 - Présent</div>
+                <p>Évolution sur 3 postes (Exploitation N1/N2, Relation Client, Coordination de production). Diagnostic d'incidents réseaux/téléphonie et configuration de routeurs/pare-feux/VPN.</p>
+                <div class="skills-container">
+                    <span class="badge">Télécoms</span>
+                    <span class="badge">VPN</span>
+                    <span class="badge">Firewalls</span>
+                    <span class="badge">DHCP</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Technicien Informatique</h3>
+                <div class="company">Centre Henri-Becquerel (Stage)</div>
+                <div class="date">Janvier 2024 - Février 2024</div>
+                <p>Déploiement et maintenance du parc de postes de travail. Administration courante de l'infrastructure réseau et migration système.</p>
+            </div>
+            <div class="card">
+                <h3>Administrateur Système et Réseau</h3>
+                <div class="company">Mairie de Darnétal (Stage)</div>
+                <div class="date">Mai 2023 - Juin 2023</div>
+                <p>Administration et optimisation de l'Active Directory. Sécurisation via GPO et mise en conformité RGPD de l'infrastructure.</p>
+                <div class="skills-container">
+                    <span class="badge">Active Directory</span>
+                    <span class="badge">GPO</span>
+                    <span class="badge">RGPD</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" style="background-color: rgba(30, 41, 59, 0.3);">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 2rem 0;">
+            <h2><i class="fa-solid fa-code-branch"></i> Projet Majeur</h2>
+            <div class="card">
+                <h3>Amélioration de l'Expérience Client — Linkt</h3>
+                <div class="date">Octobre 2024 - Juin 2025</div>
+                <p>Refonte du système de qualification des tickets d'incidents et création d'une application de fiches d'auto-diagnostic pour maximiser l'autonomie et la satisfaction des clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="formations">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Formations</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Master MICSI</h3>
+                <div class="company">CESI Saint-Étienne-du-Rouvray</div>
+                <div class="date">2025 - 2027 (En cours)</div>
+                <p>Manager en Infrastructures et Cybersécurité des SI.</p>
+            </div>
+            <div class="card">
+                <h3>Bachelor Admin Système & Réseau</h3>
+                <div class="company">CESI</div>
+                <div class="date">2024 - 2025</div>
+                <p>Diplôme obtenu - Spécialisation Cloud et Gestion de projet.</p>
+            </div>
+            <div class="card">
+                <h3>BTS SIO (Option SISR)</h3>
+                <div class="company">Campus La Chataigneraie</div>
+                <div class="date">2022 - 2024</div>
+                <p>Solutions d'Infrastructure, Système et Réseau.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2><i class="fa-solid fa-shield-halved"></i> Certifications obtenues</h2>
+        <div class="cert-list">
+            <div class="cert-item"><i class="fa-solid fa-circle-check"></i> <div><strong>Fortinet NSE 1 & 2</strong><br><small>Cybersecurity Fundamentals (2026)</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-circle-check"></i> <div><strong>Cisco Academy</strong><br><small>Intro to Cybersecurity (2026)</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-circle-check"></i> <div><strong>ANSSI</strong><br><small>SecNumacad Cybersécurité</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-circle-check"></i> <div><strong>CNIL</strong><br><small>Certification RGPD</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-circle-check"></i> <div><strong>Pix</strong><br><small>Compétences Numériques</small></div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:t.pedoussaut@email.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p>Timéo Pedoussaut — Profil Technologique & Sécurité</p>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Permis B & A2 | Rouen, France</p>
+    </footer>
+
+</body>
+</html>
