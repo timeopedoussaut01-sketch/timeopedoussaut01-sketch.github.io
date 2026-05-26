@@ -6,7 +6,7 @@
     <title>Timéo Pedoussaut | Portfolio Cybersécurité & Infra</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variables de couleur - Mode Sombre */
+        /* Variables de couleur - Mode Sombre (Par défaut d'après les maquettes) */
         :root {
             --bg-color: #060b13;
             --card-bg: #0f172a;
@@ -151,7 +151,7 @@
         }
         section h2 i { color: var(--accent); }
 
-        /* Frise Chronologique Globale (Partagée par Expériences et Projets) */
+        /* Frise Chronologique Expériences & Projets */
         .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
         .timeline::before {
             content: ''; position: absolute; left: 210px; top: 20px; bottom: 20px;
@@ -173,8 +173,8 @@
         .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
         .timeline-item:hover .timeline-body::after { background-color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); scale: 1.2; }
         
-        .job-title h3, .project-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
-        .job-title .company, .project-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.1rem; }
+        .job-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
+        .job-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.1rem; }
         .job-title .company a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
         .job-title .company a:hover { text-decoration: underline; }
         
@@ -433,7 +433,7 @@
                 <div class="timeline-item">
                     <div class="timeline-date">Oct. 2024 – Juin 2025</div>
                     <div class="timeline-body">
-                        <div class="project-title">
+                        <div class="job-title">
                             <h3>Amélioration de l’Expérience Client & Outil Technique</h3>
                             <div class="company">Associé à Linkt — Projet Transverse</div>
                         </div>
@@ -442,12 +442,12 @@
                             <li class="gear"><strong>Refonte du système de notation :</strong> Intégration d'un menu déroulant intelligent forçant la qualification des notes attribuées, couplée à une fonctionnalité permettant de réouvrir directement un ticket.</li>
                             <li class="tech"><strong>Application de fiches d'auto-diagnostic :</strong> Centralisation et mise à disposition de fiches techniques via une interface web fluide pour décharger le support N1.</li>
                         </ul>
-                        <div class="skills-container" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                        <div class="skills-container">
                             <span class="badge tools"><i class="fa-brands fa-vuejs"></i> Vue.js</span>
                             <span class="badge tools"><i class="fa-solid fa-puzzle-piece"></i> WXT Extension</span>
                             <span class="badge tools"><i class="fa-solid fa-users"></i> UX / Relation Client</span>
                         </div>
-                        <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
+                        <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary" style="margin-top: 0.5rem;">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i> Voir le Guide d'Auto-diagnostic
                         </a>
                     </div>
@@ -488,7 +488,7 @@
                         </div>
                         <div class="form-date">Oct. 2024 – Sept. 2025</div>
                     </div>
-                    <p class="form-desc">Filière Computer Science. Spécialisation dans la conception, la sécurisation avancée, l'automatisation et le maintien opérationnel des infrastructures hétérogènes.</p>
+                    <p class="form-desc">Filière Computer Science. Spécialisation dans la conception, la sécurisation avancée, l'automatisation et le maintien operational des infrastructures hétérogènes.</p>
                     <div class="skills-container" style="margin: 0.5rem 0 1rem 0;">
                         <span class="badge tools"><i class="fa-solid fa-diagram-project"></i> Gestion de projet</span>
                         <span class="badge tools"><i class="fa-solid fa-cloud"></i> Cloud Computing</span>
