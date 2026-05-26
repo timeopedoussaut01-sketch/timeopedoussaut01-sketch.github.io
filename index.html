@@ -6,7 +6,23 @@
     <title>Timéo Pedoussaut | Portfolio Cybersécurité & Infra</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Variables de couleur - Mode Clair (Par défaut : Plus de couleurs et de peps) */
         :root {
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --card-hover: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #0ea5e9;
+            --accent-green: #10b981;
+            --border: #cbd5e1;
+            --glow: rgba(14, 165, 233, 0.15);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            --timeline-line: #e2e8f0;
+        }
+
+        /* Variables de couleur - Mode Sombre */
+        [data-theme="dark"] {
             --bg-color: #060b13;
             --card-bg: #0f172a;
             --card-hover: #1e293b;
@@ -16,7 +32,7 @@
             --accent-green: #34d399;
             --border: #1e293b;
             --glow: rgba(56, 189, 248, 0.15);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --timeline-line: #1e293b;
         }
 
         * { 
@@ -32,16 +48,21 @@
             color: var(--text-main); 
             line-height: 1.6; 
             overflow-x: hidden;
+            transition: var(--transition);
         }
 
         /* Barre de navigation */
         nav {
             position: fixed; top: 0; width: 100%;
-            background-color: rgba(6, 11, 19, 0.8); 
+            background-color: rgba(241, 245, 249, 0.8); 
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        [data-theme="dark"] nav {
+            background-color: rgba(6, 11, 19, 0.8);
         }
         nav .logo { 
             font-weight: 800; 
@@ -50,21 +71,41 @@
             letter-spacing: 1px;
         }
         nav .logo span { color: var(--accent); }
-        nav ul { display: flex; list-style: none; gap: 2.5rem; }
+        nav ul { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
         nav a { 
-            color: #94a3b8; 
+            color: var(--text-muted); 
             text-decoration: none; 
             font-size: 0.95rem; 
             font-weight: 500;
             transition: var(--transition);
         }
-        nav a:hover { color: var(--accent); text-shadow: 0 0 10px var(--glow); }
+        nav a:hover { color: var(--accent); }
+
+        /* Bouton Switch Mode Sombre/Clair */
+        .theme-toggle {
+            background: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
 
         /* En-tête / Hero Section */
         header {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center; padding: 6rem 2rem 2rem 2rem;
-            background: radial-gradient(circle at 50% 45%, #101b3d 0%, #060b13 65%);
+            background: radial-gradient(circle at 50% 45%, rgba(14, 165, 233, 0.1) 0%, var(--bg-color) 65%);
             position: relative;
         }
 
@@ -73,7 +114,7 @@
         }
         .profile-img {
             width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
-            border: 3px solid rgba(56, 189, 248, 0.5); position: relative; z-index: 2;
+            border: 3px solid var(--accent); position: relative; z-index: 2;
         }
         .profile-container::before {
             content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
@@ -82,33 +123,33 @@
 
         header h1 { font-size: 3.5rem; margin-bottom: 0.8rem; font-weight: 800; letter-spacing: -1px; }
         header h1 span { color: var(--accent); }
-        header .subtitle { font-size: 1.25rem; color: #94a3b8; margin-bottom: 1.5rem; max-width: 850px; font-weight: 500; }
-        header .bio { font-size: 1.05rem; color: #cbd5e1; max-width: 700px; margin-bottom: 3rem; line-height: 1.6; color: #94a3b8; }
+        header .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 1.5rem; max-width: 850px; font-weight: 600; }
+        header .bio { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; margin-bottom: 3rem; line-height: 1.6; }
 
         .btn {
-            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%); 
-            color: #060b13; padding: 1rem 2.2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #0284c7 100%); 
+            color: #ffffff; padding: 1rem 2.2rem;
             border-radius: 12px; text-decoration: none; font-weight: 700;
             display: inline-flex; align-items: center; gap: 0.8rem;
-            box-shadow: 0 4px 25px rgba(56, 189, 248, 0.25); transition: var(--transition);
+            box-shadow: 0 4px 25px var(--glow); transition: var(--transition);
         }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(56, 189, 248, 0.45); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px var(--glow); }
         
         .btn-secondary {
-            background: rgba(30, 41, 59, 0.5); color: var(--text-main); border: 1px solid var(--border);
+            background: rgba(14, 165, 233, 0.1); color: var(--accent); border: 1px solid var(--accent);
             padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem;
             font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;
             margin-top: 0.5rem; width: fit-content; transition: var(--transition);
         }
-        .btn-secondary:hover { background: var(--card-hover); border-color: var(--accent); color: var(--accent); }
+        .btn-secondary:hover { background: var(--accent); color: white; }
 
         .btn-formation {
-            background: transparent; color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.3);
+            background: transparent; color: var(--accent); border: 1px solid var(--accent);
             padding: 0.4rem 0.8rem; border-radius: 6px; text-decoration: none; font-size: 0.8rem;
             font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;
             margin-top: 1rem; width: fit-content; transition: var(--transition);
         }
-        .btn-formation:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--accent); }
+        .btn-formation:hover { background: rgba(14, 165, 233, 0.1); }
 
         /* Sections */
         section { padding: 6rem 2rem; max-width: 1140px; margin: 0 auto; }
@@ -128,27 +169,28 @@
         .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--text-muted); font-weight: 700; font-size: 0.95rem; }
         .timeline-date.active { color: var(--accent-green); }
         .timeline-body {
-            background: linear-gradient(145deg, #0f172a 0%, #0b1324 100%); padding: 2.5rem; border-radius: 20px;
+            background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
             border: 1px solid var(--border); transition: var(--transition); position: relative;
             display: flex; flex-direction: column; gap: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .timeline-body::after {
             content: ''; position: absolute; left: -32px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
             background-color: var(--border); border: 2px solid var(--border); z-index: 5; transition: var(--transition);
         }
-        .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: rgba(56, 189, 248, 0.35); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+        .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
         .timeline-item:hover .timeline-body::after { background-color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); scale: 1.2; }
         
         .job-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
         .job-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.1rem; }
-        .job-title .company a { color: var(--accent); text-decoration: none; }
+        .job-title .company a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
         .job-title .company a:hover { text-decoration: underline; }
         
         /* --- SOUS-FRISE INTERNE POUR LINKT --- */
         .internal-timeline {
             display: flex; flex-direction: column; gap: 2.5rem;
             position: relative; padding-left: 1.5rem; margin-top: 1rem;
-            border-left: 2px dashed rgba(255,255,255,0.1);
+            border-left: 2px dashed var(--border);
         }
         .internal-post { position: relative; display: flex; flex-direction: column; gap: 0.8rem; }
         .internal-post::before {
@@ -165,7 +207,7 @@
         .internal-post.active .post-date { color: var(--accent-green); }
         
         .job-details { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-        .job-details li { position: relative; padding-left: 1.8rem; color: #cbd5e1; font-size: 0.95rem; }
+        .job-details li { position: relative; padding-left: 1.8rem; color: var(--text-muted); font-size: 0.95rem; }
         .job-details li::before { font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent); font-size: 0.85rem; }
         
         /* Liste d'icônes spécifiques */
@@ -182,35 +224,37 @@
 
         /* --- GRILLES TECHNIQUES & PROJETS --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-        .card { background: linear-gradient(145deg, #0f172a 0%, #0b1324 100%); padding: 3rem; border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow); }
+        .card { background: var(--card-bg); padding: 3rem; border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); }
         .card h3 { color: var(--text-main); font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 700; }
         .card .company { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
-        .card p { color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
 
         /* Badges */
         .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .badge { background-color: rgba(56, 189, 248, 0.05); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.12); }
-        .badge.tools { color: #cbd5e1; background-color: #0b1324; border-color: transparent; }
+        .badge { background-color: rgba(14, 165, 233, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(14, 165, 233, 0.2); }
+        .badge.tools { color: var(--text-main); background-color: rgba(0,0,0,0.04); border-color: transparent; }
+        [data-theme="dark"] .badge.tools { background-color: rgba(255,255,255,0.05); }
 
         /* Certifications */
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .cert-item { background-color: var(--card-bg); padding: 1.8rem; border-radius: 16px; display: flex; align-items: center; gap: 1.25rem; border: 1px solid var(--border); transition: var(--transition); }
-        .cert-item:hover { transform: scale(1.03); border-color: rgba(52, 211, 153, 0.4); background-color: var(--card-hover); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .cert-item { background-color: var(--card-bg); padding: 1.8rem; border-radius: 16px; display: flex; align-items: center; gap: 1.25rem; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .cert-item:hover { transform: scale(1.03); border-color: var(--accent-green); background-color: var(--card-hover); }
         .cert-item i { color: var(--accent-green); font-size: 2rem; }
         .cert-item strong { font-size: 1.05rem; color: var(--text-main); }
-        .cert-item small { color: #94a3b8; }
+        .cert-item small { color: var(--text-muted); }
 
         /* Footer */
-        footer { background-color: #020408; padding: 6rem 2rem; text-align: center; border-top: 1px solid var(--border); }
+        footer { background-color: #0f172a; padding: 6rem 2rem; text-align: center; color: #f8fafc; }
+        [data-theme="dark"] footer { background-color: #020408; border-top: 1px solid var(--border); }
         .footer-info { max-width: 600px; margin: 0 auto 3rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; }
         .footer-info-item { display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-weight: 500; text-decoration: none; transition: var(--transition); }
         .footer-info-item:hover { color: var(--accent); }
         .footer-info-item i { color: var(--accent); font-size: 1.3rem; }
         .social-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2.5rem; }
-        .social-links a { color: #64748b; font-size: 2.4rem; transition: var(--transition); }
+        .social-links a { color: #94a3b8; font-size: 2.4rem; transition: var(--transition); }
         .social-links a:hover { color: var(--accent); transform: translateY(-4px); }
-        .credits { color: #475569; font-size: 0.85rem; letter-spacing: 0.5px; }
+        .credits { color: #64748b; font-size: 0.85rem; letter-spacing: 0.5px; }
 
         /* Responsive Mobile */
         @media (max-width: 900px) {
@@ -220,7 +264,7 @@
             header h1 { font-size: 2.6rem; }
             nav ul { display: none; }
             section { padding: 4rem 1.5rem; }
-            .internal-timeline { border-left: 1px dashed rgba(255,255,255,0.1); padding-left: 1.2rem; }
+            .internal-timeline { border-left: 1px dashed var(--border); padding-left: 1.2rem; }
             .internal-post::before { left: -25px; }
         }
     </style>
@@ -235,6 +279,11 @@
             <li><a href="#skills">Compétences</a></li>
             <li><a href="#formations">Formations</a></li>
             <li><a href="#certifications">Certifications</a></li>
+            <li>
+                <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>
+                </button>
+            </li>
         </ul>
     </nav>
 
@@ -257,7 +306,11 @@
                 <div class="timeline-body">
                     <div class="job-title">
                         <h3>Évolution Professionnelle en Alternance</h3>
-                        <div class="company"><a href="https://www.linkedin.com/company/linkt/posts/?feedView=all" target="_blank">Linkt — Opérateur Télécom • Mont-Saint-Aignan <i class="fa-brands fa-linkedin" style="font-size:0.9rem;"></i></a></div>
+                        <div class="company">
+                            <a href="https://www.linkedin.com/company/linkt/posts/?feedView=all" target="_blank">
+                                Linkt — Opérateur Télécom • Mont-Saint-Aignan <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </div>
                     </div>
                     
                     <div class="internal-timeline">
@@ -268,7 +321,7 @@
                                 <span class="post-date">Déc. 2025 - Présent</span>
                             </div>
                             <ul class="job-details">
-                                <li class="user"><strong>Pilotage Terrain :</strong> Prise d'appel et accompagnement technique en temps réel des techniciens (cocoordinateurs terrain) lors des interventions sur site.</li>
+                                <li class="user"><strong>Pilotage Terrain :</strong> Prise d'appel et accompagnement technique en temps réel des techniciens (coordonnative terrain) lors des interventions sur site.</li>
                                 <li class="route"><strong>Bascule LAN & WAN :</strong> Supervision des opérations critiques de migration d'architectures locales clients (environnements Switch Huawei, etc.) et gestion des configurations routeurs.</li>
                             </ul>
                         </div>
@@ -309,11 +362,11 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-date">Janv. 2024 - Févr. 2024</div>
+                <div class="timeline-date">Janv. 2024 - Févr. 2024<br><small style="font-weight:500; opacity:0.7;">(2 mois)</small></div>
                 <div class="timeline-body">
                     <div class="job-title">
                         <h3>Technicien Informatique</h3>
-                        <div class="company">Centre Henri-Becquerel (Stage) — Rouen</div>
+                        <div class="company">Centre Henri-Becquerel (Stage) — Rouen (Sur site)</div>
                     </div>
                     <ul class="job-details">
                         <li class="gear">Déploiement et maintenance des postes de travail.</li>
@@ -330,11 +383,11 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-date">Mai 2023 - Juin 2023</div>
+                <div class="timeline-date">Mai 2023 - Juin 2023<br><small style="font-weight:500; opacity:0.7;">(2 mois)</small></div>
                 <div class="timeline-body">
                     <div class="job-title">
                         <h3>Administrateur Système & Réseau</h3>
-                        <div class="company">Mairie de Darnétal (Stage) — Darnétal</div>
+                        <div class="company">Mairie de Darnétal (Stage) — Darnétal (Sur site)</div>
                     </div>
                     <ul class="job-details">
                         <li class="tech">Amélioration et administration de l’Active Directory.</li>
@@ -351,11 +404,11 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-date">Mars 2019</div>
+                <div class="timeline-date">Mars 2019<br><small style="font-weight:500; opacity:0.7;">(1 mois)</small></div>
                 <div class="timeline-body">
                     <div class="job-title">
                         <h3>Assistant Médical</h3>
-                        <div class="company">HAROPA PORT (Stage) — Rouen</div>
+                        <div class="company">HAROPA PORT (Stage) — Rouen (Sur site)</div>
                     </div>
                     <ul class="job-details">
                         <li class="check">Coordination et organisation administrative.</li>
@@ -368,7 +421,7 @@
         </div>
     </section>
 
-    <section id="projects" style="background-color: rgba(15, 23, 42, 0.2); max-width: 100%;">
+    <section id="projects" style="background-color: rgba(14, 165, 233, 0.04); max-width: 100%;">
         <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
             <h2><i class="fa-solid fa-code-branch"></i> Projets Réalisés</h2>
             <div class="grid">
@@ -389,59 +442,59 @@
         </div>
     </section>
 
-    <section id="skills" style="background-color: rgba(15, 23, 42, 0.4); max-width: 100%;">
-        <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
-            <h2><i class="fa-solid fa-terminal"></i> Environnement Technique</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Outils & Logiciels</h3>
-                    <div class="skills-container" style="margin-top: 1.5rem;">
-                        <span class="badge tools">SecureCRT</span>
-                        <span class="badge tools">PuTTY</span>
-                        <span class="badge tools">Grafana</span>
-                        <span class="badge tools">TFTP Server</span>
-                        <span class="badge tools">Wireshark</span>
-                        <span class="badge tools">Cisco Packet Tracer</span>
-                    </div>
+    <section id="skills">
+        <h2><i class="fa-solid fa-terminal"></i> Environnement Technique</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Outils & Logiciels</h3>
+                <div class="skills-container" style="margin-top: 1.5rem;">
+                    <span class="badge tools">SecureCRT</span>
+                    <span class="badge tools">PuTTY</span>
+                    <span class="badge tools">Grafana</span>
+                    <span class="badge tools">TFTP Server</span>
+                    <span class="badge tools">Wireshark</span>
+                    <span class="badge tools">Cisco Packet Tracer</span>
                 </div>
-                <div class="card">
-                    <h3>Expertises Métier</h3>
-                    <div class="skills-container" style="margin-top: 1.5rem;">
-                        <span class="badge">Routage WAN / MPLS</span>
-                        <span class="badge">Redondance VRRP</span>
-                        <span class="badge">Sécurité Fortigate & GPO</span>
-                        <span class="badge">Téléphonie SIP / Centrex</span>
-                        <span class="badge">Coordination & Bascule LAN</span>
-                        <span class="badge">Réseau Opérateur (FTTH, Starlink)</span>
-                    </div>
+            </div>
+            <div class="card">
+                <h3>Expertises Métier</h3>
+                <div class="skills-container" style="margin-top: 1.5rem;">
+                    <span class="badge">Routage WAN / MPLS</span>
+                    <span class="badge">Redondance VRRP</span>
+                    <span class="badge">Sécurité Fortigate & GPO</span>
+                    <span class="badge">Téléphonie SIP / Centrex</span>
+                    <span class="badge">Coordination & Bascule LAN</span>
+                    <span class="badge">Réseau Opérateur (FTTH, Starlink)</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="formations">
-        <h2><i class="fa-solid fa-graduation-cap"></i> Formations</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Master MICSI</h3>
-                <div class="company">CESI Saint-Étienne-du-Rouvray</div>
-                <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2025 - 2027 (En cours)</div>
-                <p>Manager en Infrastructures et Cybersécurité des SI. Focus sur la gouvernance, la cyber-défense et l'ingénierie système.</p>
-                <a href="https://www.cesi.fr/formation/manager-en-infrastructures-et-cybersecurite-des-si-2336504/" target="_blank" class="btn-formation"><i class="fa-solid fa-link"></i> Voir le programme complet</a>
-            </div>
-            <div class="card">
-                <h3>Bachelor Administrateur Système Réseau</h3>
-                <div class="company">CESI</div>
-                <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2024 - 2025</div>
-                <p>Spécialisation dans la conception et le maintien d'infrastructures d'entreprise sécurisées en alternance.</p>
-                <a href="https://www.cesi.fr/formation/admission-parallele-bachelor-administrateur-trice-systemes-et-reseaux-en-alternance-2520464/" target="_blank" class="btn-formation"><i class="fa-solid fa-link"></i> Voir la fiche formation</a>
-            </div>
-            <div class="card">
-                <h3>BTS SIO (Option SISR)</h3>
-                <div class="company">Campus La Châtaigneraie</div>
-                <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2022 - 2024</div>
-                <p>Solutions d'Infrastructure, Systèmes et Réseaux. Bases solides en routage, commutation et services réseaux d'entreprise.</p>
-                <a href="https://www.la-chataigneraie.org/bts-service-informatiques-aux-organisations-solutions-d-infrastructure-systemes-reseaux/" target="_blank" class="btn-formation"><i class="fa-solid fa-link"></i> Découvrir le cursus</a>
+    <section id="formations" style="background-color: rgba(14, 165, 233, 0.04); max-width: 100%;">
+        <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
+            <h2><i class="fa-solid fa-graduation-cap"></i> Formations</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Master MICSI</h3>
+                    <div class="company">CESI Saint-Étienne-du-Rouvray</div>
+                    <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2025 - 2027 (En cours)</div>
+                    <p>Manager en Infrastructures et Cybersécurité des SI. Focus sur la gouvernance, la cyber-défense et l'ingénierie système.</p>
+                    <a href="https://www.cesi.fr/formation/manager-en-infrastructures-et-cybersecurite-des-si-2336504/" target="_blank" class="btn-formation"><i class="fa-solid fa-link"></i> Voir le programme complet</a>
+                </div>
+                <div class="card">
+                    <h3>Bachelor Administrateur Système Réseau</h3>
+                    <div class="company">CESI</div>
+                    <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2024 - 2025</div>
+                    <p>Spécialisation dans la conception et le maintien d'infrastructures d'entreprise sécurisées en alternance.</p>
+                    <a href="https://www.cesi.fr/formation/admission-parallele-bachelor-administrateur-trice-systemes-et-reseaux-en-alternance-2520464/" target="_blank" class="btn-formation"><i class="fa-solid fa-link"></i> Voir la fiche formation</a>
+                </div>
+                <div class="card">
+                    <h3>BTS SIO (Option SISR)</h3>
+                    <div class="company">Campus La Châtaigneraie</div>
+                    <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2022 - 2024</div>
+                    <p>Solutions d'Infrastructure, Systèmes et Réseaux. Bases solides en routage, commutation et services réseaux d'entreprise.</p>
+                    <a href="https://www.la-chataigneraie.org/bts-service-informatiques-aux-organisations-solutions-d-infrastructure-systemes-reseaux/" target="_blank" class="btn-formation"><i class="fa-solid fa-link"></i> Découvrir le cursus</a>
+                </div>
             </div>
         </div>
     </section>
@@ -467,5 +520,21 @@
         <p class="credits">© 2026 — Timéo Pedoussaut • Tous droits réservés</p>
     </footer>
 
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeBtn');
+            
+            if (body.hasAttribute('data-theme')) {
+                // Passage au Mode Clair
+                body.removeAttribute('data-theme');
+                btn.innerHTML = '<i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>';
+            } else {
+                // Passage au Mode Sombre
+                body.setAttribute('data-theme', 'dark');
+                btn.innerHTML = '<i class="fa-solid fa-sun"></i> <span>Mode Clair</span>';
+            }
+        }
+    </script>
 </body>
 </html>
