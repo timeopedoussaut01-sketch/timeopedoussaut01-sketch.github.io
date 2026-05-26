@@ -59,7 +59,7 @@
             background-color: rgba(6, 11, 19, 0.85); 
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            padding: 0.9rem 2rem; display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; border-bottom: 1px solid var(--border);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
@@ -71,22 +71,22 @@
         nav .logo { 
             font-weight: 800; 
             color: var(--text-main); 
-            font-size: 1.3rem; 
+            font-size: 1.4rem; 
             letter-spacing: 1px;
             user-select: none;
         }
         nav .logo span { color: var(--accent); }
         nav ul { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
         
-        /* Liens de navigation avec effet de surbrillance (Neon Underline & Glow) */
+        /* Liens de navigation agrandis avec effet de surbrillance */
         nav ul li {
             position: relative;
         }
         nav a { 
             color: var(--text-muted); 
             text-decoration: none; 
-            font-size: 0.95rem; 
-            font-weight: 600;
+            font-size: 1.1rem; /* Police augmentée */
+            font-weight: 700;   /* Police plus épaisse */
             padding: 0.5rem 0;
             display: inline-block;
             transition: color 0.3s ease;
@@ -94,7 +94,6 @@
         nav a:hover { 
             color: var(--text-main); 
         }
-        /* La ligne de surbrillance invisible au départ */
         nav a::after {
             content: '';
             position: absolute;
@@ -109,13 +108,12 @@
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 0 8px var(--nav-glow);
         }
-        /* Révélation de la ligne de surbrillance au survol */
         nav a:hover::after {
             transform: scaleX(1);
             transform-origin: left;
         }
 
-        /* Bouton Switch Mode Sombre/Clair Amélioré */
+        /* Bouton Switch Mode Sombre/Clair */
         .theme-toggle {
             background: transparent;
             color: var(--accent);
@@ -124,7 +122,7 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -186,7 +184,7 @@
             border-radius: 50%; background: var(--accent); filter: blur(15px); opacity: 0.3; z-index: 1;
         }
 
-        /* Overlay Lightbox pour le Zoom */
+        /* Overlay Lightbox Générique pour le Zoom */
         .profile-lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(6, 11, 19, 0.85);
@@ -202,6 +200,7 @@
             max-width: 85%; max-height: 80vh; border-radius: 20px;
             box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
             border: 3px solid var(--accent);
+            background: #ffffff; /* Pour garder les logos sur fond propre au zoom */
             transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .profile-lightbox.active .lightbox-img {
@@ -286,6 +285,12 @@
             padding: 6px;
             border: 1px solid rgba(56, 189, 248, 0.3);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: zoom-in; /* Curseur zoom pour les logos */
+            transition: var(--transition);
+        }
+        .company-logo:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
         }
 
         .job-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
@@ -398,7 +403,7 @@
 <body>
 
     <div class="profile-lightbox" id="lightbox" onclick="closeLightbox()">
-        <img src="PhotoCV.jpg" alt="Focus Timéo Pedoussaut" class="lightbox-img">
+        <img src="" alt="Focus" id="lightbox-img" class="lightbox-img">
     </div>
 
     <nav>
@@ -419,7 +424,7 @@
     <header id="hero-header">
         <canvas id="cyber-canvas"></canvas>
 
-        <div class="profile-container" onclick="openLightbox()">
+        <div class="profile-container" onclick="openLightbox('PhotoCV.jpg')">
             <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
         </div>
         <h1>Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
@@ -451,7 +456,7 @@
                 <div class="timeline-date active">Sept. 2024 - Présent</div>
                 <div class="timeline-body">
                     <div class="job-header-container">
-                        <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo">
+                        <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo" onclick="openLightbox('LogoLinkt.jpg')">
                         <div class="job-title">
                             <h3>Évolution Professionnelle en Alternance</h3>
                             <div class="company">
@@ -511,10 +516,14 @@
                 <div class="timeline-date">Janv. 2024 - Févr. 2024</div>
                 <div class="timeline-body">
                     <div class="job-header-container">
-                        <img src="LogoBecquerel.jpg" alt="Logo Henri Becquerel" class="company-logo">
+                        <img src="LogoBecquerel.jpg" alt="Logo Henri Becquerel" class="company-logo" onclick="openLightbox('LogoBecquerel.jpg')">
                         <div class="job-title">
                             <h3>Technicien Informatique</h3>
-                            <div class="company">Centre Henri-Becquerel (Stage) — Rouen</div>
+                            <div class="company">
+                                <a href="https://www.linkedin.com/company/centre-henri-becquerel/posts/?feedView=all" target="_blank">
+                                    Centre Henri-Becquerel (Stage) — Rouen <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <ul class="job-details">
@@ -533,7 +542,7 @@
                 <div class="timeline-date">Mai 2023 - Juin 2023</div>
                 <div class="timeline-body">
                     <div class="job-header-container">
-                        <img src="LogoDarnetal.jpg" alt="Logo Mairie de Darnétal" class="company-logo">
+                        <img src="LogoDarnetal.jpg" alt="Logo Mairie de Darnétal" class="company-logo" onclick="openLightbox('LogoDarnetal.jpg')">
                         <div class="job-title">
                             <h3>Administrateur Système & Réseau</h3>
                             <div class="company">Mairie de Darnétal (Stage) — Darnétal</div>
@@ -563,7 +572,7 @@
                     <div class="timeline-date">Oct. 2024 – Juin 2025</div>
                     <div class="timeline-body">
                         <div class="job-header-container">
-                            <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo">
+                            <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo" onclick="openLightbox('LogoLinkt.jpg')">
                             <div class="job-title">
                                 <h3>Amélioration de l’Expérience Client & Outil Technique</h3>
                                 <div class="company">Associé à Linkt — Projet Transverse</div>
@@ -598,7 +607,7 @@
                 <div class="timeline-body">
                     <div class="form-badge current">En cours</div>
                     <div class="job-header-container">
-                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo">
+                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
                         <div class="job-title">
                             <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
                             <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation</div>
@@ -616,7 +625,7 @@
                 <div class="timeline-body">
                     <div class="form-badge approved">Admis</div>
                     <div class="job-header-container">
-                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo">
+                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
                         <div class="job-title">
                             <h3>Bachelor Administrateur Système Réseau</h3>
                             <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation</div>
@@ -639,7 +648,7 @@
                 <div class="timeline-body">
                     <div class="form-badge approved">Admis</div>
                     <div class="job-header-container">
-                        <img src="LogoCampus.jpg" alt="Logo Campus La Châtaigneraie" class="company-logo">
+                        <img src="LogoCampus.jpg" alt="Logo Campus La Châtaigneraie" class="company-logo" onclick="openLightbox('LogoCampus.jpg')">
                         <div class="job-title">
                             <h3>BTS SIO (Option Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
                             <div class="company">Campus La Châtaigneraie • 2 rue Charles Scherer, Le Mesnil-Esnard</div>
@@ -662,7 +671,7 @@
                 <div class="timeline-body">
                     <div class="form-badge diploma">Admis</div>
                     <div class="job-header-container">
-                        <img src="LogoBlaise.jpg" alt="Logo Lycée Blaise Pascal" class="company-logo">
+                        <img src="LogoBlaise.jpg" alt="Logo Lycée Blaise Pascal" class="company-logo" onclick="openLightbox('LogoBlaise.jpg')">
                         <div class="job-title">
                             <h3>Baccalauréat (Option Européenne)</h3>
                             <div class="company">Lycée Blaise Pascal • 5 Rue des Emmurées, Rouen</div>
@@ -876,9 +885,13 @@
             }
         }
 
-        /* FONCTIONS POUR LE ZOOM DE LA PHOTO DE PROFIL */
-        function openLightbox() {
-            document.getElementById('lightbox').classList.add('active');
+        /* CONFIGURATION GÉNÉRIQUE DU ZOOM PHOTO & LOGOS */
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
         }
 
         function closeLightbox() {
