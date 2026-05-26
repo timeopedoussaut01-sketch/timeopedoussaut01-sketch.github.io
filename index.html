@@ -60,70 +60,45 @@
         }
         nav a:hover { color: var(--accent); text-shadow: 0 0 10px var(--glow); }
 
-        /* --- EN-TÊTE / HERO SECTION DESIGN DEUX COLONNES --- */
+        /* En-tête / Hero Section Centré et Élégant */
         header {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            padding: 8rem 2rem 4rem 2rem;
-            background: radial-gradient(circle at 80% 20%, #101b3d 0%, #060b13 60%);
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 6rem 2rem 2rem 2rem;
+            background: radial-gradient(circle at 50% 45%, #101b3d 0%, #060b13 65%);
             position: relative;
         }
 
-        .hero-container {
-            max-width: 1140px; width: 100%; display: grid;
-            grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center;
-        }
-
-        .hero-left { text-align: left; display: flex; flex-direction: column; gap: 1.5rem; }
-
         .profile-container {
-            position: relative; width: 130px; height: 130px; margin-bottom: 1rem;
+            position: relative; margin-bottom: 2rem; margin-top: 20px;
         }
         .profile-img {
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
             border: 3px solid rgba(56, 189, 248, 0.5); position: relative; z-index: 2;
         }
         .profile-container::before {
             content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 50%; background: var(--accent); filter: blur(15px);
-            opacity: 0.3; z-index: 1;
+            border-radius: 50%; background: var(--accent); filter: blur(15px); opacity: 0.3; z-index: 1;
         }
 
-        header h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+        header h1 { font-size: 3.5rem; margin-bottom: 0.8rem; font-weight: 800; letter-spacing: -1px; }
         header h1 span { color: var(--accent); }
-        header .subtitle { font-size: 1.2rem; color: #94a3b8; max-width: 650px; font-weight: 400; }
-        header .bio { font-size: 1.05rem; color: #cbd5e1; max-width: 600px; border-left: 3px solid var(--accent); padding-left: 1rem; margin: 0.5rem 0; }
-
-        /* Bloc Statistiques à Droite pour meubler le vide */
-        .hero-right {
-            display: grid; grid-template-columns: 1fr; gap: 1.5rem;
-        }
-        .stat-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border);
-            padding: 2rem; border-radius: 16px;
-            backdrop-filter: blur(8px);
-            display: flex; flex-direction: column; gap: 0.5rem;
-            transition: var(--transition);
-        }
-        .stat-card:hover { border-color: rgba(56, 189, 248, 0.3); transform: translateY(-3px); }
-        .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--accent-green); }
-        .stat-label { font-size: 1rem; font-weight: 700; color: var(--text-main); }
-        .stat-desc { font-size: 0.85rem; color: #64748b; }
+        header .subtitle { font-size: 1.25rem; color: #94a3b8; margin-bottom: 1.5rem; max-width: 850px; font-weight: 500; }
+        header .bio { font-size: 1.05rem; color: #cbd5e1; max-width: 700px; margin-bottom: 3rem; line-height: 1.6; color: #94a3b8; }
 
         .btn {
             background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%); 
             color: #060b13; padding: 1rem 2.2rem;
             border-radius: 12px; text-decoration: none; font-weight: 700;
-            display: inline-flex; align-items: center; gap: 0.8rem; width: fit-content;
+            display: inline-flex; align-items: center; gap: 0.8rem;
             box-shadow: 0 4px 25px rgba(56, 189, 248, 0.25); transition: var(--transition);
         }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(56, 189, 248, 0.45); }
         
         .btn-secondary {
             background: rgba(30, 41, 59, 0.5); color: var(--text-main); border: 1px solid var(--border);
-            padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem;
-            font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;
-            margin-top: 1rem; width: fit-content; transition: var(--transition);
+            padding: 0.4rem 0.9rem; border-radius: 8px; text-decoration: none; font-size: 0.8rem;
+            font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;
+            margin-top: 0.5rem; width: fit-content; transition: var(--transition);
         }
         .btn-secondary:hover { background: var(--card-hover); border-color: var(--accent); }
 
@@ -135,32 +110,53 @@
         }
         section h2 i { color: var(--accent); }
 
-        /* --- FRISE CHRONOLOGIQUE FLUIDE (DATES À GAUCHE) --- */
-        .timeline { position: relative; display: flex; flex-direction: column; gap: 3rem; }
+        /* --- FRISE CHRONOLOGIQUE GENERALE --- */
+        .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
         .timeline::before {
-            content: ''; position: absolute; left: 230px; top: 20px; bottom: 20px;
+            content: ''; position: absolute; left: 210px; top: 20px; bottom: 20px;
             width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); opacity: 0.4;
         }
-        .timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; position: relative; }
-        .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--accent-green); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; }
+        .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 3.5rem; position: relative; }
+        .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--text-muted); font-weight: 700; font-size: 0.95rem; }
+        .timeline-date.active { color: var(--accent-green); }
         .timeline-body {
             background: linear-gradient(145deg, #0f172a 0%, #0b1324 100%); padding: 2.5rem; border-radius: 20px;
             border: 1px solid var(--border); transition: var(--transition); position: relative;
             display: flex; flex-direction: column; gap: 1.5rem;
         }
         .timeline-body::after {
-            content: ''; position: absolute; left: -35px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
-            background-color: var(--accent); box-shadow: 0 0 12px var(--accent); z-index: 5; transition: var(--transition);
+            content: ''; position: absolute; left: -32px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
+            background-color: var(--border); border: 2px solid var(--border); z-index: 5; transition: var(--transition);
         }
-        .timeline-item:hover .timeline-body { transform: translateX(5px) translateY(-2px); border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--glow); }
-        .timeline-item:hover .timeline-body::after { background-color: var(--accent-green); box-shadow: 0 0 15px var(--accent-green); transform: scale(1.3); }
+        .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: rgba(56, 189, 248, 0.35); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+        .timeline-item:hover .timeline-body::after { background-color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); scale: 1.2; }
         
-        .job-title h3 { font-size: 1.35rem; color: var(--text-main); font-weight: 700; line-height: 1.3; }
-        .job-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.2rem; }
+        .job-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
+        .job-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.1rem; }
         
-        .job-details { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        .job-details li { position: relative; padding-left: 2.2rem; color: #cbd5e1; font-size: 1.02rem; }
-        .job-details li::before { font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 1rem; }
+        /* --- SOUS-FRISE INTERNE POUR L'ÉVOLUTION LINKT --- */
+        .internal-timeline {
+            display: flex; flex-direction: column; gap: 2rem;
+            position: relative; padding-left: 1.5rem; margin-top: 1rem;
+            border-left: 2px dashed rgba(255,255,255,0.1);
+        }
+        .internal-post { position: relative; display: flex; flex-direction: column; gap: 0.6rem; }
+        .internal-post::before {
+            content: ''; position: absolute; left: -29px; top: 6px;
+            width: 8px; height: 8px; border-radius: 50%; background-color: var(--border);
+            border: 2px solid var(--bg-color); transition: var(--transition);
+        }
+        .internal-post.active::before { background-color: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
+        .internal-post.past::before { background-color: var(--accent); }
+        
+        .post-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+        .post-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .post-date { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+        .internal-post.active .post-date { color: var(--accent-green); }
+        
+        .job-details { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .job-details li { position: relative; padding-left: 1.8rem; color: #cbd5e1; font-size: 0.95rem; }
+        .job-details li::before { font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent); font-size: 0.85rem; }
         .job-details li.tech::before { content: "\f120"; } 
         .job-details li.sec::before { content: "\f3ed"; }  
         .job-details li.user::before { content: "\f0c0"; } 
@@ -175,9 +171,8 @@
         .card h3 { color: var(--text-main); font-size: 1.4rem; margin-bottom: 1rem; font-weight: 700; }
 
         /* Badges */
-        .skills-container { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-        .badge { background-color: rgba(56, 189, 248, 0.06); color: var(--accent); padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.15); transition: var(--transition); }
-        .timeline-item:hover .badge, .card:hover .badge { background-color: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .badge { background-color: rgba(56, 189, 248, 0.05); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.12); }
         .badge.tools { color: #cbd5e1; background-color: #0b1324; border-color: transparent; }
 
         /* Certifications */
@@ -200,17 +195,15 @@
         .credits { color: #475569; font-size: 0.85rem; letter-spacing: 0.5px; }
 
         /* Responsive Mobile */
-        @media (max-width: 960px) {
-            .hero-container { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-left { text-align: center; align-items: center; }
-            .profile-container { margin: 0 auto; }
-            header h1 { font-size: 2.5rem; }
-            header .bio { border-left: none; border-top: 2px solid var(--accent); padding-left: 0; padding-top: 1rem; }
-            .timeline::before, .timeline-body::after { display: none; }
+        @media (max-width: 900px) {
+            .timeline::before { display: none; }
             .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-            .timeline-date { text-align: left; padding-top: 0; font-size: 0.9rem; }
+            .timeline-date { text-align: left; padding-top: 0; margin-bottom: 0.2rem; }
+            header h1 { font-size: 2.6rem; }
             nav ul { display: none; }
             section { padding: 4rem 1.5rem; }
+            .internal-timeline { border-left: 1px dashed rgba(255,255,255,0.1); padding-left: 1.2rem; }
+            .internal-post::before { left: -25px; }
         }
     </style>
 </head>
@@ -227,30 +220,13 @@
     </nav>
 
     <header>
-        <div class="hero-container">
-            <div class="hero-left">
-                <div class="profile-container">
-                    <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
-                </div>
-                <h1>Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
-                <div class="subtitle">Étudiant en Master Manager en Infrastructures et Cybersécurité des SI au CESI</div>
-                <div class="bio">Spécialisé en ingénierie des réseaux et télécoms d'entreprise. Actuellement en poste chez Linkt, j'assure la continuité et l'évolution des infrastructures critiques à travers la configuration et la gestion d'équipements multi-constructeurs haut de gamme.</div>
-                <a href="mailto:timeo.pedoussaut01@gmail.com" class="btn"><i class="fa-solid fa-envelope"></i> Me contacter par mail</a>
-            </div>
-            
-            <div class="hero-right">
-                <div class="stat-card">
-                    <div class="stat-number">Multi</div>
-                    <div class="stat-label">Constructeurs</div>
-                    <div class="stat-desc">Maîtrise opérationnelle de flottes d'équipements (Cisco ASR/ISR, Fortinet, Juniper, Huawei, OneAccess).</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">WAN / LAN</div>
-                    <div class="stat-label">Réseaux Critiques</div>
-                    <div class="stat-desc">Exploitation de protocoles de routage dynamique (BGP), Radius et coordination de bascules d'infrastructures.</div>
-                </div>
-            </div>
+        <div class="profile-container">
+            <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
         </div>
+        <h1>Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
+        <div class="subtitle">Étudiant en Master Manager en Infrastructures et Cybersécurité des SI au CESI</div>
+        <div class="bio">Passionné par les technologies réseaux et la sécurité des architectures d'entreprise. À travers mon parcours en alternance chez un opérateur télécom d'envergure, je développe une expertise solide sur les infrastructures multi-constructeurs critiques, le routage dynamique et le pilotage d'interventions techniques de terrain.</div>
+        <a href="mailto:timeo.pedoussaut01@gmail.com" class="btn"><i class="fa-solid fa-envelope"></i> Me contacter par mail</a>
     </header>
 
     <section id="experiences">
@@ -258,64 +234,57 @@
         <div class="timeline">
             
             <div class="timeline-item">
-                <div class="timeline-date">Déc. 2025 - Présent</div>
+                <div class="timeline-date active">Sept. 2024 - Présent<br><small style="font-weight:500; opacity:0.7;">(1 an 9 mois)</small></div>
                 <div class="timeline-body">
                     <div class="job-title">
-                        <h3>Coordinateur Technique</h3>
-                        <div class="company">Linkt — Opérateur Télécom (Alternance)</div>
+                        <h3>Évolution Professionnelle en Alternance</h3>
+                        <div class="company">Linkt — Opérateur Télécom • Mont-Saint-Aignan</div>
                     </div>
-                    <ul class="job-details">
-                        <li class="user"><strong>Pilotage d'Interventions :</strong> Prise d'appel et guidage technique des techniciens de terrain sur site client lors de phases critiques.</li>
-                        <li class="route"><strong>Migration LAN & Hardware :</strong> Supervision et exécution des processus de bascule d'infrastructure locale et de changement de routeurs d'accès.</li>
-                        <li class="gear"><strong>Routage Avancé :</strong> Analyse de flux, exploitation des configurations et gestion opérationnelle des interconnexions clients.</li>
-                    </ul>
-                    <div class="skills-container">
-                        <span class="badge">Migration LAN</span>
-                        <span class="badge">Coordination Terrain</span>
-                        <span class="badge">Architecture Switch/Routeur</span>
-                    </div>
-                </div>
-            </div>
+                    
+                    <div class="internal-timeline">
+                        
+                        <div class="internal-post active">
+                            <div class="post-header">
+                                <span class="post-title">Coordinateur Technique</span>
+                                <span class="post-date">Déc. 2025 - Présent</span>
+                            </div>
+                            <ul class="job-details">
+                                <li class="user"><strong>Pilotage Terrain :</strong> Prise d'appel et accompagnement technique en temps réel des techniciens (cocoordinateurs terrain) lors des interventions sur site.</li>
+                                <li class="route"><strong>Bascule LAN & WAN :</strong> Supervision des opérations critiques de migration d'architectures locales clients (environnements Switch Huawei, etc.) et gestion des configurations routeurs.</li>
+                            </ul>
+                        </div>
 
-            <div class="timeline-item">
-                <div class="timeline-date">Sept. 2025 - Déc. 2025</div>
-                <div class="timeline-body">
-                    <div class="job-title">
-                        <h3>Coordinateur Client • Production</h3>
-                        <div class="company">Linkt — Opérateur Télécom (Alternance)</div>
-                    </div>
-                    <ul class="job-details">
-                        <li class="proj"><strong>Gestion de Projet Transverse :</strong> Conception et mise en ligne d'une application interne de fiches d'auto-diagnostic pour optimiser la qualification des pannes.</li>
-                        <li class="user"><strong>Suivi de Livraison :</strong> Interface technique privilégiée entre les clients d'envergure et les équipes internes de production télécom.</li>
-                    </ul>
-                    <div class="skills-container">
-                        <span class="badge">Gestion de Projet IT</span>
-                        <span class="badge">Développement Interne</span>
-                        <span class="badge">Relation Client Grand Compte</span>
-                    </div>
-                    <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Consulter le Guide d'Auto-diagnostic
-                    </a>
-                </div>
-            </div>
+                        <div class="internal-post past">
+                            <div class="post-header">
+                                <span class="post-title">Coordinateur Client • Production</span>
+                                <span class="post-date">Sept. 2025 - Déc. 2025</span>
+                            </div>
+                            <ul class="job-details">
+                                <li class="proj"><strong>Gestion de Projet Interne :</strong> Conception, architecture et mise en ligne d'une application interne de fiches d'auto-diagnostic pour fluidifier le traitement des incidents clients.</li>
+                            </ul>
+                            <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Voir le Guide d'Auto-diagnostic
+                            </a>
+                        </div>
 
-            <div class="timeline-item">
-                <div class="timeline-date">Sept. 2024 - Sept. 2025</div>
-                <div class="timeline-body">
-                    <div class="job-title">
-                        <h3>Support Technique Client • Exploitation</h3>
-                        <div class="company">Linkt — Opérateur Télécom (Alternance)</div>
-                    </div>
-                    <ul class="job-details">
-                        <li class="tech"><strong>Diagnostic N1/N2 :</strong> Traitement approfondi des incidents sur les liaisons WAN d'entreprises, VPN et la téléphonie sur IP.</li>
-                        <li class="route"><strong>Administration Équipements :</strong> Gestion de parcs de routeurs (Cisco, Juniper, OneAccess, MikroTik) et pare-feux Fortigate via SecureCRT/PuTTY.</li>
-                        <li class="sec"><strong>Protocoles & Supervision :</strong> Routage dynamique BGP, architectures d'authentification RADIUS et monitoring réseau en temps réel via Grafana.</li>
-                    </ul>
-                    <div class="skills-container">
+                        <div class="internal-post past">
+                            <div class="post-header">
+                                <span class="post-title">Support Technique Client • Exploitation</span>
+                                <span class="post-date">Sept. 2024 - Sept. 2025</span>
+                            </div>
+                            <ul class="job-details">
+                                <li class="tech"><strong>Diagnostic & Résolution N1/N2 :</strong> Gestion d'incidents complexes sur les architectures réseaux d'entreprise, liaisons WAN et VoIP.</li>
+                                <li class="route"><strong>Flotte Multi-Constructeurs :</strong> Manipulation et exploitation au quotidien via SecureCRT/PuTTY d'équipements routeurs variés (Cisco C800, C1100, ISR, ASR 1001-X, Juniper, MikroTik, OneAccess) et pare-feux Fortigate.</li>
+                                <li class="gear"><strong>Routage Core Network :</strong> Supervision des flux et architecture réseau s'appuyant sur les protocoles BGP, Radius et l'outil de monitoring Grafana.</li>
+                            </ul>
+                        </div>
+
+                    </div> <div class="skills-container" style="margin-top: 1rem;">
                         <span class="badge">Routage BGP</span>
-                        <span class="badge">Fortigate / Cisco / Juniper</span>
-                        <span class="badge">RADIUS & Grafana</span>
-                        <span class="badge"> ticketing N1/N2</span>
+                        <span class="badge">Cisco ASR/ISR & Fortigate</span>
+                        <span class="badge">Supervision Grafana</span>
+                        <span class="badge">Radius</span>
+                        <span class="badge">Coordination LAN / Huawei</span>
                     </div>
                 </div>
             </div>
@@ -375,7 +344,6 @@
                         <span class="badge tools">TFTP Server</span>
                         <span class="badge tools">Wireshark</span>
                         <span class="badge tools">Cisco Packet Tracer</span>
-                        <span class="badge tools">Microsoft Teams</span>
                     </div>
                 </div>
                 <div class="card">
@@ -386,7 +354,7 @@
                         <span class="badge">Sécurité Fortigate & GPO</span>
                         <span class="badge">Authentification RADIUS</span>
                         <span class="badge">Coordination & Bascule LAN</span>
-                        <span class="badge">Architecture Réseau Opérateur</span>
+                        <span class="badge">Réseau Opérateur (Cisco, Juniper...)</span>
                     </div>
                 </div>
             </div>
