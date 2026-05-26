@@ -6,23 +6,8 @@
     <title>Timéo Pedoussaut | Portfolio Cybersécurité & Infra</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variables de couleur - Mode Clair (Par défaut) */
+        /* Variables de couleur - Mode Sombre (Par défaut d'après les maquettes) */
         :root {
-            --bg-color: #f1f5f9;
-            --card-bg: #ffffff;
-            --card-hover: #f8fafc;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent: #0ea5e9;
-            --accent-green: #10b981;
-            --border: #cbd5e1;
-            --glow: rgba(14, 165, 233, 0.15);
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            --timeline-line: #e2e8f0;
-        }
-
-        /* Variables de couleur - Mode Sombre */
-        [data-theme="dark"] {
             --bg-color: #060b13;
             --card-bg: #0f172a;
             --card-hover: #1e293b;
@@ -32,7 +17,22 @@
             --accent-green: #34d399;
             --border: #1e293b;
             --glow: rgba(56, 189, 248, 0.15);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             --timeline-line: #1e293b;
+        }
+
+        /* Mode Clair accessible via le switch */
+        [data-theme="light"] {
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --card-hover: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #0ea5e9;
+            --accent-green: #10b981;
+            --border: #cbd5e1;
+            --glow: rgba(14, 165, 233, 0.15);
+            --timeline-line: #e2e8f0;
         }
 
         * { 
@@ -54,15 +54,15 @@
         /* Barre de navigation */
         nav {
             position: fixed; top: 0; width: 100%;
-            background-color: rgba(241, 245, 249, 0.8); 
+            background-color: rgba(6, 11, 19, 0.8); 
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; border-bottom: 1px solid var(--border);
             transition: var(--transition);
         }
-        [data-theme="dark"] nav {
-            background-color: rgba(6, 11, 19, 0.8);
+        [data-theme="light"] nav {
+            background-color: rgba(241, 245, 249, 0.8);
         }
         nav .logo { 
             font-weight: 800; 
@@ -105,7 +105,7 @@
         header {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center; padding: 6rem 2rem 2rem 2rem;
-            background: radial-gradient(circle at 50% 45%, rgba(14, 165, 233, 0.1) 0%, var(--bg-color) 65%);
+            background: radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.08) 0%, var(--bg-color) 65%);
             position: relative;
         }
 
@@ -136,7 +136,7 @@
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px var(--glow); }
         
         .btn-secondary {
-            background: rgba(14, 165, 233, 0.1); color: var(--accent); border: 1px solid var(--accent);
+            background: rgba(56, 189, 248, 0.05); color: var(--accent); border: 1px solid var(--accent);
             padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem;
             font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;
             margin-top: auto; width: fit-content; transition: var(--transition);
@@ -151,7 +151,7 @@
         }
         section h2 i { color: var(--accent); }
 
-        /* Frise Chronologique */
+        /* Frise Chronologique Expériences */
         .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
         .timeline::before {
             content: ''; position: absolute; left: 210px; top: 20px; bottom: 20px;
@@ -178,7 +178,7 @@
         .job-title .company a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
         .job-title .company a:hover { text-decoration: underline; }
         
-        /* Sous-Frise Interne */
+        /* Sous-Frise Interne (Linkt) */
         .internal-timeline {
             display: flex; flex-direction: column; gap: 2.5rem;
             position: relative; padding-left: 1.5rem; margin-top: 1rem;
@@ -211,8 +211,6 @@
         .job-details li.clock::before { content: "\f2f2"; }
         .job-details li.phone::before { content: "\f095"; }
         .job-details li.globe::before { content: "\f0ac"; }
-        .job-details li.check::before { content: "\f058"; }
-        .job-details li.info::before { content: "\f05a"; }
 
         /* Grilles & Cartes */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
@@ -221,14 +219,34 @@
         .card h3 { color: var(--text-main); font-size: 1.35rem; margin-bottom: 0.4rem; font-weight: 700; }
         .card .company { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
         .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-        .card .date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
-        .card .result-badge { display: inline-block; background: rgba(16, 185, 129, 0.1); color: var(--accent-green); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1rem; width: fit-content; }
-
+        
         /* Badges Compétences */
         .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(14, 165, 233, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(14, 165, 233, 0.2); }
-        .badge.tools { color: var(--text-main); background-color: rgba(0,0,0,0.04); border-color: transparent; }
-        [data-theme="dark"] .badge.tools { background-color: rgba(255,255,255,0.05); color: var(--text-main); }
+        .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.2); }
+        .badge.tools { color: var(--text-main); background-color: rgba(255,255,255,0.05); border-color: transparent; }
+        [data-theme="light"] .badge.tools { background-color: rgba(0,0,0,0.04); }
+
+        /* Frise Chronologique Formations */
+        .formations-timeline {
+            position: relative; display: flex; flex-direction: column; gap: 3rem; padding-left: 2rem; border-left: 3px solid var(--border); margin-left: 1rem;
+        }
+        .form-item { position: relative; }
+        .form-item::before {
+            content: ''; position: absolute; left: -38px; top: 24px; width: 14px; height: 14px; border-radius: 50%; background-color: var(--card-bg); border: 3px solid var(--border); z-index: 2; transition: var(--transition);
+        }
+        .form-item:hover::before { border-color: var(--accent); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); scale: 1.1; }
+        .form-content { background: var(--card-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: var(--transition); display: flex; flex-direction: column; gap: 1rem; }
+        .form-item:hover .form-content { transform: translateX(5px); border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+        .form-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+        .form-header h3 { font-size: 1.3rem; font-weight: 700; color: var(--text-main); }
+        .form-institution { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-top: 0.2rem; }
+        .form-date { font-size: 0.9rem; font-weight: 700; color: var(--accent); background: rgba(56, 189, 248, 0.08); padding: 0.3rem 0.8rem; border-radius: 8px; white-space: nowrap; }
+        .form-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        
+        .form-badge { position: absolute; top: -12px; right: 20px; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 3; }
+        .form-badge.current { background-color: rgba(56, 189, 248, 0.15); color: var(--accent); border: 1px solid var(--accent); }
+        .form-badge.approved { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .form-badge.diploma { background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid #f59e0b; }
 
         /* Architecture Certifications triées */
         .cert-category { margin-bottom: 3rem; }
@@ -243,7 +261,7 @@
         .cert-meta { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; line-height: 1.4; }
         .cert-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; width: 100%; }
 
-        /* Double Colonne Profil */
+        /* Profil / Double Colonne */
         .profile-footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
         .lang-grid, .mobility-grid { display: flex; flex-direction: column; gap: 1rem; }
         .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
@@ -252,8 +270,8 @@
         .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
 
         /* Footer */
-        footer { background-color: #0f172a; padding: 5rem 2rem; text-align: center; color: #f8fafc; }
-        [data-theme="dark"] footer { background-color: #020408; border-top: 1px solid var(--border); }
+        footer { background-color: #020408; padding: 5rem 2rem; text-align: center; color: #f8fafc; border-top: 1px solid var(--border); }
+        [data-theme="light"] footer { background-color: #0f172a; }
         .footer-info { max-width: 600px; margin: 0 auto 2.5rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; }
         .footer-info-item { display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-weight: 500; text-decoration: none; transition: var(--transition); }
         .footer-info-item:hover { color: var(--accent); }
@@ -272,6 +290,10 @@
             section { padding: 4rem 1.5rem; }
             .internal-timeline { border-left: 1px dashed var(--border); padding-left: 1.2rem; }
             .internal-post::before { left: -25px; }
+            .formations-timeline { padding-left: 1.5rem; margin-left: 0.5rem; }
+            .form-item::before { left: -31px; }
+            .form-header { flex-direction: column; gap: 0.5rem; }
+            .form-badge { position: relative; top: 0; right: 0; width: fit-content; margin-bottom: 0.5rem; }
             .profile-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
         }
     </style>
@@ -288,7 +310,7 @@
             <li><a href="#competences-profil">Profil & Langues</a></li>
             <li>
                 <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
-                    <i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>
+                    <i class="fa-solid fa-sun"></i> <span>Mode Clair</span>
                 </button>
             </li>
         </ul>
@@ -299,8 +321,8 @@
             <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
         </div>
         <h1>Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
-        <div class="subtitle">Étudiant en Master Manager en Infrastructures et Cybersécurité des SI au CESI</div>
-        <div class="bio">Passionné par les technologies réseaux et la sécurité des architectures d'entreprise. À travers mon parcours en alternance chez un opérateur télécom d'envergure, je développe une expertise solide sur les infrastructures multi-constructeurs critiques, le routage dynamique et le pilotage d'interventions techniques de terrain.</div>
+        <div class="subtitle">Étudiant en Master Manager en Infrastructures et Cybersécurité des SI au CESI & Alternant Coordinateur Technique chez Linkt</div>
+        <div class="bio">Spécialisé en ingénierie des réseaux et télécoms d'entreprise. Actuellement en poste chez Linkt, j'assure la continuité et l'évolution des infrastructures critiques à travers la configuration et la gestion d'équipements multi-constructeurs haut de gamme.</div>
         <a href="mailto:timeo.pedoussaut01@gmail.com" class="btn"><i class="fa-solid fa-envelope"></i> Me contacter par mail</a>
     </header>
 
@@ -327,43 +349,40 @@
                                 <span class="post-date">Déc. 2025 - Présent</span>
                             </div>
                             <ul class="job-details">
-                                <li class="user"><strong>Pilotage Terrain :</strong> Prise d'appel et accompagnement technique en temps réel des techniciens (coordonnative terrain) lors des interventions sur site.</li>
+                                <li class="user"><strong>Pilotage Terrain :</strong> Prise d'appel et accompagnement technique en temps réel des techniciens (cocoordinateurs terrain) lors des interventions sur site.</li>
                                 <li class="route"><strong>Bascule LAN & WAN :</strong> Supervision des opérations critiques de migration d'architectures locales clients (environnements Switch Huawei, etc.) et gestion des configurations routeurs.</li>
                             </ul>
                         </div>
 
                         <div class="internal-post past">
                             <div class="post-header">
-                                <span class="post-title">Coordinateur Client • Production</span>
+                                <span class="post-title">Coordinateur Client - Production</span>
                                 <span class="post-date">Sept. 2025 - Déc. 2025</span>
                             </div>
                             <ul class="job-details">
-                                <li class="gear"><strong>Suivi et Déploiement :</strong> Prise en charge des dossiers de livraison client, validation des architectures d'accès et mise en production des liaisons de bout en bout.</li>
+                                <li class="gear"><strong>Gestion de Projet Interne :</strong> Conception, architecture et mise en ligne d'une application interne de fiches d'auto-diagnostic pour fluidifier le traitement des incidents clients.</li>
                             </ul>
                         </div>
 
                         <div class="internal-post past">
                             <div class="post-header">
-                                <span class="post-title">Support Technique Client • Exploitation (N1)</span>
+                                <span class="post-title">Support Technique Client - Exploitation</span>
                                 <span class="post-date">Sept. 2024 - Sept. 2025</span>
                             </div>
                             <ul class="job-details">
-                                <li class="user"><strong>Support technique N1 & Relation client :</strong> Réception et traitement des sollicitations (appels et tickets, ~8/jour) pour des incidents de coupure ou dégradation de service.</li>
-                                <li class="route"><strong>Maintenance corrective Réseau :</strong> Diagnostic et rétablissement de liens VPN IP sur backbone MPLS et gestion de la redondance via VRRP (ex : backup 4G/5G).</li>
-                                <li class="globe"><strong>Multi-technologies & Accès :</strong> Diagnostic de pannes sur un parc hétérogène (FTTH/O, xDSL, 4G/5G, Starlink) et coordination d'interventions avec les opérateurs tiers (Orange, SFR, Covage).</li>
-                                <li class="tech"><strong>Configuration curative L2/L3 :</strong> Paramétrage à distance et troubleshooting de routeurs (Cisco, Keenetic, MikroTik, Juniper) : gestion de VLANs, routage, DHCP et domaines.</li>
-                                <li class="phone"><strong>Support Téléphonie IP :</strong> Diagnostic de premier niveau sur architectures Trunk SIP / Centrex et assistance à la configuration de combinés lors de remplacements SAV.</li>
-                                <li class="clock"><strong>Suivi des engagements (SLA) :</strong> Respect rigoureux des garanties de temps de rétablissement (GTR ≤ 4h) en environnement critique 24h/7j.</li>
+                                <li class="tech"><strong>Diagnostic & Résolution N1/N2 :</strong> Gestion d'incidents complexes sur les architectures réseaux d'entreprise, liaisons WAN et VoIP.</li>
+                                <li class="globe"><strong>Flotte Multi-Constructeurs :</strong> Manipulation et exploitation au quotidien via SecureCRT/PuTTY d'équipements routeurs variés (Cisco C800, C1100, ISR, ASR 1001-X, Juniper, MikroTik, OneAccess) et pare-feu Fortigate.</li>
+                                <li class="route"><strong>Routage Core Network :</strong> Supervision des flux et architecture réseau s'appuyant sur les protocoles BGP, Radius et l'outil de monitoring Grafana.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="skills-container" style="margin-top: 1rem;">
-                        <span class="badge"><i class="fa-solid fa-network-wired"></i> Backbone MPLS</span>
-                        <span class="badge"><i class="fa-solid fa-route"></i> Redondance VRRP</span>
-                        <span class="badge"><i class="fa-solid fa-terminal"></i> Cisco, Juniper, MikroTik</span>
-                        <span class="badge"><i class="fa-solid fa-phone-volume"></i> Trunk SIP & Centrex</span>
-                        <span class="badge"><i class="fa-solid fa-business-time"></i> SLA / GTR ≤ 4h</span>
+                        <span class="badge">Routage BGP</span>
+                        <span class="badge">Cisco ASR/ISR & Fortigate</span>
+                        <span class="badge">Supervision Grafana</span>
+                        <span class="badge">Radius</span>
+                        <span class="badge">Coordination LAN / Huawei</span>
                     </div>
                 </div>
             </div>
@@ -376,13 +395,13 @@
                         <div class="company">Centre Henri-Becquerel (Stage) — Rouen</div>
                     </div>
                     <ul class="job-details">
-                        <li class="gear">Déploiement et maintenance des postes de travail.</li>
-                        <li class="tech">Gestion et administration de l’infrastructure réseau.</li>
-                        <li class="route">Réalisation de projets de migration et de déploiement système.</li>
+                        <li class="gear"><strong>Gestion de Parc :</strong> Déploiement matériel, masterisation et maintenance logicielle en totale autonomie.</li>
+                        <li class="tech"><strong>Infrastructure :</strong> Support utilisateur de proximité, migration de systèmes d'exploitation et supervision courante du réseau local.</li>
                     </ul>
                     <div class="skills-container">
-                        <span class="badge"><i class="fa-solid fa-laptop"></i> Maintenance Parc IT</span>
-                        <span class="badge"><i class="fa-solid fa-server"></i> Migration Système</span>
+                        <span class="badge">Maintenance Parc IT</span>
+                        <span class="badge">Migration OS</span>
+                        <span class="badge">Support Proximité</span>
                     </div>
                 </div>
             </div>
@@ -395,25 +414,24 @@
                         <div class="company">Mairie de Darnétal (Stage) — Darnétal</div>
                     </div>
                     <ul class="job-details">
-                        <li class="tech">Amélioration et administration de l’Active Directory.</li>
-                        <li class="shield">Mise en conformité RGPD et gestion des droits d’accès.</li>
-                        <li class="shield">Utilisation des GPO pour sécuriser et optimiser les ressources informatiques.</li>
+                        <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles, des accès et de l'arborescence.</li>
+                        <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcir la sécurité.</li>
+                        <li class="shield"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
                     </ul>
                     <div class="skills-container">
-                        <span class="badge"><i class="fa-solid fa-user-gear"></i> Active Directory</span>
-                        <span class="badge"><i class="fa-solid fa-sliders"></i> GPO</span>
-                        <span class="badge"><i class="fa-solid fa-user-shield"></i> RGPD</span>
+                        <span class="badge">Active Directory</span>
+                        <span class="badge">GPO (Group Policies)</span>
+                        <span class="badge">Normes RGPD / ANSSI</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" style="background-color: rgba(14, 165, 233, 0.04); max-width: 100%;">
+    <section id="projects" style="background-color: rgba(56, 189, 248, 0.02); max-width: 100%;">
         <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
             <h2><i class="fa-solid fa-code-branch"></i> Projets Réalisés</h2>
             <div class="grid">
-                
                 <div class="card" style="grid-column: 1 / -1;">
                     <div>
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; margin-bottom: 0.5rem;">
@@ -421,73 +439,108 @@
                             <span style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted);">Oct. 2024 – Juin 2025</span>
                         </div>
                         <div class="company">Associé à Linkt — Projet Transverse</div>
-                        
                         <p style="margin-bottom: 1rem;">Conception globale et participation active au développement d’un ensemble d’outils applicatifs visant à optimiser les processus de support et l’autonomie des clients de l'opérateur.</p>
-                        
                         <ul class="job-details" style="margin-bottom: 1.5rem; gap: 0.8rem;">
-                            <li class="gear"><strong>Refonte du système de notation des tickets :</strong> Intégration d'un menu déroulant intelligent forçant la qualification et la justification des notes attribuées, couplée à une fonctionnalité stratégique permettant au client de réouvrir directement un ticket en cas d'insatisfaction.</li>
-                            <li class="tech"><strong>Application de fiches d'auto-diagnostic :</strong> Centralisation et mise à disposition de fiches techniques (configurations routeurs, guides d'accès et procédures administratives) via une interface web fluide pour décharger les équipes de support N1 et raccourcir les délais de résolution.</li>
+                            <li class="gear"><strong>Refonte du système de notation :</strong> Intégration d'un menu déroulant intelligent forçant la qualification des notes attribuées, couplée à une fonctionnalité permettant de réouvrir directement un ticket.</li>
+                            <li class="tech"><strong>Application de fiches d'auto-diagnostic :</strong> Centralisation et mise à disposition de fiches techniques via une interface web fluide pour décharger le support N1.</li>
                         </ul>
-
                         <div class="skills-container" style="margin-bottom: 1.5rem;">
                             <span class="badge tools"><i class="fa-brands fa-vuejs"></i> Vue.js</span>
                             <span class="badge tools"><i class="fa-solid fa-puzzle-piece"></i> WXT Extension</span>
                             <span class="badge tools"><i class="fa-solid fa-users"></i> UX / Relation Client</span>
-                            <span class="badge tools"><i class="fa-solid fa-ticket"></i> Optimisation Ticketing</span>
                         </div>
                     </div>
                     <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Consulter l'application de diagnostic
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Voir le Guide d'Auto-diagnostic
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section id="formations">
         <h2><i class="fa-solid fa-graduation-cap"></i> Formations & Diplômes</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <h3>Master MICSI</h3>
-                    <div class="company">CESI Saint-Étienne-du-Rouvray</div>
-                    <div class="date"><i class="fa-regular fa-calendar"></i> 2025 - 2027</div>
-                    <div class="result-badge" style="background: rgba(14, 165, 233, 0.1); color: var(--accent);">En cours</div>
-                    <p>Manager en Infrastructures et Cybersécurité des SI. Focus sur la gouvernance, la cyber-défense et l'ingénierie système.</p>
+        <div class="formations-timeline">
+            
+            <div class="form-item">
+                <div class="form-badge current">En cours</div>
+                <div class="form-content">
+                    <div class="form-header">
+                        <div>
+                            <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
+                            <div class="form-institution">CESI • Saint-Étienne-du-Rouvray</div>
+                        </div>
+                        <div class="form-date">Sept. 2025 – Oct. 2027</div>
+                    </div>
+                    <p class="form-desc">Filière Computer Science. Focus approfondi sur la gouvernance des SI, le management des infrastructures critiques, l'audit de sécurité et la cyber-défense d'entreprise.</p>
+                    <a href="https://www.cesi.fr/formation/manager-en-infrastructures-et-cybersecurite-des-si-2336504/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
+                    </a>
                 </div>
-                <a href="https://www.cesi.fr/formation/manager-en-infrastructures-et-cybersecurite-des-si-2336504/" target="_blank" class="btn-secondary">
-                    <i class="fa-solid fa-link"></i> Voir le programme complet
-                </a>
             </div>
-            <div class="card">
-                <div>
-                    <h3>Bachelor Administrateur Système Réseau</h3>
-                    <div class="company">CESI</div>
-                    <div class="date"><i class="fa-regular fa-calendar"></i> Septembre 2025</div>
-                    <div class="result-badge">Admis</div>
-                    <p>Spécialisation dans la conception, la sécurisation et le maintien opérationnel des infrastructures d'entreprise complexes.</p>
+
+            <div class="form-item">
+                <div class="form-badge approved">Admis</div>
+                <div class="form-content">
+                    <div class="form-header">
+                        <div>
+                            <h3>Bachelor Administrateur Système Réseau</h3>
+                            <div class="form-institution">CESI • Saint-Étienne-du-Rouvray</div>
+                        </div>
+                        <div class="form-date">Oct. 2024 – Sept. 2025</div>
+                    </div>
+                    <p class="form-desc">Filière Computer Science. Spécialisation dans la conception, la sécurisation avancée, l'automatisation et le maintien opérationnel des infrastructures hétérogènes.</p>
+                    <div class="skills-container" style="margin: 0.5rem 0 1rem 0;">
+                        <span class="badge tools"><i class="fa-solid fa-diagram-project"></i> Gestion de projet</span>
+                        <span class="badge tools"><i class="fa-solid fa-cloud"></i> Cloud Computing</span>
+                        <span class="badge tools"><i class="fa-solid fa-plus"></i> 4 compétences</span>
+                    </div>
+                    <a href="https://www.cesi.fr/formation/admission-parallele-bachelor-administrateur-trice-systemes-et-reseaux-en-alternance-2520464/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
+                    </a>
                 </div>
-                <a href="https://www.cesi.fr/formation/admission-parallele-bachelor-administrateur-trice-systemes-et-reseaux-en-alternance-2520464/" target="_blank" class="btn-secondary">
-                    <i class="fa-solid fa-link"></i> Voir la fiche formation
-                </a>
             </div>
-            <div class="card">
-                <div>
-                    <h3>BTS SIO (Option SISR)</h3>
-                    <div class="company">Campus La Châtaigneraie</div>
-                    <div class="date"><i class="fa-regular fa-calendar"></i> Juillet 2024</div>
-                    <div class="result-badge">Admis</div>
-                    <p>Solutions d'Infrastructure, Systèmes et Réseaux. Compétences en routage, commutation et déploiement de services clients.</p>
+
+            <div class="form-item">
+                <div class="form-badge approved">Admis</div>
+                <div class="form-content">
+                    <div class="form-header">
+                        <div>
+                            <h3>BTS SIO (Option SISR)</h3>
+                            <div class="form-institution">Campus La Châtaigneraie • Le Grand-Quevilly</div>
+                        </div>
+                        <div class="form-date">Sept. 2022 – Mai 2024</div>
+                    </div>
+                    <p class="form-desc">Brevet de Technicien Supérieur – Services Informatiques aux Organisations. Option Solutions d'Infrastructure, Systèmes et Réseaux. Apprentissage des architectures réseaux logiques et physiques, de la commutation et du déploiement de services.</p>
+                    <div class="skills-container" style="margin: 0.5rem 0 1rem 0;">
+                        <span class="badge tools"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="badge tools"><i class="fa-solid fa-window-restore"></i> Système d'exploitation</span>
+                        <span class="badge tools"><i class="fa-solid fa-plus"></i> 37 compétences</span>
+                    </div>
+                    <a href="https://www.la-chataigneraie.org/bts-service-informatiques-aux-organisations-solutions-d-infrastructure-systemes-reseaux/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
+                    </a>
                 </div>
-                <a href="https://www.la-chataigneraie.org/bts-service-informatiques-aux-organisations-solutions-d-infrastructure-systemes-reseaux/" target="_blank" class="btn-secondary">
-                    <i class="fa-solid fa-link"></i> Découvrir le cursus
-                </a>
             </div>
+
+            <div class="form-item">
+                <div class="form-badge diploma"><i class="fa-solid fa-award"></i> Obtenu</div>
+                <div class="form-content">
+                    <div class="form-header">
+                        <div>
+                            <h3>Baccalauréat</h3>
+                            <div class="form-institution">Lycée Blaise Pascal • Rouen</div>
+                        </div>
+                        <div class="form-date">Janv. 2019 – Mai 2022</div>
+                    </div>
+                    <p class="form-desc">High School / Secondary Diploma Programs.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section id="certifications" style="background-color: rgba(14, 165, 233, 0.04); max-width: 100%;">
+    <section id="certifications" style="background-color: rgba(56, 189, 248, 0.02); max-width: 100%;">
         <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
             <h2><i class="fa-solid fa-certificate"></i> Licences & Certifications</h2>
             
@@ -506,19 +559,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">
-                                Émise en avril 2026<br>ID : 7302635329TP
-                            </div>
+                            <div class="cert-meta">Émise en avril 2026<br>ID : 7302635329TP</div>
                             <div class="cert-actions">
-                                <a href="CertificatForti.jpg" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.8rem; font-size: 0.8rem; flex: 1; justify-content: center;">
-                                    <i class="fa-solid fa-eye"></i> Voir le certificat
-                                </a>
-                                <a href="https://training.fortinet.com/admin/tool/certificate/index.php" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.6rem; font-size: 0.8rem;" title="Vérifier la conformité">
-                                    <i class="fa-solid fa-user-check"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/company/fortinet/" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.6rem; font-size: 0.8rem;" title="Profil LinkedIn Fortinet">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                </a>
+                                <a href="CertificatForti.jpg" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
+                                <a href="https://training.fortinet.com" target="_blank" class="btn-secondary" title="Vérifier"><i class="fa-solid fa-user-check"></i></a>
+                                <a href="https://www.linkedin.com/company/fortinet/" target="_blank" class="btn-secondary" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -534,16 +579,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">
-                                Émise en janvier 2023<br><span style="color:var(--text-muted); font-size: 0.75rem;">Réseaux & Sécurité IT</span>
-                            </div>
+                            <div class="cert-meta">Émise en janvier 2023<br>Réseaux & Sécurité IT</div>
                             <div class="cert-actions">
-                                <a href="CertificatMOOC.jpg" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.8rem; font-size: 0.8rem; flex: 1; justify-content: center;">
-                                    <i class="fa-solid fa-eye"></i> Voir le certificat
-                                </a>
-                                <a href="https://www.linkedin.com/company/anssi-fr/posts/?feedView=all" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.6rem; font-size: 0.8rem;" title="Fil d'actualité ANSSI">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                </a>
+                                <a href="CertificatMOOC.jpg" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
+                                <a href="https://www.linkedin.com/company/anssi-fr/" target="_blank" class="btn-secondary" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -552,30 +591,24 @@
             </div>
 
             <div class="cert-category">
-                <h3><i class="fa-solid fa-network-wired" style="color: #049ca4;"></i> Réseaux & Infrastructures</h3>
+                <h3><i class="fa-solid fa-network-wired" style="color: #38bdf8;"></i> Réseaux & Infrastructures</h3>
                 <div class="cert-grid">
                     
                     <div class="cert-item">
                         <div class="cert-content">
                             <div>
                                 <div class="cert-header">
-                                    <i class="fa-solid fa-network-wired" style="color: #049ca4; font-size: 1.8rem;"></i>
+                                    <i class="fa-solid fa-network-wired" style="color: #38bdf8; font-size: 1.8rem;"></i>
                                     <div>
                                         <span class="cert-title">Introduction to Cybersecurity</span><br>
                                         <span class="cert-org">Cisco Networking Academy</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">
-                                Émise en mars 2026<br>ID : e054aab1-a618-42ad-899c-2cf937554fa9
-                            </div>
+                            <div class="cert-meta">Émise en mars 2026<br>ID : e054aab1-a618-42ad-899c-2cf937554fa9</div>
                             <div class="cert-actions">
-                                <a href="CertificatCisco.jpg" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.8rem; font-size: 0.8rem; flex: 1; justify-content: center;">
-                                    <i class="fa-solid fa-eye"></i> Voir le certificat
-                                </a>
-                                <a href="https://www.linkedin.com/school/cisco-networking-academy1/" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.6rem; font-size: 0.8rem;" title="Cisco Academy LinkedIn">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                </a>
+                                <a href="CertificatCisco.jpg" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
+                                <a href="https://www.linkedin.com/school/cisco-networking-academy1/" target="_blank" class="btn-secondary" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -584,27 +617,23 @@
             </div>
 
             <div class="cert-category" style="margin-bottom: 0;">
-                <h3><i class="fa-solid fa-laptop-code" style="color: #3b82f6;"></i> Système & Environnement Numérique</h3>
+                <h3><i class="fa-solid fa-laptop-code" style="color: #a855f7;"></i> Système & Environnement Numérique</h3>
                 <div class="cert-grid">
                     
                     <div class="cert-item">
                         <div class="cert-content">
                             <div>
                                 <div class="cert-header">
-                                    <i class="fa-solid fa-laptop-code" style="color: #3b82f6; font-size: 1.8rem;"></i>
+                                    <i class="fa-solid fa-laptop-code" style="color: #a855f7; font-size: 1.8rem;"></i>
                                     <div>
                                         <span class="cert-title">Certification Pix</span><br>
                                         <span class="cert-org">GIP Pix</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">
-                                Émise en janvier 2024<br>ID : P-YVQBYRV7
-                            </div>
+                            <div class="cert-meta">Émise en janvier 2024<br>ID : P-YVQBYRV7</div>
                             <div class="cert-actions">
-                                <a href="https://www.linkedin.com/company/gip-pix/" target="_blank" class="btn-secondary" style="padding: 0.5rem 0.8rem; font-size: 0.8rem; flex: 1; justify-content: center;">
-                                    <i class="fa-brands fa-linkedin"></i> Profil GIP Pix
-                                </a>
+                                <a href="https://www.linkedin.com/company/gip-pix/" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;"><i class="fa-brands fa-linkedin"></i> Profil GIP Pix</a>
                             </div>
                         </div>
                     </div>
@@ -617,7 +646,6 @@
 
     <section id="competences-profil">
         <div class="profile-footer-grid">
-            
             <div>
                 <h2 style="margin-bottom: 2rem;"><i class="fa-solid fa-language"></i> Langues</h2>
                 <div class="lang-grid">
@@ -671,7 +699,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -691,12 +718,12 @@
             const body = document.body;
             const btn = document.getElementById('themeBtn');
             
-            if (body.hasAttribute('data-theme')) {
+            if (body.getAttribute('data-theme') === 'light') {
                 body.removeAttribute('data-theme');
-                btn.innerHTML = '<i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>';
-            } else {
-                body.setAttribute('data-theme', 'dark');
                 btn.innerHTML = '<i class="fa-solid fa-sun"></i> <span>Mode Clair</span>';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                btn.innerHTML = '<i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>';
             }
         }
     </script>
