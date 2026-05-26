@@ -246,7 +246,7 @@
         .form-badge { position: absolute; top: -12px; right: 20px; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 3; }
         .form-badge.current { background-color: rgba(56, 189, 248, 0.15); color: var(--accent); border: 1px solid var(--accent); }
         .form-badge.approved { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
-        .form-badge.diploma { background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid #f59e0b; }
+        .form-badge.diploma { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
 
         /* Architecture Certifications triées */
         .cert-category { margin-bottom: 3rem; }
@@ -268,6 +268,11 @@
         .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px; text-align: center; }
         .lang-card h4, .mobility-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
         .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+        /* Spec list Bac */
+        .spec-list { list-style: none; padding-left: 0.5rem; margin-top: 0.3rem; }
+        .spec-list li { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
+        .spec-list li::before { content: "•"; color: var(--accent); font-weight: bold; }
 
         /* Footer */
         footer { background-color: #020408; padding: 5rem 2rem; text-align: center; color: #f8fafc; border-top: 1px solid var(--border); }
@@ -415,7 +420,7 @@
                     </div>
                     <ul class="job-details">
                         <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles, des accès et de l'arborescence.</li>
-                        <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcir la sécurité.</li>
+                        <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcis la sécurité.</li>
                         <li class="shield"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
                     </ul>
                     <div class="skills-container">
@@ -524,16 +529,34 @@
             </div>
 
             <div class="form-item">
-                <div class="form-badge diploma"><i class="fa-solid fa-award"></i> Obtenu</div>
+                <div class="form-badge diploma">Admis</div>
                 <div class="form-content">
                     <div class="form-header">
                         <div>
-                            <h3>Baccalauréat</h3>
+                            <h3>Baccalauréat (Option Européenne)</h3>
                             <div class="form-institution">Lycée Blaise Pascal • Rouen</div>
                         </div>
                         <div class="form-date">Janv. 2019 – Mai 2022</div>
                     </div>
-                    <p class="form-desc">High School / Secondary Diploma Programs.</p>
+                    <p class="form-desc" style="font-weight: 700; margin-bottom: 0.2rem;">Niveau : Baccalauréat et certification européenne</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                        <div>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">Spécialités Terminale :</span>
+                            <ul class="spec-list">
+                                <li>Mathématiques</li>
+                                <li>Sciences de l'ingénieur</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">Spécialités Première :</span>
+                            <ul class="spec-list">
+                                <li>Mathématiques</li>
+                                <li>Sciences de l'ingénieur</li>
+                                <li>Physique Chimie</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
