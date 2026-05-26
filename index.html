@@ -60,7 +60,7 @@
         }
         nav a:hover { color: var(--accent); text-shadow: 0 0 10px var(--glow); }
 
-        /* En-tête / Hero Section Centré et Élégant */
+        /* En-tête / Hero Section */
         header {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center; padding: 6rem 2rem 2rem 2rem;
@@ -96,11 +96,11 @@
         
         .btn-secondary {
             background: rgba(30, 41, 59, 0.5); color: var(--text-main); border: 1px solid var(--border);
-            padding: 0.4rem 0.9rem; border-radius: 8px; text-decoration: none; font-size: 0.8rem;
-            font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem;
+            font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;
             margin-top: 0.5rem; width: fit-content; transition: var(--transition);
         }
-        .btn-secondary:hover { background: var(--card-hover); border-color: var(--accent); }
+        .btn-secondary:hover { background: var(--card-hover); border-color: var(--accent); color: var(--accent); }
 
         /* Sections */
         section { padding: 6rem 2rem; max-width: 1140px; margin: 0 auto; }
@@ -134,13 +134,13 @@
         .job-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
         .job-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.1rem; }
         
-        /* --- SOUS-FRISE INTERNE POUR L'ÉVOLUTION LINKT --- */
+        /* --- SOUS-FRISE INTERNE POUR LINKT --- */
         .internal-timeline {
-            display: flex; flex-direction: column; gap: 2rem;
+            display: flex; flex-direction: column; gap: 2.5rem;
             position: relative; padding-left: 1.5rem; margin-top: 1rem;
             border-left: 2px dashed rgba(255,255,255,0.1);
         }
-        .internal-post { position: relative; display: flex; flex-direction: column; gap: 0.6rem; }
+        .internal-post { position: relative; display: flex; flex-direction: column; gap: 0.8rem; }
         .internal-post::before {
             content: ''; position: absolute; left: -29px; top: 6px;
             width: 8px; height: 8px; border-radius: 50%; background-color: var(--border);
@@ -150,25 +150,30 @@
         .internal-post.past::before { background-color: var(--accent); }
         
         .post-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
-        .post-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .post-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
         .post-date { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
         .internal-post.active .post-date { color: var(--accent-green); }
         
         .job-details { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
         .job-details li { position: relative; padding-left: 1.8rem; color: #cbd5e1; font-size: 0.95rem; }
         .job-details li::before { font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent); font-size: 0.85rem; }
+        
+        /* Liste d'icônes spécifiques */
         .job-details li.tech::before { content: "\f120"; } 
-        .job-details li.sec::before { content: "\f3ed"; }  
         .job-details li.user::before { content: "\f0c0"; } 
-        .job-details li.proj::before { content: "\f0ae"; } 
         .job-details li.gear::before { content: "\f085"; } 
         .job-details li.route::before { content: "\f6ff"; } 
+        .job-details li.shield::before { content: "\f3ed"; }
+        .job-details li.clock::before { content: "\f2f2"; }
+        .job-details li.phone::before { content: "\f095"; }
+        .job-details li.globe::before { content: "\f0ac"; }
 
-        /* --- GRILLES TECHNIQUES --- */
+        /* --- GRILLES TECHNIQUES & PROJETS --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         .card { background: linear-gradient(145deg, #0f172a 0%, #0b1324 100%); padding: 3rem; border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); }
         .card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow); }
         .card h3 { color: var(--text-main); font-size: 1.4rem; margin-bottom: 1rem; font-weight: 700; }
+        .card .company { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
 
         /* Badges */
         .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -213,6 +218,7 @@
         <div class="logo">TIMÉO<span>.P</span></div>
         <ul>
             <li><a href="#experiences">Expériences</a></li>
+            <li><a href="#projects">Projets</a></li>
             <li><a href="#skills">Compétences</a></li>
             <li><a href="#formations">Formations</a></li>
             <li><a href="#certifications">Certifications</a></li>
@@ -260,31 +266,31 @@
                                 <span class="post-date">Sept. 2025 - Déc. 2025</span>
                             </div>
                             <ul class="job-details">
-                                <li class="proj"><strong>Gestion de Projet Interne :</strong> Conception, architecture et mise en ligne d'une application interne de fiches d'auto-diagnostic pour fluidifier le traitement des incidents clients.</li>
+                                <li class="gear"><strong>Suivi et Déploiement :</strong> Prise en charge des dossiers de livraison client, validation des architectures d'accès et mise en production des liaisons de bout en bout.</li>
                             </ul>
-                            <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Voir le Guide d'Auto-diagnostic
-                            </a>
                         </div>
 
                         <div class="internal-post past">
                             <div class="post-header">
-                                <span class="post-title">Support Technique Client • Exploitation</span>
+                                <span class="post-title">Support Technique Client • Exploitation (N1)</span>
                                 <span class="post-date">Sept. 2024 - Sept. 2025</span>
                             </div>
                             <ul class="job-details">
-                                <li class="tech"><strong>Diagnostic & Résolution N1/N2 :</strong> Gestion d'incidents complexes sur les architectures réseaux d'entreprise, liaisons WAN et VoIP.</li>
-                                <li class="route"><strong>Flotte Multi-Constructeurs :</strong> Manipulation et exploitation au quotidien via SecureCRT/PuTTY d'équipements routeurs variés (Cisco C800, C1100, ISR, ASR 1001-X, Juniper, MikroTik, OneAccess) et pare-feux Fortigate.</li>
-                                <li class="gear"><strong>Routage Core Network :</strong> Supervision des flux et architecture réseau s'appuyant sur les protocoles BGP, Radius et l'outil de monitoring Grafana.</li>
+                                <li class="user"><strong>Support N1 & Relation Client :</strong> Réception et traitement des sollicitations (appels et tickets, ~8/jour) pour des incidents de coupure ou dégradation de service.</li>
+                                <li class="route"><strong>Maintenance corrective Réseau :</strong> Diagnostic et rétablissement de liens VPN IP sur backbone MPLS et gestion de la redondance via VRRP (ex : backup 4G/5G).</li>
+                                <li class="globe"><strong>Multi-technologies & Accès :</strong> Diagnostic de pannes sur un parc hétérogène (FTTH/O, xDSL, 4G/5G, Starlink) et coordination d'interventions avec les opérateurs tiers (Orange, SFR, Covage).</li>
+                                <li class="tech"><strong>Configuration curative L2/L3 :</strong> Paramétrage à distance et troubleshooting via SecureCRT/PuTTY de routeurs (Cisco, Keenetic, MikroTik, Juniper) : gestion de VLANs, routage, DHCP et domaines.</li>
+                                <li class="phone"><strong>Support Téléphonie IP :</strong> Diagnostic de premier niveau sur architectures Trunk SIP / Centrex et assistance à la configuration de combinés lors de remplacements SAV.</li>
+                                <li class="clock"><strong>Suivi des engagements (SLA) :</strong> Respect rigoureux des garanties de temps de rétablissement (GTR ≤ 4h) en environnement critique 24h/7j.</li>
                             </ul>
                         </div>
 
                     </div> <div class="skills-container" style="margin-top: 1rem;">
-                        <span class="badge">Routage BGP</span>
-                        <span class="badge">Cisco ASR/ISR & Fortigate</span>
-                        <span class="badge">Supervision Grafana</span>
-                        <span class="badge">Radius</span>
-                        <span class="badge">Coordination LAN / Huawei</span>
+                        <span class="badge">Backbone MPLS</span>
+                        <span class="badge">Redondance VRRP</span>
+                        <span class="badge">Cisco, Juniper, MikroTik</span>
+                        <span class="badge">Trunk SIP & Centrex</span>
+                        <span class="badge">SLA / GTR ≤ 4h</span>
                     </div>
                 </div>
             </div>
@@ -317,8 +323,8 @@
                     </div>
                     <ul class="job-details">
                         <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles, des accès et de l'arborescence.</li>
-                        <li class="sec"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcir la sécurité.</li>
-                        <li class="sec"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
+                        <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcir la sécurité.</li>
+                        <li class="shield"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
                     </ul>
                     <div class="skills-container">
                         <span class="badge">Active Directory</span>
@@ -328,6 +334,27 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <section id="projects" style="background-color: rgba(15, 23, 42, 0.2); max-width: 100%;">
+        <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
+            <h2><i class="fa-solid fa-code-branch"></i> Projets Réalisés</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Guide d'Auto-diagnostic</h3>
+                    <div class="company">Projet Applicatif Transverse</div>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.5rem;">Conception, architecture et mise en ligne d'une application interne de fiches d'auto-diagnostic technique. Cet outil web permet de guider les utilisateurs pas à pas pour qualifier et fluidifier la résolution des incidents.</p>
+                    <div class="skills-container" style="margin-bottom: 1.5rem;">
+                        <span class="badge tools">Vue.js</span>
+                        <span class="badge tools">WXT</span>
+                        <span class="badge tools">UI/UX</span>
+                    </div>
+                    <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Accéder au Guide en ligne
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -349,12 +376,12 @@
                 <div class="card">
                     <h3>Expertises Métier</h3>
                     <div class="skills-container" style="margin-top: 1.5rem;">
-                        <span class="badge">Routage WAN / BGP</span>
-                        <span class="badge">Zero Touch Provisioning (ZTP)</span>
+                        <span class="badge">Routage WAN / MPLS</span>
+                        <span class="badge">Redondance VRRP</span>
                         <span class="badge">Sécurité Fortigate & GPO</span>
-                        <span class="badge">Authentification RADIUS</span>
+                        <span class="badge">Téléphonie SIP / Centrex</span>
                         <span class="badge">Coordination & Bascule LAN</span>
-                        <span class="badge">Réseau Opérateur (Cisco, Juniper...)</span>
+                        <span class="badge">Réseau Opérateur (FTTH, Starlink)</span>
                     </div>
                 </div>
             </div>
