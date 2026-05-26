@@ -209,6 +209,25 @@
         .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 30px var(--glow); }
         .timeline-item:hover .timeline-body::after { background-color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); scale: 1.2; }
         
+        /* En-tête de poste incluant le logo */
+        .job-header-container {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px;
+            border: 1px solid var(--border);
+        }
+        [data-theme="light"] .company-logo {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
         .job-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
         .job-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.1rem; }
         .job-title .company a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
@@ -311,6 +330,8 @@
             .form-badge { position: relative; top: 0; right: 0; width: fit-content; margin-bottom: 0.5rem; }
             .profile-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
             .stats-grid { gap: 2rem; }
+            .job-header-container { gap: 0.8rem; }
+            .company-logo { width: 40px; height: 40px; }
         }
     </style>
 </head>
@@ -365,12 +386,15 @@
             <div class="timeline-item">
                 <div class="timeline-date active">Sept. 2024 - Présent</div>
                 <div class="timeline-body">
-                    <div class="job-title">
-                        <h3>Évolution Professionnelle en Alternance</h3>
-                        <div class="company">
-                            <a href="https://www.linkedin.com/company/linkt" target="_blank">
-                                Linkt — Opérateur Télécom • Mont-Saint-Aignan <i class="fa-brands fa-linkedin"></i>
-                            </a>
+                    <div class="job-header-container">
+                        <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo">
+                        <div class="job-title">
+                            <h3>Évolution Professionnelle en Alternance</h3>
+                            <div class="company">
+                                <a href="https://www.linkedin.com/company/linkt" target="_blank">
+                                    Linkt — Opérateur Télécom • Mont-Saint-Aignan <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     
@@ -422,9 +446,12 @@
             <div class="timeline-item">
                 <div class="timeline-date">Janv. 2024 - Févr. 2024</div>
                 <div class="timeline-body">
-                    <div class="job-title">
-                        <h3>Technicien Informatique</h3>
-                        <div class="company">Centre Henri-Becquerel (Stage) — Rouen</div>
+                    <div class="job-header-container">
+                        <img src="LogoBecquerel.jpg" alt="Logo Henri Becquerel" class="company-logo">
+                        <div class="job-title">
+                            <h3>Technicien Informatique</h3>
+                            <div class="company">Centre Henri-Becquerel (Stage) — Rouen</div>
+                        </div>
                     </div>
                     <ul class="job-details">
                         <li class="gear"><strong>Gestion de Parc :</strong> Déploiement matériel, masterisation et maintenance logicielle en totale autonomie.</li>
@@ -441,9 +468,12 @@
             <div class="timeline-item">
                 <div class="timeline-date">Mai 2023 - Juin 2023</div>
                 <div class="timeline-body">
-                    <div class="job-title">
-                        <h3>Administrateur Système & Réseau</h3>
-                        <div class="company">Mairie de Darnétal (Stage) — Darnétal</div>
+                    <div class="job-header-container">
+                        <img src="LogoDarnetal.jpg" alt="Logo Mairie de Darnétal" class="company-logo">
+                        <div class="job-title">
+                            <h3>Administrateur Système & Réseau</h3>
+                            <div class="company">Mairie de Darnétal (Stage) — Darnétal</div>
+                        </div>
                     </div>
                     <ul class="job-details">
                         <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles, des accès et de l'arborescence.</li>
@@ -468,9 +498,12 @@
                 <div class="timeline-item">
                     <div class="timeline-date">Oct. 2024 – Juin 2025</div>
                     <div class="timeline-body">
-                        <div class="job-title">
-                            <h3>Amélioration de l’Expérience Client & Outil Technique</h3>
-                            <div class="company">Associé à Linkt — Projet Transverse</div>
+                        <div class="job-header-container">
+                            <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo">
+                            <div class="job-title">
+                                <h3>Amélioration de l’Expérience Client & Outil Technique</h3>
+                                <div class="company">Associé à Linkt — Projet Transverse</div>
+                            </div>
                         </div>
                         <p>Conception globale et participation active au développement d’un ensemble d’outils applicatifs visant à optimiser les processus de support et l’autonomie des clients de l'opérateur.</p>
                         <ul class="job-details" style="gap: 0.8rem;">
@@ -500,9 +533,12 @@
                 <div class="timeline-date active">Sept. 2025 – Oct. 2027</div>
                 <div class="timeline-body">
                     <div class="form-badge current">En cours</div>
-                    <div class="job-title">
-                        <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
-                        <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation, 76800 Saint-Étienne-du-Rouvray</div>
+                    <div class="job-header-container">
+                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo">
+                        <div class="job-title">
+                            <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
+                            <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation</div>
+                        </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Filière Computer Science. Focus approfondi sur la gouvernance des SI, le management des infrastructures critiques, l'audit de sécurité et la cyber-défense d'entreprise.</p>
                     <a href="https://www.cesi.fr/formation/manager-en-infrastructures-et-cybersecurite-des-si-2336504/" target="_blank" class="btn-secondary">
@@ -515,9 +551,12 @@
                 <div class="timeline-date">Oct. 2024 – Sept. 2025</div>
                 <div class="timeline-body">
                     <div class="form-badge approved">Admis</div>
-                    <div class="job-title">
-                        <h3>Bachelor Administrateur Système Réseau</h3>
-                        <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation, 76800 Saint-Étienne-du-Rouvray</div>
+                    <div class="job-header-container">
+                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo">
+                        <div class="job-title">
+                            <h3>Bachelor Administrateur Système Réseau</h3>
+                            <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation</div>
+                        </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Filière Computer Science. Spécialisation dans la conception, la sécurisation avancée, l'automatisation et le maintien opérationnel des infrastructures hétérogènes.</p>
                     <div class="skills-container" style="margin: 0.2rem 0;">
@@ -535,9 +574,12 @@
                 <div class="timeline-date">Sept. 2022 – Mai 2024</div>
                 <div class="timeline-body">
                     <div class="form-badge approved">Admis</div>
-                    <div class="job-title">
-                        <h3>BTS SIO (Option Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
-                        <div class="company">Campus La Châtaigneraie • 2 rue Charles Scherer, 76240 Le Mesnil-Esnard, France</div>
+                    <div class="job-header-container">
+                        <img src="LogoCampus.jpg" alt="Logo Campus La Châtaigneraie" class="company-logo">
+                        <div class="job-title">
+                            <h3>BTS SIO (Option Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
+                            <div class="company">Campus La Châtaigneraie • 2 rue Charles Scherer, Le Mesnil-Esnard</div>
+                        </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Brevet de Technicien Supérieur – Services Informatiques aux Organisations. Option Solutions d'Infrastructure, Systèmes et Réseaux. Apprentissage des architectures réseaux logiques et physiques, de la commutation et du déploiement de services.</p>
                     <div class="skills-container" style="margin: 0.2rem 0;">
@@ -555,9 +597,12 @@
                 <div class="timeline-date">Janv. 2019 – Mai 2022</div>
                 <div class="timeline-body">
                     <div class="form-badge diploma">Admis</div>
-                    <div class="job-title">
-                        <h3>Baccalauréat (Option Européenne)</h3>
-                        <div class="company">Lycée Blaise Pascal • 5 Rue des Emmurées, 76100 Rouen</div>
+                    <div class="job-header-container">
+                        <img src="LogoBlaise.jpg" alt="Logo Lycée Blaise Pascal" class="company-logo">
+                        <div class="job-title">
+                            <h3>Baccalauréat (Option Européenne)</h3>
+                            <div class="company">Lycée Blaise Pascal • 5 Rue des Emmurées, Rouen</div>
+                        </div>
                     </div>
                     <p style="font-weight: 700; font-size: 0.95rem; margin-bottom: -0.5rem;">Niveau : Baccalauréat et certification européenne — Mention Assez Bien</p>
                     
@@ -780,13 +825,12 @@
         const headerElement = document.getElementById('hero-header');
 
         let particlesArray = [];
-        const numberOfParticles = 65; // Densité idéale
+        const numberOfParticles = 65;
 
-        // Coordonnées souris
         const mouse = {
             x: null,
             y: null,
-            radius: 140 // Zone d'attraction
+            radius: 140
         };
 
         headerElement.addEventListener('mousemove', function(event) {
@@ -818,11 +862,9 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Rebond sur les bords du header
                 if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
 
-                // Interaction avec le curseur de la souris (Aimantation douce)
                 if (mouse.x !== null && mouse.y !== null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -834,7 +876,6 @@
                 }
             }
             draw() {
-                // S'adapte à la couleur d'accentuation en cours (Mode clair ou sombre)
                 const isLight = document.body.getAttribute('data-theme') === 'light';
                 ctx.fillStyle = isLight ? 'rgba(14, 165, 233, 0.4)' : 'rgba(56, 189, 248, 0.4)';
                 ctx.beginPath();
@@ -884,8 +925,6 @@
         }
 
         window.addEventListener('resize', resizeCanvas);
-        
-        // Initialisation initiale complète au chargement
         resizeCanvas();
         animate();
     </script>
