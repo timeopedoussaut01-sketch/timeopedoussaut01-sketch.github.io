@@ -202,7 +202,7 @@
         .job-details li { position: relative; padding-left: 1.8rem; color: var(--text-muted); font-size: 0.95rem; }
         .job-details li::before { font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent); font-size: 0.85rem; }
         
-        /* Icônes spécifiques aux tâches */
+        /* Icônes de tâches */
         .job-details li.tech::before { content: "\f120"; } 
         .job-details li.user::before { content: "\f0c0"; } 
         .job-details li.gear::before { content: "\f085"; } 
@@ -224,11 +224,12 @@
         .card .date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
         .card .result-badge { display: inline-block; background: rgba(16, 185, 129, 0.1); color: var(--accent-green); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1rem; width: fit-content; }
 
-        /* Badges Compétences */
+        /* Badges Compétences & Logos */
         .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .badge { background-color: rgba(14, 165, 233, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(14, 165, 233, 0.2); }
+        .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(14, 165, 233, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(14, 165, 233, 0.2); }
+        .badge i { font-size: 0.85rem; }
         .badge.tools { color: var(--text-main); background-color: rgba(0,0,0,0.04); border-color: transparent; }
-        [data-theme="dark"] .badge.tools { background-color: rgba(255,255,255,0.05); }
+        [data-theme="dark"] .badge.tools { background-color: rgba(255,255,255,0.05); color: var(--text-main); }
 
         /* Certifications */
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
@@ -240,12 +241,13 @@
         .cert-org { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
         .cert-meta { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; word-break: break-all; line-height: 1.4; }
 
-        /* Langues */
-        .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .lang-card { background: var(--card-bg); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
-        .lang-card i { color: var(--accent); font-size: 1.6rem; }
-        .lang-card h4 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
-        .lang-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        /* Double Colonne Langues & Profil */
+        .profile-footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
+        .lang-grid, .mobility-grid { display: flex; flex-direction: column; gap: 1rem; }
+        .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px; text-align: center; }
+        .lang-card h4, .mobility-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
+        .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
 
         /* Footer */
         footer { background-color: #0f172a; padding: 5rem 2rem; text-align: center; color: #f8fafc; }
@@ -268,6 +270,7 @@
             section { padding: 4rem 1.5rem; }
             .internal-timeline { border-left: 1px dashed var(--border); padding-left: 1.2rem; }
             .internal-post::before { left: -25px; }
+            .profile-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
         }
     </style>
 </head>
@@ -280,7 +283,7 @@
             <li><a href="#projects">Projets</a></li>
             <li><a href="#formations">Formations</a></li>
             <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#langues">Langues</a></li>
+            <li><a href="#competences-profil">Profil & Langues</a></li>
             <li>
                 <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
                     <i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>
@@ -316,7 +319,6 @@
                     </div>
                     
                     <div class="internal-timeline">
-                        
                         <div class="internal-post active">
                             <div class="post-header">
                                 <span class="post-title">Coordinateur Technique</span>
@@ -352,15 +354,14 @@
                                 <li class="clock"><strong>Suivi des engagements (SLA) :</strong> Respect rigoureux des garanties de temps de rétablissement (GTR ≤ 4h) en environnement critique 24h/7j.</li>
                             </ul>
                         </div>
-
                     </div>
 
                     <div class="skills-container" style="margin-top: 1rem;">
-                        <span class="badge">Backbone MPLS</span>
-                        <span class="badge">Redondance VRRP</span>
-                        <span class="badge">Cisco, Juniper, MikroTik</span>
-                        <span class="badge">Trunk SIP & Centrex</span>
-                        <span class="badge">SLA / GTR ≤ 4h</span>
+                        <span class="badge"><i class="fa-solid fa-network-wired"></i> Backbone MPLS</span>
+                        <span class="badge"><i class="fa-solid fa-route"></i> Redondance VRRP</span>
+                        <span class="badge"><i class="fa-solid fa-terminal"></i> Cisco, Juniper, MikroTik</span>
+                        <span class="badge"><i class="fa-solid fa-phone-volume"></i> Trunk SIP & Centrex</span>
+                        <span class="badge"><i class="fa-solid fa-business-time"></i> SLA / GTR ≤ 4h</span>
                     </div>
                 </div>
             </div>
@@ -379,9 +380,8 @@
                         <li class="check">Polyvalence et sens de l’analyse pour la résolution efficace de problèmes complexes.</li>
                     </ul>
                     <div class="skills-container">
-                        <span class="badge">Maintenance Parc IT</span>
-                        <span class="badge">Migration Système</span>
-                        <span class="badge">Gestion de Poste</span>
+                        <span class="badge"><i class="fa-solid fa-laptop"></i> Maintenance Parc IT</span>
+                        <span class="badge"><i class="fa-solid fa-server"></i> Migration Système</span>
                     </div>
                 </div>
             </div>
@@ -397,12 +397,11 @@
                         <li class="tech">Amélioration et administration de l’Active Directory.</li>
                         <li class="shield">Mise en conformité RGPD et gestion des droits d’accès.</li>
                         <li class="shield">Utilisation des GPO pour sécuriser et optimiser les ressources informatiques.</li>
-                        <li class="check">Développement de compétences pratiques en informatique d’entreprise et gestion de la sécurité IT.</li>
                     </ul>
                     <div class="skills-container">
-                        <span class="badge">Active Directory</span>
-                        <span class="badge">GPO (Group Policies)</span>
-                        <span class="badge">Mise en conformité RGPD</span>
+                        <span class="badge"><i class="fa-solid fa-user-gear"></i> Active Directory</span>
+                        <span class="badge"><i class="fa-solid fa-sliders"></i> GPO (Group Policies)</span>
+                        <span class="badge"><i class="fa-solid fa-user-shield"></i> RGPD</span>
                     </div>
                 </div>
             </div>
@@ -417,11 +416,9 @@
                     <ul class="job-details">
                         <li class="check">Coordination et organisation administrative.</li>
                         <li class="user">Support et assistance dans les tâches quotidiennes.</li>
-                        <li class="info">Développement de compétences en communication interne et gestion de flux d’informations.</li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -435,9 +432,9 @@
                         <div class="company">Projet Applicatif Transverse</div>
                         <p>Conception, architecture et mise en ligne d'une application interne de fiches d'auto-diagnostic technique. Cet outil web permet de guider les utilisateurs pas à pas pour qualifier et fluidifier la résolution des incidents.</p>
                         <div class="skills-container" style="margin-bottom: 1.5rem;">
-                            <span class="badge tools">Vue.js</span>
-                            <span class="badge tools">WXT</span>
-                            <span class="badge tools">UI/UX</span>
+                            <span class="badge tools"><i class="fa-brands fa-vuejs"></i> Vue.js</span>
+                            <span class="badge tools"><i class="fa-solid fa-puzzle-piece"></i> WXT</span>
+                            <span class="badge tools"><i class="fa-solid fa-compass-drafting"></i> UI/UX</span>
                         </div>
                     </div>
                     <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
@@ -564,7 +561,7 @@
                         </div>
                     </div>
                     <div class="cert-meta">
-                        Émise en novembre 2023<br>
+                        Émise en janvier 2024<br>
                         ID : P-YVQBYRV7
                     </div>
                 </div>
@@ -572,30 +569,63 @@
         </div>
     </section>
 
-    <section id="langues">
-        <h2><i class="fa-solid fa-language"></i> Langues</h2>
-        <div class="lang-grid">
-            <div class="lang-card">
-                <i class="fa-solid fa-comments"></i>
-                <div>
-                    <h4>Français</h4>
-                    <p>Bilingue ou langue natale</p>
+    <section id="competences-profil">
+        <div class="profile-footer-grid">
+            
+            <div>
+                <h2 style="margin-bottom: 2rem;"><i class="fa-solid fa-language"></i> Langues</h2>
+                <div class="lang-grid">
+                    <div class="lang-card">
+                        <i class="fa-solid fa-comments"></i>
+                        <div>
+                            <h4>Français</h4>
+                            <p>Bilingue ou langue natale</p>
+                        </div>
+                    </div>
+                    <div class="lang-card">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <div>
+                            <h4>Anglais</h4>
+                            <p>Capacité professionnelle complète (Technique & Écrit)</p>
+                        </div>
+                    </div>
+                    <div class="lang-card">
+                        <i class="fa-solid fa-flag"></i>
+                        <div>
+                            <h4>Espagnol</h4>
+                            <p>Capacité professionnelle limitée</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="lang-card">
-                <i class="fa-solid fa-earth-americas"></i>
-                <div>
-                    <h4>Anglais</h4>
-                    <p>Capacité professionnelle complète</p>
+
+            <div>
+                <h2 style="margin-bottom: 2rem;"><i class="fa-solid fa-car"></i> Mobilité</h2>
+                <div class="mobility-grid">
+                    <div class="mobility-card">
+                        <i class="fa-solid fa-id-card"></i>
+                        <div>
+                            <h4>Permis B</h4>
+                            <p>Véhiculé / Mobile</p>
+                        </div>
+                    </div>
+                    <div class="mobility-card">
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <div>
+                            <h4>Permis A2</h4>
+                            <p>Conducteur Moto</p>
+                        </div>
+                    </div>
+                    <div class="mobility-card">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <div>
+                            <h4>Déplacements</h4>
+                            <p>Axe Rouen / Normandie & National</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="lang-card">
-                <i class="fa-solid fa-flag"></i>
-                <div>
-                    <h4>Espagnol</h4>
-                    <p>Capacité professionnelle limitée</p>
-                </div>
-            </div>
+
         </div>
     </section>
 
