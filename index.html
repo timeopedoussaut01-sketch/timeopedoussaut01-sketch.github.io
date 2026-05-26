@@ -101,12 +101,33 @@
             opacity: 0.9;
         }
 
-        /* En-tête / Hero Section */
+        /* En-tête / Hero Section avec Canvas pour les particules */
         header {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center; padding: 8rem 2rem 4rem 2rem;
-            background: radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.08) 0%, var(--bg-color) 65%);
+            background: radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.05) 0%, var(--bg-color) 70%);
             position: relative;
+            overflow: hidden;
+        }
+
+        #cyber-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        header .profile-container, 
+        header h1, 
+        header .subtitle, 
+        header .bio, 
+        header .btn, 
+        header .stats-grid {
+            position: relative;
+            z-index: 2;
         }
 
         .profile-container {
@@ -163,25 +184,6 @@
             display: flex; align-items: center; gap: 1rem; letter-spacing: -0.5px;
         }
         section h2 i { color: var(--accent); }
-
-        /* SECTION MATRICE DES COMPÉTENCES (GRAPHIC UPGRADE) */
-        .skills-grid-dashboard {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;
-        }
-        .skills-card-dashboard {
-            background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 20px; transition: var(--transition);
-        }
-        .skills-card-dashboard:hover {
-            border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 10px 30px var(--glow);
-        }
-        .skills-card-dashboard h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.7rem; color: var(--text-main); }
-        .skills-card-dashboard h3 i { color: var(--accent); }
-        .skill-bar-group { margin-bottom: 1.2rem; }
-        .skill-bar-group:last-child { margin-bottom: 0; }
-        .skill-bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.4rem; }
-        .skill-bar-bg { background: rgba(100, 116, 139, 0.1); height: 6px; border-radius: 10px; overflow: hidden; position: relative; }
-        .skill-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent) 0%, #0284c7 100%); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        [data-theme="light"] .skill-bar-bg { background: rgba(0, 0, 0, 0.05); }
 
         /* Frise Chronologique Expériences, Projets & Formations */
         .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
@@ -317,7 +319,6 @@
     <nav>
         <div class="logo">TIMÉO<span>.P</span></div>
         <ul>
-            <li><a href="#expertises">Expertises</a></li>
             <li><a href="#experiences">Expériences</a></li>
             <li><a href="#projects">Projets</a></li>
             <li><a href="#formations">Formations</a></li>
@@ -330,7 +331,9 @@
         </ul>
     </nav>
 
-    <header>
+    <header id="hero-header">
+        <canvas id="cyber-canvas"></canvas>
+
         <div class="profile-container">
             <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
         </div>
@@ -354,57 +357,6 @@
             </div>
         </div>
     </header>
-
-    <section id="expertises" style="padding-bottom: 2rem;">
-        <h2><i class="fa-solid fa-layer-group"></i> Matrice des Compétences</h2>
-        <div class="skills-grid-dashboard">
-            <div class="skills-card-dashboard">
-                <h3><i class="fa-solid fa-network-wired"></i> Réseaux & Routage</h3>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Routage BGP / WAN</span><span>90%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
-                </div>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Architecture Core Network</span><span>85%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
-                </div>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>VoIP & Téléphonie</span><span>75%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 75%;"></div></div>
-                </div>
-            </div>
-            <div class="skills-card-dashboard">
-                <h3><i class="fa-solid fa-shield-halved"></i> Cybersécurité</h3>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Sécurisation Firewalls (Fortigate)</span><span>85%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
-                </div>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Stratégies Active Directory & GPO</span><span>80%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
-                </div>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Conformité & RGPD</span><span>75%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 75%;"></div></div>
-                </div>
-            </div>
-            <div class="skills-card-dashboard">
-                <h3><i class="fa-solid fa-sliders"></i> Supervision & OS</h3>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Monitoring (Grafana, Radius)</span><span>90%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
-                </div>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Équipements Cisco / Huawei</span><span>85%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
-                </div>
-                <div class="skill-bar-group">
-                    <div class="skill-bar-label"><span>Scripting & Web (Vue.js, Python)</span><span>70%</span></div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 70%;"></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="experiences">
         <h2><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
@@ -821,6 +773,121 @@
                 btn.innerHTML = '<i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>';
             }
         }
+
+        /* SCRIPT PARTICULES CYBER INTERACTIVES (NATIVE JS CANVAS) */
+        const canvas = document.getElementById('cyber-canvas');
+        const ctx = canvas.getContext('2d');
+        const headerElement = document.getElementById('hero-header');
+
+        let particlesArray = [];
+        const numberOfParticles = 65; // Densité idéale
+
+        // Coordonnées souris
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 140 // Zone d'attraction
+        };
+
+        headerElement.addEventListener('mousemove', function(event) {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = event.clientX - rect.left;
+            mouse.y = event.clientY - rect.top;
+        });
+
+        headerElement.addEventListener('mouseleave', function() {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resizeCanvas() {
+            canvas.width = headerElement.offsetWidth;
+            canvas.height = headerElement.offsetHeight;
+            initParticles();
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.speedY = Math.random() * 0.6 - 0.3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Rebond sur les bords du header
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+
+                // Interaction avec le curseur de la souris (Aimantation douce)
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        this.x += dx * 0.02;
+                        this.y += dy * 0.02;
+                    }
+                }
+            }
+            draw() {
+                // S'adapte à la couleur d'accentuation en cours (Mode clair ou sombre)
+                const isLight = document.body.getAttribute('data-theme') === 'light';
+                ctx.fillStyle = isLight ? 'rgba(14, 165, 233, 0.4)' : 'rgba(56, 189, 248, 0.4)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            const isLight = document.body.getAttribute('data-theme') === 'light';
+            const colorLine = isLight ? 'rgba(14, 165, 233,' : 'rgba(56, 189, 248,';
+            
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let dx = particlesArray[a].x - particlesArray[b].x;
+                    let dy = particlesArray[a].y - particlesArray[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 115) {
+                        let opacity = (1 - (distance / 115)) * 0.15;
+                        ctx.strokeStyle = `${colorLine}${opacity})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Initialisation initiale complète au chargement
+        resizeCanvas();
+        animate();
     </script>
 </body>
 </html>
