@@ -166,4 +166,244 @@
             color: var(--accent-green); font-size: 0.85rem; font-weight: 600;
             display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem;
         }
-        .job-content { display: flex; flex-direction: column; gap
+        .job-content { display: flex; flex-direction: column; gap: 2rem; }
+        .job-details { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+        .job-details li { position: relative; padding-left: 2.2rem; color: #cbd5e1; font-size: 1.02rem; }
+        
+        .job-details li::before {
+            font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 1rem;
+        }
+        .job-details li.tech::before { content: "\f120"; } 
+        .job-details li.sec::before { content: "\f3ed"; }  
+        .job-details li.user::before { content: "\f0c0"; } 
+        .job-details li.proj::before { content: "\f0ae"; } 
+        .job-details li.gear::before { content: "\f085"; } 
+
+        /* --- GRILLES TECHNIQUES --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .card { 
+            background: linear-gradient(145deg, #0f172a 0%, #0b1324 100%); padding: 3rem; border-radius: 20px; 
+            border: 1px solid var(--border); transition: var(--transition);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--glow);
+        }
+        .card h3 { color: var(--text-main); font-size: 1.4rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .card .company { font-weight: 600; color: var(--accent); margin-bottom: 0.25rem; font-size: 1.05rem; }
+        .card .date { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .card .date i { color: var(--accent-green); }
+
+        /* Badges de Compétences */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .badge { 
+            background-color: rgba(56, 189, 248, 0.06); color: var(--accent); 
+            padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.15); transition: var(--transition);
+        }
+        .timeline-item:hover .badge, .card:hover .badge { 
+            background-color: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4);
+        }
+        .badge.tools { color: #cbd5e1; background-color: #0b1324; border-color: transparent; }
+
+        /* Certifications */
+        .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .cert-item { 
+            background-color: var(--card-bg); padding: 1.8rem; border-radius: 16px; 
+            display: flex; align-items: center; gap: 1.25rem; border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .cert-item:hover { 
+            transform: scale(1.03); border-color: rgba(52, 211, 153, 0.4); 
+            background-color: var(--card-hover); box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .cert-item i { color: var(--accent-green); font-size: 2rem; }
+        .cert-item strong { font-size: 1.05rem; color: var(--text-main); }
+        .cert-item small { color: #94a3b8; }
+
+        /* Footer */
+        footer { background-color: #020408; padding: 6rem 2rem; text-align: center; border-top: 1px solid var(--border); }
+        .footer-info { max-width: 600px; margin: 0 auto 3rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; }
+        .footer-info-item { display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-weight: 500; text-decoration: none; transition: var(--transition); }
+        .footer-info-item:hover { color: var(--accent); }
+        .footer-info-item i { color: var(--accent); font-size: 1.3rem; }
+        
+        .social-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2.5rem; }
+        .social-links a { color: #64748b; font-size: 2.4rem; transition: var(--transition); }
+        .social-links a:hover { color: var(--accent); transform: translateY(-4px); }
+        .credits { color: #475569; font-size: 0.85rem; letter-spacing: 0.5px; }
+
+        /* Responsive Mobile */
+        @media (max-width: 900px) {
+            .timeline::before, .timeline-item::after { display: none; }
+            .timeline-item { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem; }
+            .job-meta { padding-left: 0; }
+            header h1 { font-size: 2.6rem; }
+            nav ul { display: none; }
+            section { padding: 5rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">TIMÉO<span>.P</span></div>
+        <ul>
+            <li><a href="#experiences">Expériences</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="profile-container">
+            <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
+        </div>
+        <h1>Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
+        <div class="subtitle">Étudiant en Master Manager en Infrastructures et Cybersécurité des SI au CESI & Alternant Coordinateur Technique chez Linkt</div>
+        <a href="mailto:timeo.pedoussaut01@gmail.com" class="btn"><i class="fa-solid fa-envelope"></i> Me contacter par mail</a>
+    </header>
+
+    <section id="experiences">
+        <h2><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="job-meta">
+                    <h3>Coordinateur Technique / Client / Support</h3>
+                    <div class="company">Linkt — Opérateur Télécom</div>
+                    <div class="date"><i class="fa-regular fa-calendar"></i> Sept. 2024 - Présent</div>
+                </div>
+                <div class="job-content">
+                    <ul class="job-details">
+                        <li class="tech"><strong>Support N1/N2 :</strong> Diagnostic approfondi d'incidents complexes sur les architectures réseaux et la téléphonie d'entreprise.</li>
+                        <li class="gear"><strong>Exploitation & Réseau :</strong> Configuration de routeurs, déploiement de pare-feux, interconnexions VPN et administration des services DHCP/DNS.</li>
+                        <li class="user"><strong>Gestion Client :</strong> Prise en charge de la relation client multicanal, cycle de vie complet du ticketing et arbitrage des flux de production.</li>
+                        <li class="proj"><strong>Projet Transverse :</strong> Conception et développement d'une application interne de fiches d'auto-diagnostic et refonte du système de notation des tickets.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Architecture Réseau</span>
+                        <span class="badge">VPN / Firewalls</span>
+                        <span class="badge">DHCP / DNS</span>
+                        <span class="badge">Gestion de Crise N1/N2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-meta">
+                    <h3>Technicien Informatique</h3>
+                    <div class="company">Centre Henri-Becquerel</div>
+                    <div class="date"><i class="fa-regular fa-calendar"></i> Janv. 2024 - Févr. 2024</div>
+                </div>
+                <div class="job-content">
+                    <ul class="job-details">
+                        <li class="gear"><strong>Gestion de Parc :</strong> Déploiement matériel, masterisation, configuration réseau et maintenance logicielle en totale autonomie.</li>
+                        <li class="tech"><strong>Infrastructure :</strong> Support utilisateur de proximité, migration de systèmes d'exploitation et supervision courante de l'état du réseau informatique.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Maintenance Parc IT</span>
+                        <span class="badge">Migration OS</span>
+                        <span class="badge">Support Proximité</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-meta">
+                    <h3>Administrateur Système & Réseau</h3>
+                    <div class="company">Mairie de Darnétal</div>
+                    <div class="date"><i class="fa-regular fa-calendar"></i> Mai 2023 - Juin 2023</div>
+                </div>
+                <div class="job-content">
+                    <ul class="job-details">
+                        <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles, des accès et arborescence des utilisateurs.</li>
+                        <li class="sec"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcier la sécurité du système d'information.</li>
+                        <li class="sec"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD pour sécuriser les données citoyennes.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Active Directory</span>
+                        <span class="badge">GPO (Group Policies)</span>
+                        <span class="badge">Normes RGPD / ANSSI</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" style="background-color: rgba(15, 23, 42, 0.4); max-width: 100%;">
+        <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
+            <h2><i class="fa-solid fa-terminal"></i> Environnement Technique</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Outils Utilisés</h3>
+                    <div class="skills-container" style="margin-top: 1.5rem;">
+                        <span class="badge tools">Cisco Packet Tracer</span>
+                        <span class="badge tools">PuTTY</span>
+                        <span class="badge tools">TFTP Server</span>
+                        <span class="badge tools">Wireshark</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Expertises</h3>
+                    <div class="skills-container" style="margin-top: 1.5rem;">
+                        <span class="badge">Cyber-défense</span>
+                        <span class="badge">VPN IPSec / SSL</span>
+                        <span class="badge">Sécurisation GPO</span>
+                        <span class="badge">Python Scripting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="formations">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Formations</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Master MICSI</h3>
+                <div class="company">CESI Saint-Étienne-du-Rouvray</div>
+                <div class="date"><i class="fa-regular fa-calendar"></i> 2025 - 2027 (En cours)</div>
+                <p style="color: #94a3b8; font-size: 0.95rem;">Manager en Infrastructures et Cybersécurité des SI.</p>
+            </div>
+            <div class="card">
+                <h3>Bachelor Administrateur Système Réseau</h3>
+                <div class="company">CESI</div>
+                <div class="date"><i class="fa-regular fa-calendar"></i> 2024 - 2025</div>
+                <p style="color: #94a3b8; font-size: 0.95rem;">Spécialisation dans la gestion d'infrastructures d'entreprise.</p>
+            </div>
+            <div class="card">
+                <h3>BTS SIO (Option SISR)</h3>
+                <div class="company">Campus La Chataigneraie</div>
+                <div class="date"><i class="fa-regular fa-calendar"></i> 2022 - 2024</div>
+                <p style="color: #94a3b8; font-size: 0.95rem;">Solutions d'Infrastructure, Systèmes et Réseaux.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2><i class="fa-solid fa-certificate"></i> Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-item"><i class="fa-solid fa-shield-halved"></i> <div><strong>Fortinet NSE 1 & 2</strong><br><small>Validé — 2026</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-network-wired"></i> <div><strong>Cisco Academy</strong><br><small>Validé — 2026</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-user-lock"></i> <div><strong>ANSSI</strong><br><small>SecNumacad</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-file-shield"></i> <div><strong>CNIL</strong><br><small>Attestation RGPD</small></div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-info">
+            <a href="tel:0651542159" class="footer-info-item"><i class="fa-solid fa-phone"></i> 06 51 54 21 59</a>
+            <a href="mailto:timeo.pedoussaut01@gmail.com" class="footer-info-item"><i class="fa-solid fa-envelope"></i> timeo.pedoussaut01@gmail.com</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="credits">© 2026 — Timéo Pedoussaut • Tous droits réservés</p>
+    </footer>
+
+</body>
+</html>
