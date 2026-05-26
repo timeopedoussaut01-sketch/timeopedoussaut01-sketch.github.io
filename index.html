@@ -194,4 +194,249 @@
         .footer-info-item { display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-weight: 500; text-decoration: none; transition: var(--transition); }
         .footer-info-item:hover { color: var(--accent); }
         .footer-info-item i { color: var(--accent); font-size: 1.3rem; }
-        .social-links {
+        .social-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2.5rem; }
+        .social-links a { color: #64748b; font-size: 2.4rem; transition: var(--transition); }
+        .social-links a:hover { color: var(--accent); transform: translateY(-4px); }
+        .credits { color: #475569; font-size: 0.85rem; letter-spacing: 0.5px; }
+
+        /* Responsive Mobile */
+        @media (max-width: 960px) {
+            .hero-container { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-left { text-align: center; align-items: center; }
+            .profile-container { margin: 0 auto; }
+            header h1 { font-size: 2.5rem; }
+            header .bio { border-left: none; border-top: 2px solid var(--accent); padding-left: 0; padding-top: 1rem; }
+            .timeline::before, .timeline-body::after { display: none; }
+            .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .timeline-date { text-align: left; padding-top: 0; font-size: 0.9rem; }
+            nav ul { display: none; }
+            section { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">TIMÉO<span>.P</span></div>
+        <ul>
+            <li><a href="#experiences">Expériences</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="profile-container">
+                    <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
+                </div>
+                <h1>Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
+                <div class="subtitle">Étudiant en Master Manager en Infrastructures et Cybersécurité des SI au CESI</div>
+                <div class="bio">Spécialisé en ingénierie des réseaux et télécoms d'entreprise. Actuellement en poste chez Linkt, j'assure la continuité et l'évolution des infrastructures critiques à travers la configuration et la gestion d'équipements multi-constructeurs haut de gamme.</div>
+                <a href="mailto:timeo.pedoussaut01@gmail.com" class="btn"><i class="fa-solid fa-envelope"></i> Me contacter par mail</a>
+            </div>
+            
+            <div class="hero-right">
+                <div class="stat-card">
+                    <div class="stat-number">Multi</div>
+                    <div class="stat-label">Constructeurs</div>
+                    <div class="stat-desc">Maîtrise opérationnelle de flottes d'équipements (Cisco ASR/ISR, Fortinet, Juniper, Huawei, OneAccess).</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">WAN / LAN</div>
+                    <div class="stat-label">Réseaux Critiques</div>
+                    <div class="stat-desc">Exploitation de protocoles de routage dynamique (BGP), Radius et coordination de bascules d'infrastructures.</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="experiences">
+        <h2><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Déc. 2025 - Présent</div>
+                <div class="timeline-body">
+                    <div class="job-title">
+                        <h3>Coordinateur Technique</h3>
+                        <div class="company">Linkt — Opérateur Télécom (Alternance)</div>
+                    </div>
+                    <ul class="job-details">
+                        <li class="user"><strong>Pilotage d'Interventions :</strong> Prise d'appel et guidage technique des techniciens de terrain sur site client lors de phases critiques.</li>
+                        <li class="route"><strong>Migration LAN & Hardware :</strong> Supervision et exécution des processus de bascule d'infrastructure locale et de changement de routeurs d'accès.</li>
+                        <li class="gear"><strong>Routage Avancé :</strong> Analyse de flux, exploitation des configurations et gestion opérationnelle des interconnexions clients.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Migration LAN</span>
+                        <span class="badge">Coordination Terrain</span>
+                        <span class="badge">Architecture Switch/Routeur</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Sept. 2025 - Déc. 2025</div>
+                <div class="timeline-body">
+                    <div class="job-title">
+                        <h3>Coordinateur Client • Production</h3>
+                        <div class="company">Linkt — Opérateur Télécom (Alternance)</div>
+                    </div>
+                    <ul class="job-details">
+                        <li class="proj"><strong>Gestion de Projet Transverse :</strong> Conception et mise en ligne d'une application interne de fiches d'auto-diagnostic pour optimiser la qualification des pannes.</li>
+                        <li class="user"><strong>Suivi de Livraison :</strong> Interface technique privilégiée entre les clients d'envergure et les équipes internes de production télécom.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Gestion de Projet IT</span>
+                        <span class="badge">Développement Interne</span>
+                        <span class="badge">Relation Client Grand Compte</span>
+                    </div>
+                    <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Consulter le Guide d'Auto-diagnostic
+                    </a>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Sept. 2024 - Sept. 2025</div>
+                <div class="timeline-body">
+                    <div class="job-title">
+                        <h3>Support Technique Client • Exploitation</h3>
+                        <div class="company">Linkt — Opérateur Télécom (Alternance)</div>
+                    </div>
+                    <ul class="job-details">
+                        <li class="tech"><strong>Diagnostic N1/N2 :</strong> Traitement approfondi des incidents sur les liaisons WAN d'entreprises, VPN et la téléphonie sur IP.</li>
+                        <li class="route"><strong>Administration Équipements :</strong> Gestion de parcs de routeurs (Cisco, Juniper, OneAccess, MikroTik) et pare-feux Fortigate via SecureCRT/PuTTY.</li>
+                        <li class="sec"><strong>Protocoles & Supervision :</strong> Routage dynamique BGP, architectures d'authentification RADIUS et monitoring réseau en temps réel via Grafana.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Routage BGP</span>
+                        <span class="badge">Fortigate / Cisco / Juniper</span>
+                        <span class="badge">RADIUS & Grafana</span>
+                        <span class="badge"> ticketing N1/N2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Janv. 2024 - Févr. 2024</div>
+                <div class="timeline-body">
+                    <div class="job-title">
+                        <h3>Technicien Informatique</h3>
+                        <div class="company">Centre Henri-Becquerel (Stage)</div>
+                    </div>
+                    <ul class="job-details">
+                        <li class="gear"><strong>Gestion de Parc :</strong> Déploiement matériel, masterisation et maintenance logicielle en totale autonomie.</li>
+                        <li class="tech"><strong>Infrastructure :</strong> Support utilisateur de proximité, migration de systèmes d'exploitation et supervision courante du réseau local.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Maintenance Parc IT</span>
+                        <span class="badge">Migration OS</span>
+                        <span class="badge">Support Proximité</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Mai 2023 - Juin 2023</div>
+                <div class="timeline-body">
+                    <div class="job-title">
+                        <h3>Administrateur Système & Réseau</h3>
+                        <div class="company">Mairie de Darnétal (Stage)</div>
+                    </div>
+                    <ul class="job-details">
+                        <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles, des accès et de l'arborescence.</li>
+                        <li class="sec"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcir la sécurité.</li>
+                        <li class="sec"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
+                    </ul>
+                    <div class="skills-container">
+                        <span class="badge">Active Directory</span>
+                        <span class="badge">GPO (Group Policies)</span>
+                        <span class="badge">Normes RGPD / ANSSI</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" style="background-color: rgba(15, 23, 42, 0.4); max-width: 100%;">
+        <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
+            <h2><i class="fa-solid fa-terminal"></i> Environnement Technique</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Outils & Logiciels</h3>
+                    <div class="skills-container" style="margin-top: 1.5rem;">
+                        <span class="badge tools">SecureCRT</span>
+                        <span class="badge tools">PuTTY</span>
+                        <span class="badge tools">Grafana</span>
+                        <span class="badge tools">TFTP Server</span>
+                        <span class="badge tools">Wireshark</span>
+                        <span class="badge tools">Cisco Packet Tracer</span>
+                        <span class="badge tools">Microsoft Teams</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Expertises Métier</h3>
+                    <div class="skills-container" style="margin-top: 1.5rem;">
+                        <span class="badge">Routage WAN / BGP</span>
+                        <span class="badge">Zero Touch Provisioning (ZTP)</span>
+                        <span class="badge">Sécurité Fortigate & GPO</span>
+                        <span class="badge">Authentification RADIUS</span>
+                        <span class="badge">Coordination & Bascule LAN</span>
+                        <span class="badge">Architecture Réseau Opérateur</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="formations">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Formations</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Master MICSI</h3>
+                <div class="company">CESI Saint-Étienne-du-Rouvray</div>
+                <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2025 - 2027 (En cours)</div>
+                <p>Manager en Infrastructures et Cybersécurité des SI. Focus sur la gouvernance, la cyber-défense et l'ingénierie système.</p>
+            </div>
+            <div class="card">
+                <h3>Bachelor Administrateur Système Réseau</h3>
+                <div class="company">CESI</div>
+                <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2024 - 2025</div>
+                <p>Spécialisation dans la conception et le maintien d'infrastructures d'entreprise sécurisées.</p>
+            </div>
+            <div class="card">
+                <h3>BTS SIO (Option SISR)</h3>
+                <div class="company">Campus La Chataigneraie</div>
+                <div class="date" style="color:var(--accent-green); font-size:0.85rem; margin-bottom:1rem;"><i class="fa-regular fa-calendar"></i> 2022 - 2024</div>
+                <p>Solutions d'Infrastructure, Systèmes et Réseaux. Bases solides en routage, commutation et services réseaux.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2><i class="fa-solid fa-certificate"></i> Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-item"><i class="fa-solid fa-shield-halved"></i> <div><strong>Fortinet NSE 1 & 2</strong><br><small>Validé — 2026</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-network-wired"></i> <div><strong>Cisco Academy</strong><br><small>Validé — 2026</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-user-lock"></i> <div><strong>ANSSI</strong><br><small>SecNumacad</small></div></div>
+            <div class="cert-item"><i class="fa-solid fa-file-shield"></i> <div><strong>CNIL</strong><br><small>Attestation RGPD</small></div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-info">
+            <a href="tel:0651542159" class="footer-info-item"><i class="fa-solid fa-phone"></i> 06 51 54 21 59</a>
+            <a href="mailto:timeo.pedoussaut01@gmail.com" class="footer-info-item"><i class="fa-solid fa-envelope"></i> timeo.pedoussaut01@gmail.com</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="credits">© 2026 — Timéo Pedoussaut • Tous droits réservés</p>
+    </footer>
+
+</body>
+</html>
