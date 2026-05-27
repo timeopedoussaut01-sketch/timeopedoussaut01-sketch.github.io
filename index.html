@@ -9,11 +9,11 @@
         /* Variables de couleur - Mode Sombre (Par défaut) */
         :root {
             --bg-color: #060b13;
-            --section-alt: rgba(15, 23, 42, 0.45); /* Fond pour alterner les sections */
-            --card-bg: rgba(15, 23, 42, 0.85); /* Plus opaque pour détacher les cartes du fond */
+            --section-alt: rgba(15, 23, 42, 0.45); 
+            --card-bg: rgba(15, 23, 42, 0.85); 
             --card-hover: rgba(30, 41, 59, 0.95);
             --text-main: #f8fafc;
-            --text-muted: #64748b;
+            --text-muted: #94a3b8; /* Gris légèrement adouci pour le mode sombre */
             --accent: #38bdf8;
             --accent-green: #34d399;
             --border: #1e293b;
@@ -21,22 +21,24 @@
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --timeline-line: #1e293b;
             --nav-glow: rgba(56, 189, 248, 0.6);
+            --particle-opacity: 0.35;
         }
 
-        /* Mode Clair accessible via le switch */
+        /* Mode Clair amélioré pour une accessibilité et un contraste parfaits */
         [data-theme="light"] {
-            --bg-color: #f1f5f9;
-            --section-alt: rgba(226, 232, 240, 0.5);
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --card-hover: rgba(248, 250, 252, 0.98);
+            --bg-color: #f8fafc;
+            --section-alt: rgba(226, 232, 240, 0.6);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-hover: rgba(255, 255, 255, 1);
             --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent: #0ea5e9;
-            --accent-green: #10b981;
+            --text-muted: #334155; /* Contraste fortement augmenté (anciennement #475569) */
+            --accent: #0284c7; /* Bleu légèrement plus sombre pour le contraste sur fond blanc */
+            --accent-green: #059669; /* Vert plus prononcé pour l'accessibilité */
             --border: #cbd5e1;
-            --glow: rgba(14, 165, 233, 0.15);
-            --timeline-line: #e2e8f0;
-            --nav-glow: rgba(14, 165, 233, 0.6);
+            --glow: rgba(2, 132, 199, 0.12);
+            --timeline-line: #cbd5e1;
+            --nav-glow: rgba(2, 132, 199, 0.4);
+            --particle-opacity: 0.6; /* Particules plus opaques et visibles en mode clair */
         }
 
         * { 
@@ -55,7 +57,7 @@
             transition: var(--transition);
         }
 
-        /* CANVAS DE PARTICULES INTERACTIF */
+        /* CANVAS DE PARTICULES */
         #cyber-canvas {
             position: fixed;
             top: 0;
@@ -78,7 +80,7 @@
             transition: var(--transition);
         }
         [data-theme="light"] nav {
-            background-color: rgba(241, 245, 249, 0.85);
+            background-color: rgba(248, 250, 252, 0.85);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
         }
         nav .logo { 
@@ -127,13 +129,12 @@
         }
         header .profile-container, header h1, header .subtitle, header .bio, header .btn, header .stats-grid { position: relative; z-index: 2; }
 
-        /* Photo de profil et zoom interactif */
         .profile-container { position: relative; margin-bottom: 2rem; margin-top: 20px; cursor: zoom-in; }
         .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); position: relative; z-index: 2; transition: var(--transition); }
         .profile-container:hover .profile-img { transform: scale(1.03); box-shadow: 0 0 25px var(--accent); }
         .profile-container::before { content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 50%; background: var(--accent); filter: blur(15px); opacity: 0.3; z-index: 1; }
 
-        /* Overlay Lightbox Générique pour le Zoom */
+        /* Lightbox */
         .profile-lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(6, 11, 19, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -169,59 +170,63 @@
         .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--accent); display: block; }
         .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* SECTIONS : CONTRASTE ET SÉPARATION AMÉLIORÉS */
+        /* SECTIONS & CONTRASTE */
         section { 
             position: relative; z-index: 2; 
             padding: 6rem 2rem; 
             width: 100%;
         }
-        
-        /* Conteneur interne pour garder le contenu aligné */
-        .section-container {
-            max-width: 1140px;
-            margin: 0 auto;
-        }
-
-        /* Alternance de style de fond pour casser la monotonie */
+        .section-container { max-width: 1140px; margin: 0 auto; }
         section.alt-bg {
             background-color: var(--section-alt);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
         }
-
         section h2 { 
             font-size: 2.2rem; margin-bottom: 4rem; font-weight: 800;
             display: flex; align-items: center; gap: 1rem; letter-spacing: -0.5px;
         }
         section h2 i { color: var(--accent); }
 
-        /* Frise Chronologique */
+        /* FRISE CHRONOLOGIQUE DYNAMISÉE */
         .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
         .timeline::before {
             content: ''; position: absolute; left: 210px; top: 20px; bottom: 20px;
             width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); opacity: 0.4;
         }
         .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 3.5rem; position: relative; }
-        .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--text-muted); font-weight: 700; font-size: 0.95rem; }
-        .timeline-date.active { color: var(--accent-green); }
+        .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--text-muted); font-weight: 700; font-size: 0.95rem; transition: var(--transition); }
+        .timeline-date.active { color: var(--accent-green); text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
         
-        /* Corps général des conteneurs de la frise */
+        /* Animation subtile de surélévation (Lift-up) sur les cartes */
         .timeline-body {
             background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
             border: 1px solid var(--border); transition: var(--transition); position: relative;
             display: flex; flex-direction: column; gap: 1.5rem;
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
         .timeline-body::after {
             content: ''; position: absolute; left: -32px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
             background-color: var(--border); border: 2px solid var(--border); z-index: 5; transition: var(--transition);
         }
-        .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 30px var(--glow); background: var(--card-hover); }
-        .timeline-item:hover .timeline-body::after { background-color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); scale: 1.2; }
         
-        /* En-tête de poste incluant le logo */
+        /* Effet Hover Premium */
+        .timeline-item:hover .timeline-body { 
+            transform: translateY(-5px); 
+            border-color: var(--accent); 
+            box-shadow: 0 12px 30px var(--glow), 0 0 1px var(--accent); 
+            background: var(--card-hover); 
+        }
+        .timeline-item:hover .timeline-body::after { 
+            background-color: var(--accent); 
+            border-color: var(--accent); 
+            box-shadow: 0 0 14px var(--accent); 
+            transform: scale(1.3); 
+        }
+        .timeline-item:hover .timeline-date { color: var(--text-main); }
+        
         .job-header-container { display: flex; align-items: center; gap: 1.5rem; }
         .company-logo {
             width: 65px; height: 65px; flex-shrink: 0; object-fit: contain; border-radius: 12px;
@@ -241,6 +246,31 @@
         .internal-post::before { content: ''; position: absolute; left: -29px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background-color: var(--border); border: 2px solid var(--bg-color); transition: var(--transition); }
         .internal-post.active::before { background-color: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
         .internal-post.past::before { background-color: var(--accent); }
+        
+        /* Indicateur de statut animé (Pulse effect) pour le poste actuel et master */
+        .status-pulse {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            margin-right: 6px;
+            position: relative;
+            vertical-align: middle;
+        }
+        .status-pulse::after {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            animation: pulseGlow 1.8s infinite ease-in-out;
+        }
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.8); opacity: 0; }
+        }
         
         .post-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
         .post-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
@@ -262,9 +292,10 @@
 
         /* Badges Compétences */
         .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.2); }
+        .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.2); transition: var(--transition); }
+        .timeline-body:hover .badge { border-color: rgba(56, 189, 248, 0.4); background-color: rgba(56, 189, 248, 0.12); }
         .badge.tools { color: var(--text-main); background-color: rgba(255,255,255,0.05); border-color: transparent; }
-        [data-theme="light"] .badge.tools { background-color: rgba(0,0,0,0.04); }
+        [data-theme="light"] .badge.tools { background-color: rgba(0,0,0,0.05); }
         
         /* Badges de statut */
         .form-badge { position: absolute; top: -12px; right: 20px; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 3; }
@@ -272,12 +303,12 @@
         .form-badge.approved { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
         .form-badge.diploma { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
 
-        /* Architecture Certifications */
+        /* Certifications */
         .cert-category { margin-bottom: 3rem; }
         .cert-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .cert-item:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--glow); background: var(--card-hover); }
+        .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .cert-item:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 12px 30px var(--glow); background: var(--card-hover); }
         .cert-content { padding: 2rem; display: flex; flex-direction: column; gap: 1rem; flex-grow: 1; justify-content: space-between; min-height: 220px; }
         .cert-header { display: flex; align-items: center; gap: 1rem; }
         .cert-title { font-weight: 700; color: var(--text-main); font-size: 1.1rem; line-height: 1.3; }
@@ -288,14 +319,14 @@
         /* Profil / Double Colonne */
         .profile-footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
         .lang-grid, .mobility-grid { display: flex; flex-direction: column; gap: 1rem; }
-        .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: var(--transition); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .lang-card:hover, .mobility-card:hover { border-color: var(--accent); transform: translateX(2px); background: var(--card-hover); }
+        .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: var(--transition); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .lang-card:hover, .mobility-card:hover { border-color: var(--accent); transform: translateY(-3px) translateX(2px); box-shadow: 0 8px 25px var(--glow); background: var(--card-hover); }
         .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px; text-align: center; }
         .lang-card h4, .mobility-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
-        .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
 
         .spec-list { list-style: none; padding-left: 0.5rem; margin-top: 0.3rem; }
-        .spec-list li { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
+        .spec-list li { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
         .spec-list li::before { content: "•"; color: var(--accent); font-weight: bold; }
 
         /* Footer */
@@ -398,11 +429,11 @@
                         <div class="internal-timeline">
                             <div class="internal-post active">
                                 <div class="post-header">
-                                    <span class="post-title">Coordinateur Technique</span>
+                                    <span class="post-title"><span class="status-pulse"></span>Coordinateur Technique</span>
                                     <span class="post-date">Déc. 2025 - Présent</span>
                                 </div>
                                 <ul class="job-details">
-                                    <li class="user"><strong>Pilotage Terrain :</strong> Prise d'appel et accompagnement technique en temps réel des techniciens (cocoordinateurs terrain) lors des interventions sur site.</li>
+                                    <li class="user"><strong>Pilotage Terrain :</strong> Prise d'appel et accompagnement technique en temps réel des techniciens lors des interventions sur site.</li>
                                     <li class="route"><strong>Bascule LAN & WAN :</strong> Supervision des opérations critiques de migration d'architectures locales clients (environnements Switch Huawei, etc.) et gestion des configurations routeurs.</li>
                                 </ul>
                             </div>
@@ -424,8 +455,8 @@
                                 </div>
                                 <ul class="job-details">
                                     <li class="tech"><strong>Diagnostic & Résolution N1/N2 :</strong> Gestion d'incidents complexes sur les architectures réseaux d'entreprise, liaisons WAN et VoIP.</li>
-                                    <li class="globe"><strong>Flotte Multi-Constructeurs :</strong> Manipulation et exploitation au quotidien via SecureCRT/PuTTY d'équipements routeurs variés (Cisco C800, C1100, ISR, ASR 1001-X, Juniper, MikroTik, OneAccess) et pare-feu Fortigate.</li>
-                                    <li class="route"><strong>Routage Core Network :</strong> Supervision des flux et architecture réseau s'appuyant sur les protocoles BGP, Radius et l'outil de monitoring Grafana.</li>
+                                    <li class="globe"><strong>Flotte Multi-Constructeurs :</strong> Manipulation et exploitation au quotidien via SecureCRT d'équipements routeurs variés (Cisco, Juniper, MikroTik, OneAccess) et pare-feu Fortigate.</li>
+                                    <li class="route"><strong>Routage Core Network :</strong> Supervision des flux s'appuyant sur les protocoles BGP, Radius et l'outil de monitoring Grafana.</li>
                                 </ul>
                             </div>
                         </div>
@@ -477,8 +508,8 @@
                             </div>
                         </div>
                         <ul class="job-details">
-                            <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles, des accès et de l'arborescence.</li>
-                            <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcis la sécurité.</li>
+                            <li class="tech"><strong>Active Directory :</strong> Administration globale de l'annuaire d'entreprise, gestion des rôles et des accès.</li>
+                            <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcir la sécurité.</li>
                             <li class="shield"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
                         </ul>
                         <div class="skills-container">
@@ -500,7 +531,7 @@
                 <div class="timeline-item">
                     <div class="timeline-date active">Sept. 2025 – Oct. 2027</div>
                     <div class="timeline-body">
-                        <div class="form-badge current">En cours</div>
+                        <div class="form-badge current"><span class="status-pulse"></span>En cours</div>
                         <div class="job-header-container">
                             <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
                             <div class="job-title">
@@ -530,7 +561,6 @@
                         <div class="skills-container" style="margin: 0.2rem 0;">
                             <span class="badge tools"><i class="fa-solid fa-diagram-project"></i> Gestion de projet</span>
                             <span class="badge tools"><i class="fa-solid fa-cloud"></i> Cloud Computing</span>
-                            <span class="badge tools"><i class="fa-solid fa-plus"></i> 4 compétences</span>
                         </div>
                         <a href="https://www.cesi.fr/formation/admission-parallele-bachelor-administrateur-trice-systemes-et-reseaux-en-alternance-2520464/" target="_blank" class="btn-secondary">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
@@ -552,8 +582,7 @@
                         <p style="color: var(--text-muted); font-size: 0.95rem;">Brevet de Technicien Supérieur – Services Informatiques aux Organisations. Apprentissage des architectures réseaux logiques et physiques, de la commutation et du déploiement de services.</p>
                         <div class="skills-container" style="margin: 0.2rem 0;">
                             <span class="badge tools"><i class="fa-brands fa-python"></i> Python</span>
-                            <span class="badge tools"><i class="fa-solid fa-window-restore"></i> Système d'exploitation</span>
-                            <span class="badge tools"><i class="fa-solid fa-plus"></i> 37 compétences</span>
+                            <span class="badge tools"><i class="fa-solid fa-window-restore"></i> Systèmes d'exploitation</span>
                         </div>
                         <a href="https://www.la-chataigneraie.org/bts-service-informatiques-aux-organisations-solutions-d-infrastructure-systemes-reseaux/" target="_blank" class="btn-secondary">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
@@ -818,11 +847,9 @@
             }
         }
 
-        /* LIGHTBOX GÉNÉRIQUE */
         function openLightbox(imageSrc) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            
             lightboxImg.src = imageSrc;
             lightbox.classList.add('active');
         }
@@ -831,14 +858,13 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        /* SCRIPT PARTICULES INTERACTIVES */
+        /* CONFIGURATION PARTICULES AVANCÉE */
         const canvas = document.getElementById('cyber-canvas');
         const ctx = canvas.getContext('2d');
 
         let particlesArray = [];
-        const numberOfParticles = 100;
-
-        const mouse = { x: null, y: null, radius: 150 };
+        const numberOfParticles = 90;
+        const mouse = { x: null, y: null, radius: 160 };
 
         window.addEventListener('mousemove', function(event) {
             mouse.x = event.clientX;
@@ -860,9 +886,9 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
+                this.size = Math.random() * 2 + 1.5;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * 0.3 - 0.15;
             }
             update() {
                 this.x += this.speedX;
@@ -876,14 +902,15 @@
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < mouse.radius) {
-                        this.x += dx * 0.015;
-                        this.y += dy * 0.015;
+                        this.x += dx * 0.012;
+                        this.y += dy * 0.012;
                     }
                 }
             }
             draw() {
                 const isLight = document.body.getAttribute('data-theme') === 'light';
-                ctx.fillStyle = isLight ? 'rgba(14, 165, 233, 0.35)' : 'rgba(56, 189, 248, 0.35)';
+                // En mode clair, on passe sur un bleu plus profond et plus contrasté
+                ctx.fillStyle = isLight ? 'rgba(2, 132, 199, 0.45)' : 'rgba(56, 189, 248, 0.3)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -899,7 +926,9 @@
 
         function connectParticles() {
             const isLight = document.body.getAttribute('data-theme') === 'light';
-            const colorLine = isLight ? 'rgba(14, 165, 233,' : 'rgba(56, 189, 248,';
+            // Lignes plus intenses en mode clair pour l'accessibilité
+            const colorLine = isLight ? 'rgba(2, 132, 199,' : 'rgba(56, 189, 248,';
+            const baseOpacity = isLight ? 0.22 : 0.12;
             
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
@@ -907,10 +936,10 @@
                     let dy = particlesArray[a].y - particlesArray[b].y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 120) {
-                        let opacity = (1 - (distance / 120)) * 0.12;
+                    if (distance < 125) {
+                        let opacity = (1 - (distance / 125)) * baseOpacity;
                         ctx.strokeStyle = `${colorLine}${opacity})`;
-                        ctx.lineWidth = 0.7;
+                        ctx.lineWidth = isLight ? 0.9 : 0.7;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                         ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
