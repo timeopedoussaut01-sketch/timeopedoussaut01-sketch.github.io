@@ -29,6 +29,38 @@
             --term-border: #1e293b;
         }
 
+        /* --- SÉLECTEUR DE LANGUES --- */
+        .language-selector {
+            display: inline-flex;
+            gap: 0.5rem;
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+
+        .lang-btn {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.4rem 0.7rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover {
+            color: var(--accent);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+        }
+
+        .lang-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
         /* --- MICRO-ANIMATIONS PORTFOLIO --- */
 
         /* 1. Effet de lueur et soulèvement pour les cartes d'expériences */
@@ -665,6 +697,13 @@
             <li><a href="#projects">Projets</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li>
+                <!-- Bloc contenant langues + thème -->
+            <li class="nav-actions">
+                <div class="language-selector">
+                    <button class="lang-btn active" onclick="changeLanguage('fr', this)">FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en', this)">EN</button>
+                    <button class="lang-btn" onclick="changeLanguage('es', this)">ES</button>
+                </div>
                 <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
                     <i class="fa-solid fa-sun"></i> <span>Mode Clair</span>
                 </button>
