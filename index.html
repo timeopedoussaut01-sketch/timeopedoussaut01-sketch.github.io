@@ -1346,36 +1346,36 @@
                 this.baseX += this.speedX;
                 this.baseY += this.speedY;
 
-                // Rebond sur les bordures de l'écran pour les coordonnées autonomes
-                if (this.baseX < 0 || this.baseX > canvas.width) this.speedX *= -1;
-                if (this.baseY < 0 || this.baseY > canvas.height) this.speedY *= -1;
+                // Rebond sur les bordures physiques de l'écran
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
 
-                // Effet d'ATTRACTION (Rapprochement vers la souris)
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.hypot(dx, dy);
-                
-                if (distance < mouse.radius && mouse.x !== null) {
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let force = (mouse.radius - distance) / mouse.radius;
-                    // L'opérateur "+" applique une force vectorielle qui attire les nœuds vers le curseur
-                    let directionX = forceDirectionX * force * this.density * 0.3;
-                    let directionY = forceDirectionY * force * this.density * 0.3;
-                    
-                    this.x += directionX;
-                    this.y += directionY;
-                } else {
-                    // Retour fluide vers sa position autonome théorique
-                    if (this.x !== this.baseX) {
-                        let dxBase = this.x - this.baseX;
-                        this.x -= dxBase / 15;
-                    }
-                    if (this.y !== this.baseY) {
-                        let dyBase = this.y - this.baseY;
-                        this.y -= dyBase / 15;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+
+                }
+                // Interaction fluide avec la souris
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.hypot(dx, dy);
+
+                    // Si la particule est dans le rayon d'action de la souris
+                    if (distance < mouse.radius) {
+                        // On calcule une force proportionnelle à la distance
+                        // Plus elle est proche, plus le déplacement s'adoucit (évite le tremblement)
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        
+                        // Force d'attraction douce (ajuste le 0.05 pour attirer plus ou moins vite)
+                        this.x += (dx / distance) * force * 1.5;
+                        this.y += (dy / distance) * force * 1.5;
                     }
                 }
+
+                // Mouvement linéaire standard de fond
+                this.x += this.directionX;
+                this.y += this.directionY;
             }
         }
 
