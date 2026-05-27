@@ -452,7 +452,18 @@
         [data-theme="light"] .badge.tools { background-color: rgba(0,0,0,0.05); }
         
         /* Badges de statut */
-        .form-badge { position: absolute; top: -12px; right: 20px; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.76rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 3; }
+        .form-badge { 
+            position: absolute; 
+            top: -12px; 
+            right: 20px; 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            padding: 0.2rem 0.76rem; 
+            border-radius: 6px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            z-index: 10; /* <--- C'est ici ! On passe de 3 à 10 pour TOUS les badges */
+        }
         .form-badge.current { background-color: rgba(56, 189, 248, 0.15); color: var(--accent); border: 1px solid var(--accent); }
         .form-badge.approved { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
         .form-badge.diploma { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
