@@ -28,6 +28,22 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+         /* --- EFFET GLOW POUR LES LIENS --- */
+        .link-glow {
+            color: var(--accent); /* Couleur cyan par défaut */
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .link-glow:hover {
+            background: rgba(56, 189, 248, 0.1); /* Fond légèrement coloré */
+            border-color: var(--accent); /* Bordure qui apparaît */
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); /* Effet de lueur */
+            color: #fff;
+        }
 
         .dropbtn {
             background: rgba(15, 23, 42, 0.6);
@@ -748,7 +764,8 @@
                             <div class="job-title">
                                 <h3>Évolution Professionnelle en Alternance</h3>
                                 <div class="company">
-                                    <a href="https://www.linkedin.com/company/linkt" target="_blank">
+                                    <a href="https://www.linkedin.com/company/linkt" target="_blank" class="link-glow">
+                                        <i class="fab fa-linkedin"></i>
                                         Linkt — Opérateur Télécom • Mont-Saint-Aignan <i class="fa-brands fa-linkedin"></i>
                                     </a>
                                 </div>
@@ -811,7 +828,8 @@
                             <div class="job-title">
                                 <h3>Technicien Informatique</h3>
                                 <div class="company">
-                                    <a href="https://www.linkedin.com/company/centre-henri-becquerel/posts/?feedView=all" target="_blank">
+                                    <a href="https://www.linkedin.com/company/centre-henri-becquerel/posts/?feedView=all" target="_blank" class="link-glow">
+                                        <i class="fab fa-linkedin"></i> LinkedIn
                                         Centre Henri-Becquerel (Stage) — Rouen <i class="fa-brands fa-linkedin"></i>
                                     </a>
                                 </div>
@@ -873,7 +891,8 @@
                             <div class="job-title">
                                 <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
                                 <div class="company">
-                                    <a href="https://www.linkedin.com/school/cesi-officiel/posts/?feedView=all" target="_blank">
+                                    <a href="https://www.linkedin.com/school/cesi-officiel/posts/?feedView=all" target="_blank" class="link-glow">
+                                        <i class="fab fa-linkedin"></i> LinkedIn
                                         CESI • Rouen Madrillet Innovation <i class="fa-brands fa-linkedin"></i>
                                     </a>
                                 </div>
@@ -935,7 +954,8 @@
                             <div class="job-title">
                                 <h3>BTS SIO (Option Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
                                 <div class="company">
-                                    <a href="https://www.linkedin.com/school/campus-la-chataigneraie/posts/?feedView=all" target="_blank">
+                                    <a href="https://www.linkedin.com/school/campus-la-chataigneraie/posts/?feedView=all" target="_blank" class="link-glow">
+                                        <i class="fab fa-linkedin"></i> LinkedIn
                                         Campus La Châtaigneraie • Le Mesnil-Esnard <i class="fa-brands fa-linkedin"></i>
                                     </a>
 				</div>
@@ -1242,7 +1262,9 @@
             <a href="mailto:timeo.pedoussaut01@gmail.com" class="footer-info-item"><i class="fa-solid fa-envelope"></i> timeo.pedoussaut01@gmail.com</a>
         </div>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank" class="link-glow">
+                <i class="fab fa-linkedin"></i>
+            </a>
         </div>
         <p>© 2026 — Timéo Pedoussaut • Tous droits réservés</p>
     </footer>
