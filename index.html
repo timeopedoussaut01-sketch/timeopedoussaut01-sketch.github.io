@@ -44,6 +44,65 @@
             vertical-align: middle;
         }
 
+        /* Conteneur pour aligner les deux boutons horizontalement */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Espace entre le sélecteur de langue et le bouton thème */
+        }
+
+        /* Style du sélecteur de langue pour ressembler au bouton thème */
+        .lang-dropdown { position: relative; display: inline-block; }
+
+        .dropbtn {
+            background: rgba(15, 23, 42, 0.6);
+            color: var(--text-main);
+            border: 1px solid var(--accent); /* Bordure accentuée pour le mettre en évidence */
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dropbtn:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+        }
+
+        /* Menu déroulant propre */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 110%; /* Place le menu juste en dessous */
+            right: 0;
+            background-color: var(--card-bg);
+            min-width: 130px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        .dropdown-content a {
+            color: var(--text-main);
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            transition: 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--card-hover);
+            color: var(--accent);
+        }
+
+        /* Affichage au survol */
+        .lang-dropdown:hover .dropdown-content { display: block; }
+
         .lang-btn {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border);
@@ -707,7 +766,9 @@
                 <!-- Bloc contenant langues + thème -->
 <li class="nav-actions">
     <div class="lang-dropdown">
-        <button class="dropbtn"><i class="fa-solid fa-globe"></i> FR</button>
+        <button class="dropbtn">
+            <i class="fa-solid fa-globe"></i> <span>FR</span>
+        </button>
         <div class="dropdown-content">
                          <a href="#" onclick="changeLanguage('fr', 'FR')">Français</a>
                          <a href="#" onclick="changeLanguage('en', 'EN')">English</a>
