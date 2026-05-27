@@ -563,13 +563,17 @@
         .cert-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            /* Ces 3 lignes ensemble forcent TOUT le monde au centre */
-            justify-content: center; 
-            justify-items: center;
-            align-items: start;
+            /* Crée 2 colonnes de taille égale */
+            grid-template-columns: repeat(2, 1fr); 
+            /* Espace entre les deux colonnes */
+            gap: 20px; 
             width: 100%;
+        }
+        /* Optionnel : Si l'écran est trop petit (mobile), on repasse en 1 colonne */
+        @media (max-width: 768px) {
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
         }
         .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: relative; }
         .cert-item:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 12px 30px var(--glow); background: var(--card-hover); }
