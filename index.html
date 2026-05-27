@@ -785,7 +785,7 @@
         .job-details li.vial::before { content: "\f492"; }
 
         /* Badges Compétences */
-        .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
+        .competences-container { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
         .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.2); transition: var(--transition); }
         .timeline-body:hover .badge { border-color: rgba(56, 189, 248, 0.4); background-color: rgba(56, 189, 248, 0.12); }
         .badge.tools { color: var(--text-main); background-color: rgba(255,255,255,0.05); border-color: transparent; }
@@ -978,7 +978,7 @@
         <ul>
             <li><a href="#experiences">Expériences</a></li>
             <li><a href="#formations">Formations</a></li>
-            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#competences">Compétences</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#projects">Projets</a></li>
             <li>
@@ -1083,7 +1083,7 @@
                             </div>
                         </div>
 
-                        <div class="skills-container" style="margin-top: 1rem;">
+                        <div class="competences-container" style="margin-top: 1rem;">
                             <span class="badge">Routage BGP</span>
                             <span class="badge">Cisco ASR/ISR & Fortigate</span>
                             <span class="badge">Supervision Grafana</span>
@@ -1115,7 +1115,7 @@
                             <li class="gear"><strong>Gestion de Parc :</strong> Déploiement matériel, masterisation et maintenance logicielle en totale autonomie.</li>
                             <li class="tech"><strong>Infrastructure :</strong> Support utilisateur de proximité, migration de systèmes d'exploitation et supervision courante du réseau local.</li>
                         </ul>
-                        <div class="skills-container">
+                        <div class="competences-container">
                             <span class="badge">Maintenance Parc IT</span>
                             <span class="badge">Migration OS</span>
                             <span class="badge">Support Proximité</span>
@@ -1142,7 +1142,7 @@
                             <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcis la sécurité.</li>
                             <li class="shield"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
                         </ul>
-                        <div class="skills-container">
+                        <div class="competences-container">
                             <span class="badge">Active Directory</span>
                             <span class="badge">GPO (Group Policies)</span>
                             <span class="badge">Normes RGPD / ANSSI</span>
@@ -1304,7 +1304,7 @@
         </div>
     </div>
 </section>
-<section id="skills" class="alt-bg reveal">
+<section id="competences" class="alt-bg reveal">
     <div class="section-container">
         <h2><i class="fas fa-laptop-code"></i> Compétences Techniques & Écosystèmes Maîtrisés</h2>
         
@@ -1401,7 +1401,7 @@
                             <li class="gear"><strong>Refonte du système de notation :</strong> Intégration d'un menu déroulant intelligent forçant la qualification des notes attribuées, couplée à une fonctionnalité permettant de réouvrir directement un ticket.</li>
                             <li class="tech"><strong>Application de fiches d'auto-diagnostic :</strong> Centralisation et mise à disposition de fiches techniques via une interface web fluide pour décharger le support N1.</li>
                         </ul>
-                        <div class="skills-container">
+                        <div class="competences-container">
                             <span class="badge tools"><i class="fa-brands fa-vuejs"></i> Vue.js</span>
                             <span class="badge tools"><i class="fa-solid fa-puzzle-piece"></i> WXT Extension</span>
                             <span class="badge tools"><i class="fa-solid fa-users"></i> UX / Relation Client</span>
@@ -1756,12 +1756,12 @@
 
             switch(cmd) {
                 case 'help':
-                    output = `Commandes disponibles :\n  - about   : Résumé rapide de mon profil\n  - skills  : Liste abrégée de mes compétences clés\n  - logs    : Afficher le flux de supervision du pare-feu\n  - history : Historique récent des mises à jour de l'infra du site\n  - secret  : Lancer un audit de sécurité simulé\n  - clear   : Vider l'écran de la console`;
+                    output = `Commandes disponibles :\n  - about   : Résumé rapide de mon profil\n  - competences  : Liste abrégée de mes compétences clés\n  - logs    : Afficher le flux de supervision du pare-feu\n  - history : Historique récent des mises à jour de l'infra du site\n  - secret  : Lancer un audit de sécurité simulé\n  - clear   : Vider l'écran de la console`;
                     break;
                 case 'about':
                     output = `Timéo Pedoussaut - 2026\nAlternant Coordinateur Technique chez Linkt et étudiant en Master MICSI (Infrastructures & Cybersécurité) au CESI.\nPassionné d'architectures réseaux d'entreprise, commutation et sécurité système.`;
                     break;
-                case 'skills':
+                case 'competences':
                     output = `[RÉSEAUX] : BGP, WAN, LAN, Cisco ASR/ISR, Huawei Switches, Juniper, MikroTik.\n[SÉCURITÉ] : Fortigate Firewalls, GPO, Active Directory, Normes ANSSI (SecNumacad).\n[OUTILS] : Grafana, Radius, SecureCRT, Vue.js, Python.`;
                     break;
                 case 'logs':
