@@ -29,6 +29,51 @@
             --term-border: #1e293b;
         }
 
+        /* --- MICRO-ANIMATIONS PORTFOLIO --- */
+
+        /* 1. Effet de lueur et soulèvement pour les cartes d'expériences */
+        .timeline-body {
+            /* On s'assure que la transition est fluide sur la transformation et l'ombre */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .timeline-body:hover {
+            transform: translateY(-6px) scale(1.01); /* Soulève légèrement la carte */
+            border-color: rgba(56, 189, 248, 0.4); /* Accentue la bordure en cyan */
+            /* Crée un effet de halo lumineux cyan (glow) */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2), 
+                        0 0 20px rgba(56, 189, 248, 0.25); 
+        }
+
+        /* 2. Effet de lueur et soulèvement pour les cartes de certifications */
+        .cert-item {
+            /* Transition fluide */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-6px); /* Soulève la carte de certification */
+            border-color: rgba(52, 211, 153, 0.4); /* Accentue la bordure en vert émeraude */
+            /* Crée un effet de halo lumineux vert (glow) */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2), 
+                        0 0 18px rgba(52, 211, 153, 0.2); 
+        }
+
+        /* Réduction de la taille pour les titres de certifications trop imposants */
+        .cert-title-long {
+            font-size: 1.1rem !important; /* Réduit la taille du texte (adapte si besoin) */
+            letter-spacing: 0.5px;
+            display: inline-block;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }        
+
 	/* Ajustement pour les nouveaux logos de drapeaux en JPG */
         .lang-flag-img {
             width: 32px;
