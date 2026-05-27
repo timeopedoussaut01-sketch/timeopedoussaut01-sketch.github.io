@@ -180,7 +180,23 @@
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
             scroll-behavior: smooth; 
         }
-        
+
+        .stat-item-link {
+            text-decoration: none;
+            color: inherit; /* Garde la couleur d'origine */
+            transition: var(--transition);
+        }
+        .stat-item-link:hover .stat-item {
+            background: var(--card-hover); /* Effet de survol léger */
+            border-color: var(--accent);   /* Bordure qui s'illumine */
+            transform: translateY(-2px);    /* Petit effet de flottement */
+        }
+
+        .stat-item {
+            transition: var(--transition);
+            border: 1px solid transparent; /* Bordure invisible par défaut */
+        }
+    
         body { 
             background-color: var(--bg-color); 
             color: var(--text-main); 
@@ -768,10 +784,12 @@
                 <span class="stat-number">2+</span>
                 <span class="stat-label">Ans en Télécoms</span>
             </div>
+            <a href="#certifications" class="stat-item-link"></a>
             <div class="stat-item">
                 <span class="stat-number">4</span>
                 <span class="stat-label">Certifications</span>
             </div>
+            </a>
             <div class="stat-item">
                 <span class="stat-number">10+</span>
                 <span class="stat-label">Constructeurs Validés</span>
