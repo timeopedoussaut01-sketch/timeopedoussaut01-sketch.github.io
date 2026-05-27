@@ -29,7 +29,7 @@
             --term-border: #1e293b;
         }
 
-        /* Mode Clair amélioré pour une accessibilité et un contraste parfaits */
+        /* Mode Clair amélioré */
         [data-theme="light"] {
             --bg-color: #f8fafc;
             --section-alt: rgba(226, 232, 240, 0.6);
@@ -67,6 +67,19 @@
             transition: var(--transition);
         }
 
+        /* INDICATEUR DE LECTURE (PROGRESS BAR) */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--accent);
+            z-index: 1001;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
         /* CANVAS DE PARTICULES */
         #cyber-canvas {
             position: fixed;
@@ -93,6 +106,7 @@
             background-color: rgba(248, 250, 252, 0.85);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
         }
+        .nav-left { display: flex; align-items: center; gap: 1.5rem; }
         nav .logo { 
             font-weight: 800; 
             color: var(--text-main); 
@@ -101,8 +115,40 @@
             user-select: none;
         }
         nav .logo span { color: var(--accent); }
+
+        /* BADGE DE STATUT SYSADMIN / UPTIME */
+        .sys-status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(52, 211, 153, 0.06);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            padding: 0.3rem 0.75rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        [data-theme="light"] .sys-status-badge {
+            background: rgba(5, 150, 105, 0.06);
+            border-color: rgba(5, 150, 105, 0.2);
+        }
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            position: relative;
+        }
+        .pulse-dot::after {
+            content: '';
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            background-color: var(--accent-green); border-radius: 50%;
+            animation: pulseGlow 1.8s infinite ease-in-out;
+        }
+
         nav ul { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
-        
         nav ul li { position: relative; }
         nav a { 
             color: var(--text-muted); 
@@ -408,6 +454,8 @@
             .timeline-date { text-align: left; padding-top: 0; margin-bottom: 0.2rem; }
             header h1 { font-size: 2.6rem; }
             nav ul { display: none; }
+            .nav-left { gap: 0.8rem; }
+            .sys-status-badge { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
             section { padding: 4rem 1.5rem; }
             .internal-timeline { border-left: 1px dashed var(--border); padding-left: 1.2rem; }
             .internal-post::before { left: -25px; }
@@ -422,6 +470,8 @@
 </head>
 <body>
 
+    <div id="scroll-progress"></div>
+
     <canvas id="cyber-canvas"></canvas>
 
     <div class="profile-lightbox" id="lightbox" onclick="closeLightbox()">
@@ -429,7 +479,15 @@
     </div>
 
     <nav>
-        <div class="logo">TIMÉO<span>.P</span></div>
+        <div class="nav-left">
+            <div class="logo">TIMÉO<span>.P</span></div>
+            <div class="sys-status-badge">
+                <span class="pulse-dot"></span>
+                <span>SYS_STATUS: OPERATIONAL</span>
+                <span style="color: var(--text-muted); margin: 0 2px;">|</span>
+                <span id="uptime-counter" style="color: var(--accent);">UPTIME: 0s</span>
+            </div>
+        </div>
         <ul>
             <li><a href="#experiences">Expériences</a></li>
             <li><a href="#formations">Formations</a></li>
@@ -898,7 +956,7 @@
             </div>
         </div>
         <div class="term-body" id="termBody">
-            <div class="term-output-line">Console d'accès sécurisée v2.1. Type 'help' pour lister les commandes disponibles.</div>
+            <div class="term-output-line">Console d'accès sécurisée v2.2. Type 'help' pour lister les commandes disponibles.</div>
             <div class="term-input-row">
                 <span class="term-prompt">timeo_cli></span>
                 <input type="text" class="term-input" id="termInput" autocomplete="off" autofocus>
@@ -942,7 +1000,32 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        /* CONFIGURATION SCROLL REVEAL (Intersection Observer) */
+        /* 1. CONFIGURATION INDICATEUR DE LECTURE & COMPTEUR UPTIME */
+        const startTime = Date.now();
+        const uptimeElement = document.getElementById('uptime-counter');
+        const scrollProgress = document.getElementById('scroll-progress');
+
+        window.addEventListener('scroll', () => {
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (totalScroll > 0) {
+                const scrolled = (window.scrollY / totalScroll) * 100;
+                scrollProgress.style.width = scrolled + '%';
+            }
+        });
+
+        setInterval(() => {
+            const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+            if (elapsedSeconds < 60) {
+                uptimeElement.innerText = `UPTIME: ${elapsedSeconds}s`;
+            } else {
+                const minutes = Math.floor(elapsedSeconds / 60);
+                const seconds = elapsedSeconds % 60;
+                uptimeElement.innerText = `UPTIME: ${minutes}m ${seconds}s`;
+            }
+        }, 1000);
+
+
+        /* 2. CONFIGURATION SCROLL REVEAL (Intersection Observer) */
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -958,7 +1041,7 @@
         revealElements.forEach(element => revealObserver.observe(element));
 
 
-        /* MODULE ET COMMANDES DU TERMINAL INTERACTIF */
+        /* 3. MODULE ET COMMANDES DU TERMINAL INTERACTIF */
         function toggleTerminal() {
             const term = document.getElementById('cyberTerminal');
             term.classList.toggle('active');
@@ -978,7 +1061,6 @@
             }
         });
 
-        // Focus persistant sur l'input quand on clique n'importe où dans le terminal
         document.getElementById('cyberTerminal').addEventListener('click', () => {
             termInput.focus();
         });
@@ -986,7 +1068,6 @@
         function executeCommand(cmd) {
             if(!cmd) return;
 
-            // Log de la commande tapée
             const inputRow = document.querySelector('.term-input-row');
             const historyLine = document.createElement('div');
             historyLine.className = 'term-output-line';
@@ -997,7 +1078,7 @@
 
             switch(cmd) {
                 case 'help':
-                    output = `Commandes disponibles :\n  - about   : Résumé rapide de mon profil\n  - skills  : Liste abrégée de mes compétences clés\n  - secret  : Lancer un audit de sécurité simulé\n  - clear   : Vider l'écran de la console`;
+                    output = `Commandes disponibles :\n  - about   : Résumé rapide de mon profil\n  - skills  : Liste abrégée de mes compétences clés\n  - logs    : Afficher le flux de supervision du pare-feu\n  - history : Historique récent des mises à jour de l'infra du site\n  - secret  : Lancer un audit de sécurité simulé\n  - clear   : Vider l'écran de la console`;
                     break;
                 case 'about':
                     output = `Timéo Pedoussaut - 2026\nAlternant Coordinateur Technique chez Linkt et étudiant en Master MICSI (Infrastructures & Cybersécurité) au CESI.\nPassionné d'architectures réseaux d'entreprise, commutation et sécurité système.`;
@@ -1005,8 +1086,13 @@
                 case 'skills':
                     output = `[RÉSEAUX] : BGP, WAN, LAN, Cisco ASR/ISR, Huawei Switches, Juniper, MikroTik.\n[SÉCURITÉ] : Fortigate Firewalls, GPO, Active Directory, Normes ANSSI (SecNumacad).\n[OUTILS] : Grafana, Radius, SecureCRT, Vue.js, Python.`;
                     break;
+                case 'logs':
+                    output = `[INFO] -- ${new Date().toISOString()}\n[OK] Fortigate-Core-FW: Secure tunnel established successfully.\n[OK] Radius-Server: Sync done with active directory database.\n[WARN] Core-Switch-Huawei: High traffic spike detected on trunk port 24 (Bascule LAN client info).\n[INFO] Analytics: Recruiter session uptime tracking active. No packet drop.`;
+                    break;
+                case 'history':
+                    output = `[HISTORIQUE INFRASTRUCTURE PORTFOLIO]\n  - v1.0 (2025): Initial release\n  - v2.0 (2026-04): Integration of Fortinet NSE certificates & responsive grid\n  - v2.1 (2026-05): Added Scroll Reveal layout & native JavaScript Web API console\n  - v2.2 (2026-05): Deployed real-time session uptime monitor & top reading tracking metrics`;
+                    break;
                 case 'clear':
-                    // On supprime toutes les lignes créées sauf la ligne d'input
                     const lines = termBody.querySelectorAll('.term-output-line');
                     lines.forEach(line => line.remove());
                     return;
@@ -1017,18 +1103,16 @@
                     output = `Commande inconnue: '${cmd}'. Tapez 'help' pour voir la liste des instructions valides.`;
             }
 
-            // Génération de la réponse dans la console
             const outputLine = document.createElement('div');
             outputLine.className = 'term-output-line';
             outputLine.innerText = output;
             termBody.insertBefore(outputLine, inputRow);
 
-            // Scroll auto vers le bas
             termBody.scrollTop = termBody.scrollHeight;
         }
 
 
-        /* CONFIGURATION PARTICULES AVANCÉE */
+        /* 4. CONFIGURATION PARTICULES AVANCÉE */
         const canvas = document.getElementById('cyber-canvas');
         const ctx = canvas.getContext('2d');
 
