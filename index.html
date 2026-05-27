@@ -563,11 +563,26 @@
         .cert-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
         .cert-grid {
             display: grid;
-            /* Crée 2 colonnes de taille égale */
-            grid-template-columns: repeat(2, 1fr); 
-            /* Espace entre les deux colonnes */
-            gap: 20px; 
+            grid-template-columns: repeat(2, 1fr); /* 2 colonnes égales */
+            gap: 20px;
+            justify-items: center; /* Centre les cartes horizontalement dans leur colonne */
             width: 100%;
+        }
+
+        .cert-item {
+            width: 100%; /* La carte prend toute la place de sa colonne */
+            max-width: 500px; /* Évite qu'elles deviennent trop larges sur grand écran */
+        }
+        /* Si tu as une seule carte, on la centre manuellement */
+        .cert-item:only-child {
+            grid-column: span 2; /* Elle prend toute la largeur */
+            margin: 0 auto;     /* Centrage */
+        }
+
+        .section-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centre tout le contenu de la section */
         }
         /* Optionnel : Si l'écran est trop petit (mobile), on repasse en 1 colonne */
         @media (max-width: 768px) {
