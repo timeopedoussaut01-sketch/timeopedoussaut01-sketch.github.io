@@ -1342,20 +1342,15 @@
                 ctx.fill();
             }
             update() {
-                // Déplacement autonome de base
+                // 1. Déplacement autonome de la position théorique (base)
                 this.baseX += this.speedX;
                 this.baseY += this.speedY;
 
-                // Rebond sur les bordures physiques de l'écran
-                if (this.x > canvas.width || this.x < 0) {
-                    this.directionX = -this.directionX;
+                // Rebond sur les bordures de l'écran pour la position théorique
+                if (this.baseX < 0 || this.baseX > canvas.width) this.speedX *= -1;
+                if (this.baseY < 0 || this.baseY > canvas.height) this.speedY *= -1;
 
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.directionY = -this.directionY;
-
-                }
-                // Interaction fluide avec la souris
+                // 2. Interaction fluide avec la souris (Sans tremblements)
                 if (mouse.x !== null && mouse.y !== null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -1363,15 +1358,42 @@
 
                     // Si la particule est dans le rayon d'action de la souris
                     if (distance < mouse.radius) {
-                        // On calcule une force proportionnelle à la distance
-                        // Plus elle est proche, plus le déplacement s'adoucit (évite le tremblement)
+                        // Force proportionnelle : s'adoucit à l'approche du centre
                         let force = (mouse.radius - distance) / mouse.radius;
                         
-                        // Force d'attraction douce (ajuste le 0.05 pour attirer plus ou moins vite)
-                        this.x += (dx / distance) * force * 1.5;
-                        this.y += (dy / distance) * force * 1.5;
+                        // Calcul des directions ajusté avec la densité d'origine
+                        let forceDirectionX = dx / distance;
+                        let forceDirectionY = dy / distance;
+                        
+                        // Attraction douce (Le 0.3 amortit la vitesse pour qu'elles soient moins excitées)
+                        let directionX = forceDirectionX * force * this.density * 0.3;
+                        let directionY = forceDirectionY * force * this.density * 0.3;
+                        
+                        this.x += directionX;
+                        this.y += directionY;
+                    } else {
+                        // 3. Si hors du rayon de la souris : retour fluide vers la position autonome
+                        if (this.x !== this.baseX) {
+                            let dxBase = this.x - this.baseX;
+                            this.x -= dxBase / 15;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dyBase = this.y - this.baseY;
+                            this.y -= dyBase / 15;
+                        }
+                    }
+                } else {
+                    // Si la souris quitte l'écran : retour immédiat vers la position autonome
+                    if (this.x !== this.baseX) {
+                        let dxBase = this.x - this.baseX;
+                        this.x -= dxBase / 15;
+                    }
+                    if (this.y !== this.baseY) {
+                        let dyBase = this.y - this.baseY;
+                        this.y -= dyBase / 15;
                     }
                 }
+            }
 
                 // Mouvement linéaire standard de fond
                 this.x += this.directionX;
