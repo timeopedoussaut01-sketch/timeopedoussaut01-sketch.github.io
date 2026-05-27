@@ -604,15 +604,45 @@
         }
 
         .timeline-date { 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Envoie la date de début en haut, la date de fin tout en bas */
             text-align: right; 
-            padding-top: 1.8rem; /* Légèrement remonté pour s'aligner horizontalement avec le point */
+            padding-top: 1.8rem;    /* Aligne "Sept. 2025" avec le haut de la carte */
+            padding-bottom: 1.8rem; /* Aligne "Oct. 2027" avec le bas de la carte */
             color: var(--text-muted); 
             font-weight: 700; 
             font-size: 0.95rem; 
             transition: var(--transition); 
+            position: relative;
+            height: 100%;
+        }
+        .timeline-date::before {
+            content: ''; position: absolute; 
+            left: 209px; /* Tombe pile sur les 2px de la ligne à 210px */
+            top: 2.1rem; /* Aligné horizontalement avec le texte de début */
+            width: 10px; height: 10px; border-radius: 50%;
+            background-color: var(--border); border: 2px solid var(--bg-color); 
+            z-index: 5; transition: var(--transition);
         }
 
+        .timeline-date::after {
+            content: ''; position: absolute; 
+            left: 209px; 
+            bottom: 2.1rem; /* Aligné horizontalement avec le texte de fin */
+            width: 10px; height: 10px; border-radius: 50%;
+            background-color: var(--border); border: 2px solid var(--bg-color); 
+            z-index: 5; transition: var(--transition);
+        }
+
+        .timeline-date.active { color: var(--accent-green); }
         .timeline-date.active { color: var(--accent-green); text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
+        .timeline-date.active::before,
+        .timeline-date.active::after {
+            background-color: var(--accent-green);
+            border-color: var(--bg-color);
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+        }
 
         .timeline-body {
             background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
@@ -621,6 +651,10 @@
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             overflow: visible;
+        }
+
+        .timeline-body::after {
+            display: none !important;
         }
 
         /* LE POINT CORRIGÉ */
@@ -1103,7 +1137,10 @@
         <div class="timeline">
             
             <div class="timeline-item reveal">
-                <div class="timeline-date active">Sept. 2025 – Oct. 2027</div>
+                <div class="timeline-date active">
+                    <span class="date-start">Sept. 2025</span>
+                    <span class="date-end">Oct. 2027</span>
+                </div>
                 <div class="timeline-body">
                     <div class="matrix-header-bg"></div>
                     <div class="form-badge current"><span class="status-pulse"></span>En cours</div>
