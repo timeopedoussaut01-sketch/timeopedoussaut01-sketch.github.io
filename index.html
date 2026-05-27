@@ -13,7 +13,7 @@
             --card-bg: rgba(15, 23, 42, 0.85); 
             --card-hover: rgba(30, 41, 59, 0.95);
             --text-main: #f8fafc;
-            --text-muted: #94a3b8; /* Gris légèrement adouci pour le mode sombre */
+            --text-muted: #94a3b8; 
             --accent: #38bdf8;
             --accent-green: #34d399;
             --border: #1e293b;
@@ -22,6 +22,11 @@
             --timeline-line: #1e293b;
             --nav-glow: rgba(56, 189, 248, 0.6);
             --particle-opacity: 0.35;
+            
+            /* Terminal Styles */
+            --term-bg: rgba(5, 10, 18, 0.95);
+            --term-text: #34d399;
+            --term-border: #1e293b;
         }
 
         /* Mode Clair amélioré pour une accessibilité et un contraste parfaits */
@@ -31,14 +36,19 @@
             --card-bg: rgba(255, 255, 255, 0.95);
             --card-hover: rgba(255, 255, 255, 1);
             --text-main: #0f172a;
-            --text-muted: #334155; /* Contraste fortement augmenté (anciennement #475569) */
-            --accent: #0284c7; /* Bleu légèrement plus sombre pour le contraste sur fond blanc */
-            --accent-green: #059669; /* Vert plus prononcé pour l'accessibilité */
+            --text-muted: #334155; 
+            --accent: #0284c7; 
+            --accent-green: #059669; 
             --border: #cbd5e1;
             --glow: rgba(2, 132, 199, 0.12);
             --timeline-line: #cbd5e1;
             --nav-glow: rgba(2, 132, 199, 0.4);
-            --particle-opacity: 0.6; /* Particules plus opaques et visibles en mode clair */
+            --particle-opacity: 0.6; 
+            
+            /* Terminal Styles en Mode Clair */
+            --term-bg: rgba(15, 23, 42, 0.98);
+            --term-text: #34d399;
+            --term-border: #0284c7;
         }
 
         * { 
@@ -189,6 +199,17 @@
         }
         section h2 i { color: var(--accent); }
 
+        /* SCROLL REVEAL (Intersection Observer) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* FRISE CHRONOLOGIQUE DYNAMISÉE */
         .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
         .timeline::before {
@@ -199,7 +220,6 @@
         .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--text-muted); font-weight: 700; font-size: 0.95rem; transition: var(--transition); }
         .timeline-date.active { color: var(--accent-green); text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
         
-        /* Animation subtile de surélévation (Lift-up) sur les cartes */
         .timeline-body {
             background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
             border: 1px solid var(--border); transition: var(--transition); position: relative;
@@ -247,7 +267,7 @@
         .internal-post.active::before { background-color: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
         .internal-post.past::before { background-color: var(--accent); }
         
-        /* Indicateur de statut animé (Pulse effect) pour le poste actuel et master */
+        /* Indicateur de statut animé (Pulse effect) */
         .status-pulse {
             display: inline-block;
             width: 8px;
@@ -329,6 +349,47 @@
         .spec-list li { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
         .spec-list li::before { content: "•"; color: var(--accent); font-weight: bold; }
 
+        /* INTERACTIVE CYBER TERMINAL COMPONENT */
+        .term-widget-btn {
+            position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px;
+            background: var(--term-bg); border: 2px solid var(--accent); border-radius: 50%;
+            color: var(--accent); font-size: 1.4rem; display: flex; justify-content: center;
+            align-items: center; cursor: pointer; z-index: 999; transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 10px var(--glow);
+        }
+        .term-widget-btn:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 4px 25px var(--accent); color: #ffffff; background: var(--accent); }
+        
+        .term-window {
+            position: fixed; bottom: 95px; right: 25px; width: 420px; height: 320px;
+            background: var(--term-bg); border: 1px solid var(--term-border); border-radius: 12px;
+            z-index: 999; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column;
+            overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .term-window.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        
+        .term-header {
+            background: rgba(15, 23, 42, 0.9); padding: 0.6rem 1rem; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; color: var(--text-main); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.5px;
+        }
+        .term-header-dots { display: flex; gap: 6px; }
+        .term-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .term-dot.red { background: #ef4444; cursor: pointer; }
+        .term-dot.yellow { background: #f59e0b; }
+        .term-dot.green { background: #10b981; }
+
+        .term-body {
+            flex-grow: 1; padding: 1rem; overflow-y: auto; font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem; color: var(--term-text); display: flex; flex-direction: column; gap: 0.5rem;
+        }
+        .term-output-line { white-space: pre-wrap; word-break: break-all; line-height: 1.4; }
+        .term-input-row { display: flex; align-items: center; gap: 0.5rem; margin-top: auto; }
+        .term-prompt { font-weight: bold; color: var(--accent); white-space: nowrap; }
+        .term-input {
+            background: transparent; border: none; outline: none; color: inherit;
+            font-family: inherit; font-size: inherit; flex-grow: 1; padding: 2px 0;
+        }
+
         /* Footer */
         footer { position: relative; z-index: 2; background-color: rgba(2, 4, 8, 0.95); padding: 5rem 2rem; text-align: center; color: #f8fafc; border-top: 1px solid var(--border); backdrop-filter: blur(10px); }
         [data-theme="light"] footer { background-color: rgba(15, 23, 42, 0.98); }
@@ -355,6 +416,7 @@
             .stats-grid { gap: 2rem; }
             .job-header-container { gap: 1rem; }
             .company-logo { width: 55px; height: 55px; }
+            .term-window { width: calc(100vw - 40px); right: 20px; left: 20px; bottom: 85px; }
         }
     </style>
 </head>
@@ -411,7 +473,7 @@
             <h2><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
             <div class="timeline">
                 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date active">Sept. 2024 - Présent</div>
                     <div class="timeline-body">
                         <div class="job-header-container">
@@ -471,7 +533,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date">Janv. 2024 - Févr. 2024</div>
                     <div class="timeline-body">
                         <div class="job-header-container">
@@ -497,7 +559,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date">Mai 2023 - Juin 2023</div>
                     <div class="timeline-body">
                         <div class="job-header-container">
@@ -528,7 +590,7 @@
             <h2><i class="fa-solid fa-graduation-cap"></i> Formations & Diplômes</h2>
             <div class="timeline">
                 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date active">Sept. 2025 – Oct. 2027</div>
                     <div class="timeline-body">
                         <div class="form-badge current"><span class="status-pulse"></span>En cours</div>
@@ -546,7 +608,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date">Oct. 2024 – Sept. 2025</div>
                     <div class="timeline-body">
                         <div class="form-badge approved">Admis</div>
@@ -568,7 +630,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date">Sept. 2022 – Mai 2024</div>
                     <div class="timeline-body">
                         <div class="form-badge approved">Admis</div>
@@ -590,7 +652,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date">Janv. 2019 – Mai 2022</div>
                     <div class="timeline-body">
                         <div class="form-badge diploma">Admis</div>
@@ -635,7 +697,7 @@
             <h2><i class="fa-solid fa-code-branch"></i> Projets Réalisés</h2>
             <div class="timeline">
                 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-date">Oct. 2024 – Juin 2025</div>
                     <div class="timeline-body">
                         <div class="job-header-container">
@@ -669,7 +731,7 @@
         <div class="section-container">
             <h2><i class="fa-solid fa-certificate"></i> Licences & Certifications</h2>
             
-            <div class="cert-category">
+            <div class="cert-category reveal">
                 <h3><i class="fa-solid fa-shield-halved" style="color: #ed1c24;"></i> Cybersécurité</h3>
                 <div class="cert-grid">
                     <div class="cert-item">
@@ -713,7 +775,7 @@
                 </div>
             </div>
 
-            <div class="cert-category">
+            <div class="cert-category reveal">
                 <h3><i class="fa-solid fa-network-wired" style="color: #38bdf8;"></i> Réseaux & Infrastructures</h3>
                 <div class="cert-grid">
                     <div class="cert-item">
@@ -737,7 +799,7 @@
                 </div>
             </div>
 
-            <div class="cert-category" style="margin-bottom: 0;">
+            <div class="cert-category reveal" style="margin-bottom: 0;">
                 <h3><i class="fa-solid fa-laptop-code" style="color: #a855f7;"></i> Système & Environnement Numérique</h3>
                 <div class="cert-grid">
                     <div class="cert-item">
@@ -764,7 +826,7 @@
 
     <section id="competences-profil">
         <div class="section-container">
-            <div class="profile-footer-grid">
+            <div class="profile-footer-grid reveal">
                 <div>
                     <h2 style="margin-bottom: 2rem;"><i class="fa-solid fa-language"></i> Langues</h2>
                     <div class="lang-grid">
@@ -822,6 +884,28 @@
         </div>
     </section>
 
+    <div class="term-widget-btn" onclick="toggleTerminal()" title="Ouvrir la console cyber">
+        <i class="fa-solid fa-terminal"></i>
+    </div>
+
+    <div class="term-window" id="cyberTerminal">
+        <div class="term-header">
+            <span>guest@timeo-pedoussaut: ~</span>
+            <div class="term-header-dots">
+                <div class="term-dot red" onclick="toggleTerminal()"></div>
+                <div class="term-dot yellow"></div>
+                <div class="term-dot green"></div>
+            </div>
+        </div>
+        <div class="term-body" id="termBody">
+            <div class="term-output-line">Console d'accès sécurisée v2.1. Type 'help' pour lister les commandes disponibles.</div>
+            <div class="term-input-row">
+                <span class="term-prompt">timeo_cli></span>
+                <input type="text" class="term-input" id="termInput" autocomplete="off" autofocus>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-info">
             <a href="tel:0651542159" class="footer-info-item"><i class="fa-solid fa-phone"></i> 06 51 54 21 59</a>
@@ -857,6 +941,92 @@
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
         }
+
+        /* CONFIGURATION SCROLL REVEAL (Intersection Observer) */
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(element => revealObserver.observe(element));
+
+
+        /* MODULE ET COMMANDES DU TERMINAL INTERACTIF */
+        function toggleTerminal() {
+            const term = document.getElementById('cyberTerminal');
+            term.classList.toggle('active');
+            if(term.classList.contains('active')) {
+                document.getElementById('termInput').focus();
+            }
+        }
+
+        const termInput = document.getElementById('termInput');
+        const termBody = document.getElementById('termBody');
+
+        termInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const command = termInput.value.trim().toLowerCase();
+                executeCommand(command);
+                termInput.value = '';
+            }
+        });
+
+        // Focus persistant sur l'input quand on clique n'importe où dans le terminal
+        document.getElementById('cyberTerminal').addEventListener('click', () => {
+            termInput.focus();
+        });
+
+        function executeCommand(cmd) {
+            if(!cmd) return;
+
+            // Log de la commande tapée
+            const inputRow = document.querySelector('.term-input-row');
+            const historyLine = document.createElement('div');
+            historyLine.className = 'term-output-line';
+            historyLine.innerHTML = `<span class="term-prompt">timeo_cli></span> ${cmd}`;
+            termBody.insertBefore(historyLine, inputRow);
+
+            let output = '';
+
+            switch(cmd) {
+                case 'help':
+                    output = `Commandes disponibles :\n  - about   : Résumé rapide de mon profil\n  - skills  : Liste abrégée de mes compétences clés\n  - secret  : Lancer un audit de sécurité simulé\n  - clear   : Vider l'écran de la console`;
+                    break;
+                case 'about':
+                    output = `Timéo Pedoussaut - 2026\nAlternant Coordinateur Technique chez Linkt et étudiant en Master MICSI (Infrastructures & Cybersécurité) au CESI.\nPassionné d'architectures réseaux d'entreprise, commutation et sécurité système.`;
+                    break;
+                case 'skills':
+                    output = `[RÉSEAUX] : BGP, WAN, LAN, Cisco ASR/ISR, Huawei Switches, Juniper, MikroTik.\n[SÉCURITÉ] : Fortigate Firewalls, GPO, Active Directory, Normes ANSSI (SecNumacad).\n[OUTILS] : Grafana, Radius, SecureCRT, Vue.js, Python.`;
+                    break;
+                case 'clear':
+                    // On supprime toutes les lignes créées sauf la ligne d'input
+                    const lines = termBody.querySelectorAll('.term-output-line');
+                    lines.forEach(line => line.remove());
+                    return;
+                case 'secret':
+                    output = `[!] INITIALISATION DE L'AUDIT DE SÉCURITÉ PORTFOLIO...\n[+] Test de pénétration : Réussi\n[+] Chiffrement TLS 1.3 : Actif\n[+] Particules Cyber : Stable\nSTATUS : ACCÈS AUTORISÉ. Bienvenue, recruteur !`;
+                    break;
+                default:
+                    output = `Commande inconnue: '${cmd}'. Tapez 'help' pour voir la liste des instructions valides.`;
+            }
+
+            // Génération de la réponse dans la console
+            const outputLine = document.createElement('div');
+            outputLine.className = 'term-output-line';
+            outputLine.innerText = output;
+            termBody.insertBefore(outputLine, inputRow);
+
+            // Scroll auto vers le bas
+            termBody.scrollTop = termBody.scrollHeight;
+        }
+
 
         /* CONFIGURATION PARTICULES AVANCÉE */
         const canvas = document.getElementById('cyber-canvas');
@@ -909,7 +1079,6 @@
             }
             draw() {
                 const isLight = document.body.getAttribute('data-theme') === 'light';
-                // En mode clair, on passe sur un bleu plus profond et plus contrasté
                 ctx.fillStyle = isLight ? 'rgba(2, 132, 199, 0.45)' : 'rgba(56, 189, 248, 0.3)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -926,7 +1095,6 @@
 
         function connectParticles() {
             const isLight = document.body.getAttribute('data-theme') === 'light';
-            // Lignes plus intenses en mode clair pour l'accessibilité
             const colorLine = isLight ? 'rgba(2, 132, 199,' : 'rgba(56, 189, 248,';
             const baseOpacity = isLight ? 0.22 : 0.12;
             
