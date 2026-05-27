@@ -29,31 +29,6 @@
             --term-border: #1e293b;
         }
 
-        .lang-dropdown { position: relative; display: inline-block; }
-        .dropbtn { background: rgba(15, 23, 42, 0.6); color: var(--text-main); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
-        .dropdown-content { display: none; position: absolute; right: 0; background-color: var(--card-bg); min-width: 120px; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 20; }
-        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; }
-        .dropdown-content a:hover { background-color: var(--card-hover); color: var(--accent); }
-        .lang-dropdown:hover .dropdown-content { display: block; }
-
-        /* --- SÉLECTEUR DE LANGUES --- */
-        .language-selector {
-            display: inline-flex;
-            gap: 0.5rem;
-            margin-right: 1rem;
-            vertical-align: middle;
-        }
-
-        /* Conteneur pour aligner les deux boutons horizontalement */
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px; /* Espace entre le sélecteur de langue et le bouton thème */
-        }
-
-        /* Style du sélecteur de langue pour ressembler au bouton thème */
-        .lang-dropdown { position: relative; display: inline-block; }
-
         .dropbtn {
             background: rgba(15, 23, 42, 0.6);
             color: var(--text-main);
@@ -67,41 +42,6 @@
             align-items: center;
             gap: 8px;
         }
-
-        .dropbtn:hover {
-            background: var(--accent);
-            color: var(--bg-color);
-        }
-
-        /* Menu déroulant propre */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 110%; /* Place le menu juste en dessous */
-            right: 0;
-            background-color: var(--card-bg);
-            min-width: 130px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            z-index: 100;
-        }
-
-        .dropdown-content a {
-            color: var(--text-main);
-            padding: 10px 16px;
-            text-decoration: none;
-            display: block;
-            transition: 0.2s;
-        }
-
-        .dropdown-content a:hover {
-            background-color: var(--card-hover);
-            color: var(--accent);
-        }
-
-        /* Affichage au survol */
-        .lang-dropdown:hover .dropdown-content { display: block; }
 
         .lang-btn {
             background: rgba(15, 23, 42, 0.6);
@@ -763,22 +703,6 @@
             <li><a href="#projects">Projets</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li>
-                <!-- Bloc contenant langues + thème -->
-<li class="nav-actions">
-    <div class="lang-dropdown">
-        <button class="dropbtn">
-            <i class="fa-solid fa-globe"></i> <span>FR</span>
-        </button>
-        <div class="dropdown-content">
-                         <a href="#" onclick="changeLanguage('fr', 'FR')">Français</a>
-                         <a href="#" onclick="changeLanguage('en', 'EN')">English</a>
-                         <a href="#" onclick="changeLanguage('es', 'ES')">Español</a>
-                    </div>
-                </div>
-                <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
-                    <i class="fa-solid fa-sun"></i> <span>Mode Clair</span>
-                </button>
-            </li>
         </ul>
     </nav>
 
@@ -1336,65 +1260,6 @@
             body.setAttribute('data-theme', 'light');
             btn.innerHTML = '<i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>';
         }
-    }
-
-    // 2. Le nouveau code pour les langues (à copier-coller juste après)
-    function changeLanguage(lang, label) {
-        // Change le texte du bouton dropdown
-        console.log("Tentative de traduction vers : " + lang); // Pour déboguer
-        document.querySelector('.dropbtn').innerHTML = '<i class="fa-solid fa-globe"></i> ' + label;
-        
-        // Dictionnaire de traduction
-        const translations = {
-            fr: {
-                nav_exp: "Expériences",
-                nav_edu: "Formations",
-                nav_proj: "Projets",
-                nav_cert: "Certifications",
-                cert_title: "Licences & Certifications",
-                exp_title: "Expériences Professionnelles",
-                hero_desc: "Stage d'immersion au sein de la DSI..."
-                },
-            en: {
-                nav_exp: "Experience",
-                nav_edu: "Education",
-                nav_proj: "Projects",
-                nav_cert: "Certifications",
-                cert_title: "Licenses & Certifications",
-                exp_title: "Professional Experience",
-                hero_desc: "Immersion internship within the IT department..."
-                },
-            es: { nav_exp: "Experiencias", nav_form: "Formación", nav_proj: "Proyectos", nav_cert: "Certificaciones" }
-        };
-
-        // Mise à jour bouton
-        document.querySelector('.dropbtn span').textContent = label;
-        
-        // 3. Traduction automatique de TOUS les éléments marqués "data-translate"
-        document.querySelectorAll('[data-translate]').forEach(element => {
-            const key = element.getAttribute('data-translate');
-            if (translations[lang] && translations[lang][key]) {
-                element.textContent = translations[lang][key];
-            }
-        });
-
-        // 4. Traduction spécifique du menu (si les liens n'ont pas de data-translate)
-        const menuLinks = {
-            '#experiences': 'nav_exp',
-            '#formations': 'nav_edu',
-            '#projects': 'nav_proj',
-            '#certifications': 'nav_cert'
-        };
-
-        for (let href in menuLinks) {
-            document.querySelector(`a[href="${href}"]`).textContent = translations[lang][menuLinks[href]];
-        }
-
-         // Applique les changements
-        document.querySelector('a[href="#experiences"]').textContent = translations[lang].nav_exp;
-        document.querySelector('a[href="#formations"]').textContent = translations[lang].nav_form;
-        document.querySelector('a[href="#projects"]').textContent = translations[lang].nav_proj;
-        document.querySelector('a[href="#certifications"]').textContent = translations[lang].nav_cert;
     }
 
         function openLightbox(imageSrc) {
