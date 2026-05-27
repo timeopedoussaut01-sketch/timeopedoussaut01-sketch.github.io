@@ -30,23 +30,46 @@
         }
         /* Style du pied de page */
         .site-footer {
-            background: var(--section-alt); 
-            padding: 60px 20px 30px;
+            background: rgba(15, 23, 42, 0.5); /* Couleur un peu plus claire que le fond */
+            padding: 60px 20px;
             margin-top: 80px;
             border-top: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            color: var(--text-main);
+            backdrop-filter: blur(10px); /* Effet verre dépoli */
         }
         .footer-container {
-             display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             max-width: 1000px;
             margin: 0 auto;
-            padding-bottom: 40px;
-            border-bottom: 1px solid var(--border);
+            
+         }
+        .footer-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-list li {
+            margin-bottom: 12px;
+        }    
+        .footer-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .footer-list a:hover {
+            color: var(--accent);
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
         }
         .footer-brand h3 { color: var(--text-main); margin-bottom: 10px; }
         .footer-brand p { color: var(--text-muted); }
@@ -1703,18 +1726,18 @@
     </script>
     <footer class="site-footer">
         <div class="footer-container">
-            <div class="footer-brand">
+            <div class="footer-col-main">
                 <h3>Timéo Pedoussaut</h3>
                 <p>Infrastructure & Cybersécurité</p>
             </div>
         
-            <div class="footer-contact">
+            <div class="footer-col-contact">
                 <h4>Contact</h4>
-                <div class="footer-links">
-                    <a href="tel:0651542159"><i class="fas fa-phone"></i> 06 51 54 21 59</a>
-                    <a href="mailto:timeo.pedoussaut01@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-                    <a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                </div>
+                <ul class="footer-list">
+                    <li><a href="tel:0651542159"><i class="fas fa-phone"></i> 06 51 54 21 59</a></li>
+                    <li><a href="mailto:timeo.pedoussaut01@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
             </div>
         </div>
     <div class="footer-bottom">
