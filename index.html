@@ -41,6 +41,17 @@
             z-index: 2;
         }
 
+    /* Effet au survol du lien LinkedIn sur l'organisation */
+        .cert-org-link {
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        .cert-org-link:hover .cert-org {
+            color: var(--accent); /* Devient bleu cyan au survol */
+            text-shadow: 0 0 8px var(--accent); /* Léger effet de lueur sur le texte */
+        }
+
         /* Mode Clair */
         [data-theme="light"] {
             --bg-color: #f8fafc;
@@ -977,17 +988,19 @@
                         <div class="cert-content">
                             <div>
                                 <div class="cert-header">
-                                    <i class="fa-solid fa-lock" style="color: #10b981; font-size: 1.8rem;"></i>
+                                    <i class="fa-solid fa-shield-halved" style="color: #ed1c24; font-size: 1.8rem;"></i>
                                     <div>
                                         <span class="cert-title">SecNumacad</span><br>
-                                        <span class="cert-org">ANSSI</span>
+                                        <a href="https://www.linkedin.com/company/anssi/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
+                                            <span class="cert-org"><i class="fa-brands fa-linkedin"></i> ANSSI</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">Émise en janvier 2023<br>Réseaux & Sécurité IT</div>
+                            <div class="cert-meta">Émise en mars 2024<br>ID : Sans ID</div>
                             <div class="cert-actions">
-                                <a href="CertificatMOOC.jpg" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
-                                <a href="https://www.linkedin.com/company/anssi-fr/" target="_blank" class="btn-secondary" style="justify-content: center;" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> ANSSI LinkedIn</a>
+                                <a href="CertificatSecnum.pdf" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
+                                <a href="https://secnumacad.gouv.fr" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-user-check"></i> Vérifier le certificat</a>
                             </div>
                         </div>
                     </div>
@@ -1001,17 +1014,19 @@
                         <div class="cert-content">
                             <div>
                                 <div class="cert-header">
-                                    <i class="fa-solid fa-network-wired" style="color: #38bdf8; font-size: 1.8rem;"></i>
+                                    <i class="fa-solid fa-shield-halved" style="color: #ed1c24; font-size: 1.8rem;"></i>
                                     <div>
                                         <span class="cert-title">Introduction to Cybersecurity</span><br>
-                                        <span class="cert-org">Cisco Networking Academy</span>
+                                        <a href="https://www.linkedin.com/company/cisco/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
+                                            <span class="cert-org"><i class="fa-brands fa-linkedin"></i> Cisco</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">Émise en mars 2026<br>ID : e054aab1-a618-42ad-899c-2cf937554fa9</div>
+                            <div class="cert-meta">Émise en mai 2024<br>ID : Sans ID</div>
                             <div class="cert-actions">
                                 <a href="CertificatCisco.jpg" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
-                                <a href="https://www.linkedin.com/school/cisco-networking-academy1/" target="_blank" class="btn-secondary" style="justify-content: center;" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> Cisco Academy LinkedIn</a>
+                                <a href="https://www.netacad.com" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-user-check"></i> Vérifier le certificat</a>
                             </div>
                         </div>
                     </div>
@@ -1025,18 +1040,19 @@
                         <div class="cert-content">
                             <div>
                                 <div class="cert-header">
-                                    <i class="fa-solid fa-laptop-code" style="color: #a855f7; font-size: 1.8rem;"></i>
+                                    <i class="fa-solid fa-certificate" style="color: #38bdf8; font-size: 1.8rem;"></i>
                                     <div>
                                         <span class="cert-title">Certification Pix</span><br>
-                                        <span class="cert-org">GIP Pix</span>
+                                        <a href="https://www.linkedin.com/company/gip-pix/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
+                                            <span class="cert-org"><i class="fa-brands fa-linkedin"></i> Pix</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">Émise en janvier 2024<br>ID : P-YVQBYRV7</div>
+                            <div class="cert-meta">Émise en avril 2024<br>Score : 542 Pix</div>
                             <div class="cert-actions">
-                                <button onclick="openLightbox('CertificatPix.jpg')" class="btn-secondary" style="justify-content: center; cursor: pointer; width: 100%;"><i class="fa-solid fa-image"></i> Aperçu de mon certificat</button>
-                                <a href="https://app.pix.fr/verification-certificat" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat (Pix Verification)</a>
-                                <a href="https://www.linkedin.com/company/gip-pix/" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-brands fa-linkedin"></i> Profil GIP Pix LinkedIn</a>
+                                <a href="CertificatPix.pdf" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
+                                <a href="https://pix.fr" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-user-check"></i> Vérifier le certificat</a>
                             </div>
                         </div>
                     </div>
