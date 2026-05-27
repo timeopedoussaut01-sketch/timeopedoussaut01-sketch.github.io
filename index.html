@@ -29,7 +29,7 @@
             --term-border: #1e293b;
         }
 
-        /* Mode Clair amélioré */
+        /* Mode Clair */
         [data-theme="light"] {
             --bg-color: #f8fafc;
             --section-alt: rgba(226, 232, 240, 0.6);
@@ -80,7 +80,7 @@
             box-shadow: 0 0 8px var(--accent);
         }
 
-        /* CANVAS DE PARTICULES */
+        /* CANVAS DE PARTICULES ET FLUX DE DONNÉES */
         #cyber-canvas {
             position: fixed;
             top: 0;
@@ -89,6 +89,30 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
+        }
+
+        /* BORDURES EN FIBRE OPTIQUE ANIMÉE */
+        .fiber-separator {
+            position: relative;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
+            overflow: hidden;
+            z-index: 2;
+        }
+        .fiber-separator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150px;
+            width: 150px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: fiberPulse 4s infinite linear;
+        }
+        @keyframes fiberPulse {
+            0% { left: -150px; }
+            100% { left: 100%; }
         }
 
         /* BARRE DE NAVIGATION */
@@ -206,6 +230,11 @@
         header .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 1.5rem; max-width: 850px; font-weight: 600; }
         header .bio { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; margin-bottom: 3rem; line-height: 1.6; }
 
+        /* BOUTONS ET EFFET RIPPLE (ONDE DE CHOC) */
+        .btn, .btn-secondary, .theme-toggle {
+            position: relative;
+            overflow: hidden;
+        }
         .btn {
             background: linear-gradient(135deg, var(--accent) 0%, #0284c7 100%); color: #ffffff; padding: 1rem 2.2rem;
             border-radius: 12px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 0.8rem;
@@ -220,6 +249,22 @@
             margin-top: auto; width: fit-content; transition: var(--transition);
         }
         .btn-secondary:hover { background: var(--accent); color: white; box-shadow: 0 0 15px var(--glow); }
+
+        /* Classe générée par le script JavaScript pour l'onde */
+        .ripple-wave {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+        .btn-secondary .ripple-wave {
+            background: rgba(56, 189, 248, 0.4);
+        }
+        @keyframes rippleEffect {
+            to { transform: scale(4); opacity: 0; }
+        }
 
         .stats-grid { display: flex; gap: 4rem; margin-top: 3rem; justify-content: center; flex-wrap: wrap; }
         .stat-item { text-align: center; }
@@ -272,12 +317,41 @@
             display: flex; flex-direction: column; gap: 1.5rem;
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden; /* Pour contenir l'effet matrice */
         }
         .timeline-body::after {
             content: ''; position: absolute; left: -32px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
             background-color: var(--border); border: 2px solid var(--border); z-index: 5; transition: var(--transition);
         }
         
+        /* EN-TÊTE DE CARTE EN EFFET CODE MATRICE TRANS-FONDU */
+        .matrix-header-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 55px;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.06);
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .matrix-header-bg::before {
+            content: "01a0 f34e 992b cc11 88ff 45a2 12b3 d45e 789a f0c2\nBGP_ROUTER_OK [SLA 100%] LINKT_CORE_NET\nsh ip bgp summary | include 192.168.1.1\n00:1c:12:3f:4a:5b -> FORTIGATE_FW_ACTIVE\n[OK] DECRYPT DISK SHA256 VALIDATED\nfe80::1a2b:3c4d:5e6f:7g8h %eth0 LOGS";
+            font-family: 'Courier New', monospace;
+            font-size: 0.62rem;
+            color: var(--accent);
+            opacity: 0.06;
+            position: absolute;
+            top: 0; left: 5px; width: 200%; height: 200%;
+            line-height: 1.3;
+            white-space: pre;
+            animation: matrixScroll 12s infinite linear;
+        }
+        @keyframes matrixScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-30%); }
+        }
+        .job-header-container { position: relative; z-index: 2; }
+
         /* Effet Hover Premium */
         .timeline-item:hover .timeline-body { 
             transform: translateY(-5px); 
@@ -292,6 +366,7 @@
             transform: scale(1.3); 
         }
         .timeline-item:hover .timeline-date { color: var(--text-main); }
+        .timeline-item:hover .matrix-header-bg::before { opacity: 0.12; color: var(--accent-green); transition: opacity 0.4s ease; }
         
         .job-header-container { display: flex; align-items: center; gap: 1.5rem; }
         .company-logo {
@@ -307,7 +382,7 @@
         .job-title .company a:hover { text-decoration: underline; }
         
         /* Sous-Frise Interne (Linkt) */
-        .internal-timeline { display: flex; flex-direction: column; gap: 2.5rem; position: relative; padding-left: 1.5rem; margin-top: 1rem; border-left: 2px dashed var(--border); }
+        .internal-timeline { display: flex; flex-direction: column; gap: 2.5rem; position: relative; padding-left: 1.5rem; margin-top: 1rem; border-left: 2px dashed var(--border); z-index: 2; }
         .internal-post { position: relative; display: flex; flex-direction: column; gap: 0.8rem; }
         .internal-post::before { content: ''; position: absolute; left: -29px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background-color: var(--border); border: 2px solid var(--bg-color); transition: var(--transition); }
         .internal-post.active::before { background-color: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
@@ -357,7 +432,7 @@
         .job-details li.globe::before { content: "\f0ac"; }
 
         /* Badges Compétences */
-        .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
         .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.2); transition: var(--transition); }
         .timeline-body:hover .badge { border-color: rgba(56, 189, 248, 0.4); background-color: rgba(56, 189, 248, 0.12); }
         .badge.tools { color: var(--text-main); background-color: rgba(255,255,255,0.05); border-color: transparent; }
@@ -373,9 +448,9 @@
         .cert-category { margin-bottom: 3rem; }
         .cert-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: relative; }
         .cert-item:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 12px 30px var(--glow); background: var(--card-hover); }
-        .cert-content { padding: 2rem; display: flex; flex-direction: column; gap: 1rem; flex-grow: 1; justify-content: space-between; min-height: 220px; }
+        .cert-content { padding: 2rem; display: flex; flex-direction: column; gap: 1rem; flex-grow: 1; justify-content: space-between; min-height: 220px; position: relative; z-index: 2; }
         .cert-header { display: flex; align-items: center; gap: 1rem; }
         .cert-title { font-weight: 700; color: var(--text-main); font-size: 1.1rem; line-height: 1.3; }
         .cert-org { color: var(--accent); font-weight: 600; font-size: 0.95rem; margin-top: 0.2rem; }
@@ -385,9 +460,9 @@
         /* Profil / Double Colonne */
         .profile-footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
         .lang-grid, .mobility-grid { display: flex; flex-direction: column; gap: 1rem; }
-        .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: var(--transition); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: var(--transition); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); overflow: hidden; position: relative; }
         .lang-card:hover, .mobility-card:hover { border-color: var(--accent); transform: translateY(-3px) translateX(2px); box-shadow: 0 8px 25px var(--glow); background: var(--card-hover); }
-        .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px; text-align: center; }
+        .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px; text-align: center; position: relative; z-index: 2; }
         .lang-card h4, .mobility-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
         .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
 
@@ -526,6 +601,8 @@
         </div>
     </header>
 
+    <div class="fiber-separator"></div>
+
     <section id="experiences">
         <div class="section-container">
             <h2><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
@@ -534,6 +611,8 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date active">Sept. 2024 - Présent</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
+
                         <div class="job-header-container">
                             <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo" onclick="openLightbox('LogoLinkt.jpg')">
                             <div class="job-title">
@@ -594,6 +673,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date">Janv. 2024 - Févr. 2024</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
                         <div class="job-header-container">
                             <img src="LogoBecquerel.jpg" alt="Logo Henri Becquerel" class="company-logo" onclick="openLightbox('LogoBecquerel.jpg')">
                             <div class="job-title">
@@ -620,6 +700,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date">Mai 2023 - Juin 2023</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
                         <div class="job-header-container">
                             <img src="LogoDarnetal.jpg" alt="Logo Mairie de Darnétal" class="company-logo" onclick="openLightbox('LogoDarnetal.jpg')">
                             <div class="job-title">
@@ -643,6 +724,8 @@
         </div>
     </section>
 
+    <div class="fiber-separator"></div>
+
     <section id="formations" class="alt-bg">
         <div class="section-container">
             <h2><i class="fa-solid fa-graduation-cap"></i> Formations & Diplômes</h2>
@@ -651,6 +734,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date active">Sept. 2025 – Oct. 2027</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
                         <div class="form-badge current"><span class="status-pulse"></span>En cours</div>
                         <div class="job-header-container">
                             <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
@@ -669,6 +753,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date">Oct. 2024 – Sept. 2025</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
                         <div class="form-badge approved">Admis</div>
                         <div class="job-header-container">
                             <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
@@ -691,6 +776,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date">Sept. 2022 – Mai 2024</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
                         <div class="form-badge approved">Admis</div>
                         <div class="job-header-container">
                             <img src="LogoCampus.jpg" alt="Logo Campus La Châtaigneraie" class="company-logo" onclick="openLightbox('LogoCampus.jpg')">
@@ -713,6 +799,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date">Janv. 2019 – Mai 2022</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
                         <div class="form-badge diploma">Admis</div>
                         <div class="job-header-container">
                             <img src="LogoBlaise.jpg" alt="Logo Lycée Blaise Pascal" class="company-logo" onclick="openLightbox('LogoBlaise.jpg')">
@@ -750,6 +837,8 @@
         </div>
     </section>
 
+    <div class="fiber-separator"></div>
+
     <section id="projects">
         <div class="section-container">
             <h2><i class="fa-solid fa-code-branch"></i> Projets Réalisés</h2>
@@ -758,6 +847,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date">Oct. 2024 – Juin 2025</div>
                     <div class="timeline-body">
+                        <div class="matrix-header-bg"></div>
                         <div class="job-header-container">
                             <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo" onclick="openLightbox('LogoLinkt.jpg')">
                             <div class="job-title">
@@ -784,6 +874,8 @@
             </div>
         </div>
     </section>
+
+    <div class="fiber-separator"></div>
 
     <section id="certifications" class="alt-bg">
         <div class="section-container">
@@ -882,6 +974,8 @@
         </div>
     </section>
 
+    <div class="fiber-separator"></div>
+
     <section id="competences-profil">
         <div class="section-container">
             <div class="profile-footer-grid reveal">
@@ -959,7 +1053,7 @@
             <div class="term-output-line">Console d'accès sécurisée v2.2. Type 'help' pour lister les commandes disponibles.</div>
             <div class="term-input-row">
                 <span class="term-prompt">timeo_cli></span>
-                <input type="text" class="term-input" id="termInput" autocomplete="off" autofocus>
+                <input type="text" class="term-input" id="termInput" autocomplete="off">
             </div>
         </div>
     </div>
@@ -1025,7 +1119,39 @@
         }, 1000);
 
 
-        /* 2. CONFIGURATION SCROLL REVEAL (Intersection Observer) */
+        /* 2. BOUTONS AVEC EFFET RIPPLE (ONDE DE CHOC LUMINEUSE) */
+        const rippleButtons = document.querySelectorAll('.btn, .btn-secondary, .theme-toggle');
+        
+        rippleButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Création de l'élément d'onde
+                let ripple = document.createElement('span');
+                ripple.className = 'ripple-wave';
+                this.appendChild(ripple);
+
+                // Positionnement de l'onde au point de clic précis
+                let rect = e.target.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                let y = e.clientY - rect.top;
+
+                // Si le clic se fait sur un élément enfant (comme une icône i), recalculer par rapport au parent bouton
+                if (e.target !== this) {
+                    x = e.clientX - this.getBoundingClientRect().left;
+                    y = e.clientY - this.getBoundingClientRect().top;
+                }
+
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                // Nettoyage du DOM après l'animation
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+
+        /* 3. CONFIGURATION SCROLL REVEAL (Intersection Observer) */
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1041,7 +1167,7 @@
         revealElements.forEach(element => revealObserver.observe(element));
 
 
-        /* 3. MODULE ET COMMANDES DU TERMINAL INTERACTIF */
+        /* 4. MODULE ET COMMANDES DU TERMINAL INTERACTIF */
         function toggleTerminal() {
             const term = document.getElementById('cyberTerminal');
             term.classList.toggle('active');
@@ -1090,14 +1216,14 @@
                     output = `[INFO] -- ${new Date().toISOString()}\n[OK] Fortigate-Core-FW: Secure tunnel established successfully.\n[OK] Radius-Server: Sync done with active directory database.\n[WARN] Core-Switch-Huawei: High traffic spike detected on trunk port 24 (Bascule LAN client info).\n[INFO] Analytics: Recruiter session uptime tracking active. No packet drop.`;
                     break;
                 case 'history':
-                    output = `[HISTORIQUE INFRASTRUCTURE PORTFOLIO]\n  - v1.0 (2025): Initial release\n  - v2.0 (2026-04): Integration of Fortinet NSE certificates & responsive grid\n  - v2.1 (2026-05): Added Scroll Reveal layout & native JavaScript Web API console\n  - v2.2 (2026-05): Deployed real-time session uptime monitor & top reading tracking metrics`;
+                    output = `[HISTORIQUE INFRASTRUCTURE PORTFOLIO]\n  - v1.0 (2025): Initial release\n  - v2.0 (2026-04): Integration of Fortinet NSE certificates & responsive grid\n  - v2.1 (2026-05): Added Scroll Reveal layout & native JavaScript Web API console\n  - v2.2 (2026-05): Deployed real-time session uptime monitor & top reading tracking metrics\n  - v2.3 (2026-05): Injected matrix overlay headers, fiber line separators and UI ripple effects`;
                     break;
                 case 'clear':
                     const lines = termBody.querySelectorAll('.term-output-line');
                     lines.forEach(line => line.remove());
                     return;
                 case 'secret':
-                    output = `[!] INITIALISATION DE L'AUDIT DE SÉCURITÉ PORTFOLIO...\n[+] Test de pénétration : Réussi\n[+] Chiffrement TLS 1.3 : Actif\n[+] Particules Cyber : Stable\nSTATUS : ACCÈS AUTORISÉ. Bienvenue, recruteur !`;
+                    output = `[!] INITIALISATION DE L'AUDIT DE SÉCURITÉ PORTFOLIO...\n[+] Test de pénétration : Réussi\n[+] Chiffrement TLS 1.3 : Actif\n[+] Flux de données (Data Flow Separators) : Opérationnels\nSTATUS : ACCÈS AUTORISÉ. Bienvenue, recruteur !`;
                     break;
                 default:
                     output = `Commande inconnue: '${cmd}'. Tapez 'help' pour voir la liste des instructions valides.`;
@@ -1112,102 +1238,96 @@
         }
 
 
-        /* 4. CONFIGURATION PARTICULES AVANCÉE */
+        /* 5. CONFIGURATION DU FOND VISUEL : FLUX DE DONNÉES ET DATA FLOW */
         const canvas = document.getElementById('cyber-canvas');
         const ctx = canvas.getContext('2d');
 
-        let particlesArray = [];
-        const numberOfParticles = 90;
-        const mouse = { x: null, y: null, radius: 160 };
-
-        window.addEventListener('mousemove', function(event) {
-            mouse.x = event.clientX;
-            mouse.y = event.clientY;
-        });
-
-        window.addEventListener('mouseout', function() {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        let dataLines = [];
+        const maxLines = 18; // Nombre de flux simultanés en fond
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            initParticles();
+            initDataLines();
         }
 
-        class Particle {
+        class DataFlowLine {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1.5;
-                this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * 0.3 - 0.15;
+                this.reset();
+            }
+            reset() {
+                // Choix de l'orientation : vertical (0) ou horizontal (1)
+                this.orientation = Math.random() > 0.5 ? 1 : 0;
+                
+                if (this.orientation === 1) { // Ligne horizontale
+                    this.y = Math.random() * canvas.height;
+                    this.x = Math.random() > 0.5 ? 0 : canvas.width;
+                    this.speed = (Math.random() * 1.5 + 0.5) * (this.x === 0 ? 1 : -1);
+                    this.length = Math.random() * 120 + 60;
+                } else { // Ligne verticale
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() > 0.5 ? 0 : canvas.height;
+                    this.speed = (Math.random() * 1.5 + 0.5) * (this.y === 0 ? 1 : -1);
+                    this.length = Math.random() * 120 + 60;
+                }
+                this.width = Math.random() * 1 + 0.5;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-
-                if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouse.radius) {
-                        this.x += dx * 0.012;
-                        this.y += dy * 0.012;
+                if (this.orientation === 1) {
+                    this.x += this.speed;
+                    if ((this.speed > 0 && this.x > canvas.width + this.length) || (this.speed < 0 && this.x < -this.length)) {
+                        this.reset();
+                    }
+                } else {
+                    this.y += this.speed;
+                    if ((this.speed > 0 && this.y > canvas.height + this.length) || (this.speed < 0 && this.y < -this.length)) {
+                        this.reset();
                     }
                 }
             }
             draw() {
                 const isLight = document.body.getAttribute('data-theme') === 'light';
-                ctx.fillStyle = isLight ? 'rgba(2, 132, 199, 0.45)' : 'rgba(56, 189, 248, 0.3)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particlesArray = [];
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-
-        function connectParticles() {
-            const isLight = document.body.getAttribute('data-theme') === 'light';
-            const colorLine = isLight ? 'rgba(2, 132, 199,' : 'rgba(56, 189, 248,';
-            const baseOpacity = isLight ? 0.22 : 0.12;
-            
-            for (let a = 0; a < particlesArray.length; a++) {
-                for (let b = a; b < particlesArray.length; b++) {
-                    let dx = particlesArray[a].x - particlesArray[b].x;
-                    let dy = particlesArray[a].y - particlesArray[b].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 125) {
-                        let opacity = (1 - (distance / 125)) * baseOpacity;
-                        ctx.strokeStyle = `${colorLine}${opacity})`;
-                        ctx.lineWidth = isLight ? 0.9 : 0.7;
-                        ctx.beginPath();
-                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                        ctx.stroke();
-                    }
+                let grad;
+                
+                if (this.orientation === 1) {
+                    grad = ctx.createLinearGradient(this.x - (this.speed * this.length), this.y, this.x, this.y);
+                } else {
+                    grad = ctx.createLinearGradient(this.x, this.y - (this.speed * this.length), this.x, this.y);
                 }
+                
+                const themeColor = isLight ? '2, 132, 199' : '56, 189, 248';
+                grad.addColorStop(0, `rgba(${themeColor}, 0)`);
+                grad.addColorStop(0.8, `rgba(${themeColor}, 0.15)`);
+                grad.addColorStop(1, `rgba(${themeColor}, 0.5)`); // Tête lumineuse du paquet
+
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = this.width;
+                ctx.beginPath();
+                
+                if (this.orientation === 1) {
+                    ctx.moveTo(this.x - this.length * (this.speed > 0 ? 1 : -1), this.y);
+                    ctx.lineTo(this.x, this.y);
+                } else {
+                    ctx.moveTo(this.x, this.y - this.length * (this.speed > 0 ? 1 : -1));
+                    ctx.lineTo(this.x, this.y);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function initDataLines() {
+            dataLines = [];
+            for (let i = 0; i < maxLines; i++) {
+                dataLines.push(new DataFlowLine());
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
+            for (let i = 0; i < dataLines.length; i++) {
+                dataLines[i].update();
+                dataLines[i].draw();
             }
-            connectParticles();
             requestAnimationFrame(animate);
         }
 
