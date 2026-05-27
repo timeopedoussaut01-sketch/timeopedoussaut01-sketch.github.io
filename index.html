@@ -9,8 +9,8 @@
         /* Variables de couleur - Mode Sombre (Par défaut) */
         :root {
             --bg-color: #060b13;
-            --card-bg: #0f172a;
-            --card-hover: #1e293b;
+            --card-bg: rgba(15, 23, 42, 0.65); /* Légèrement transparent pour voir les particules derrière */
+            --card-hover: rgba(30, 41, 59, 0.8);
             --text-main: #f8fafc;
             --text-muted: #64748b;
             --accent: #38bdf8;
@@ -25,8 +25,8 @@
         /* Mode Clair accessible via le switch */
         [data-theme="light"] {
             --bg-color: #f1f5f9;
-            --card-bg: #ffffff;
-            --card-hover: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-hover: rgba(248, 250, 252, 0.9);
             --text-main: #0f172a;
             --text-muted: #475569;
             --accent: #0ea5e9;
@@ -51,6 +51,17 @@
             line-height: 1.6; 
             overflow-x: hidden;
             transition: var(--transition);
+        }
+
+        /* CANVAS DE PARTICULES INTERACTIF (FIXÉ SUR TOUT LE SITE) */
+        #cyber-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0; /* Placé tout au fond */
+            pointer-events: none;
         }
 
         /* BARRE DE NAVIGATION AMÉLIORÉE */
@@ -85,8 +96,8 @@
         nav a { 
             color: var(--text-muted); 
             text-decoration: none; 
-            font-size: 1.1rem; /* Police augmentée */
-            font-weight: 700;   /* Police plus épaisse */
+            font-size: 1.1rem; 
+            font-weight: 700;   
             padding: 0.5rem 0;
             display: inline-block;
             transition: color 0.3s ease;
@@ -136,23 +147,12 @@
             box-shadow: 0 0 15px var(--nav-glow);
         }
 
-        /* En-tête / Hero Section avec Canvas pour les particules */
+        /* En-tête / Hero Section */
         header {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center; padding: 8rem 2rem 4rem 2rem;
-            background: radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.05) 0%, var(--bg-color) 70%);
+            background: radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
             position: relative;
-            overflow: hidden;
-        }
-
-        #cyber-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
         }
 
         header .profile-container, 
@@ -200,7 +200,7 @@
             max-width: 85%; max-height: 80vh; border-radius: 20px;
             box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
             border: 3px solid var(--accent);
-            background: #ffffff; /* Pour garder les logos sur fond propre au zoom */
+            background: #ffffff;
             transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .profile-lightbox.active .lightbox-img {
@@ -237,15 +237,15 @@
         .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--accent); display: block; }
         .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Sections */
-        section { padding: 6rem 2rem; max-width: 1140px; margin: 0 auto; }
+        /* Sections (Rendues relatives pour se superposer proprement au canvas) */
+        section { position: relative; z-index: 2; padding: 6rem 2rem; max-width: 1140px; margin: 0 auto; }
         section h2 { 
             font-size: 2.2rem; margin-bottom: 4rem; font-weight: 800;
             display: flex; align-items: center; gap: 1rem; letter-spacing: -0.5px;
         }
         section h2 i { color: var(--accent); }
 
-        /* Frise Chronologique Expériences, Projets & Formations */
+        /* Frise Chronologique */
         .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
         .timeline::before {
             content: ''; position: absolute; left: 210px; top: 20px; bottom: 20px;
@@ -260,13 +260,14 @@
             background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
             border: 1px solid var(--border); transition: var(--transition); position: relative;
             display: flex; flex-direction: column; gap: 1.5rem;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); /* Floute légèrement les étoiles sous les cartes pour une super lisibilité */
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .timeline-body::after {
             content: ''; position: absolute; left: -32px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
             background-color: var(--border); border: 2px solid var(--border); z-index: 5; transition: var(--transition);
         }
-        .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 30px var(--glow); }
+        .timeline-item:hover .timeline-body { transform: translateX(4px) translateY(-2px); border-color: var(--accent); box-shadow: 0 10px 30px var(--glow); background: var(--card-hover); }
         .timeline-item:hover .timeline-body::after { background-color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--accent); scale: 1.2; }
         
         /* En-tête de poste incluant le logo */
@@ -285,7 +286,7 @@
             padding: 6px;
             border: 1px solid rgba(56, 189, 248, 0.3);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            cursor: zoom-in; /* Curseur zoom pour les logos */
+            cursor: zoom-in;
             transition: var(--transition);
         }
         .company-logo:hover {
@@ -344,12 +345,12 @@
         .form-badge.approved { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
         .form-badge.diploma { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
 
-        /* Architecture Certifications triées */
+        /* Architecture Certifications */
         .cert-category { margin-bottom: 3rem; }
         .cert-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; display: flex; flex-direction: column; }
-        .cert-item:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--glow); }
+        .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .cert-item:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--glow); background: var(--card-hover); }
         .cert-content { padding: 2rem; display: flex; flex-direction: column; gap: 1rem; flex-grow: 1; justify-content: space-between; min-height: 220px; }
         .cert-header { display: flex; align-items: center; gap: 1rem; }
         .cert-title { font-weight: 700; color: var(--text-main); font-size: 1.1rem; line-height: 1.3; }
@@ -360,8 +361,8 @@
         /* Profil / Double Colonne */
         .profile-footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
         .lang-grid, .mobility-grid { display: flex; flex-direction: column; gap: 1rem; }
-        .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: var(--transition); }
-        .lang-card:hover, .mobility-card:hover { border-color: var(--accent); transform: translateX(2px); }
+        .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: var(--transition); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .lang-card:hover, .mobility-card:hover { border-color: var(--accent); transform: translateX(2px); background: var(--card-hover); }
         .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px; text-align: center; }
         .lang-card h4, .mobility-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
         .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
@@ -372,8 +373,8 @@
         .spec-list li::before { content: "•"; color: var(--accent); font-weight: bold; }
 
         /* Footer */
-        footer { background-color: #020408; padding: 5rem 2rem; text-align: center; color: #f8fafc; border-top: 1px solid var(--border); }
-        [data-theme="light"] footer { background-color: #0f172a; }
+        footer { position: relative; z-index: 2; background-color: rgba(2, 4, 8, 0.9); padding: 5rem 2rem; text-align: center; color: #f8fafc; border-top: 1px solid var(--border); backdrop-filter: blur(10px); }
+        [data-theme="light"] footer { background-color: rgba(15, 23, 42, 0.9); }
         .footer-info { max-width: 600px; margin: 0 auto 2.5rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; }
         .footer-info-item { display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-weight: 500; text-decoration: none; transition: var(--transition); }
         .footer-info-item:hover { color: var(--accent); }
@@ -402,6 +403,8 @@
 </head>
 <body>
 
+    <canvas id="cyber-canvas"></canvas>
+
     <div class="profile-lightbox" id="lightbox" onclick="closeLightbox()">
         <img src="" alt="Focus" id="lightbox-img" class="lightbox-img">
     </div>
@@ -422,8 +425,6 @@
     </nav>
 
     <header id="hero-header">
-        <canvas id="cyber-canvas"></canvas>
-
         <div class="profile-container" onclick="openLightbox('PhotoCV.jpg')">
             <img src="PhotoCV.jpg" alt="Timéo Pedoussaut" class="profile-img">
         </div>
@@ -563,8 +564,8 @@
         </div>
     </section>
 
-    <section id="projects" style="background-color: rgba(56, 189, 248, 0.02); max-width: 100%;">
-        <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
+    <section id="projects" style="max-width: 100%;">
+        <div style="max-width: 1140px; margin: 0 auto;">
             <h2><i class="fa-solid fa-code-branch"></i> Projets Réalisés</h2>
             <div class="timeline">
                 
@@ -610,7 +611,7 @@
                         <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
                         <div class="job-title">
                             <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
-                            <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation</div>
+                            <div class="company">CESI • Rouen Madrillet Innovation</div>
                         </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Filière Computer Science. Focus approfondi sur la gouvernance des SI, le management des infrastructures critiques, l'audit de sécurité et la cyber-défense d'entreprise.</p>
@@ -628,7 +629,7 @@
                         <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
                         <div class="job-title">
                             <h3>Bachelor Administrateur Système Réseau</h3>
-                            <div class="company">CESI • 80 avenue Edmund Halley Rouen Madrillet Innovation</div>
+                            <div class="company">CESI • Rouen Madrillet Innovation</div>
                         </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Filière Computer Science. Spécialisation dans la conception, la sécurisation avancée, l'automatisation et le maintien opérationnel des infrastructures hétérogènes.</p>
@@ -651,10 +652,10 @@
                         <img src="LogoCampus.jpg" alt="Logo Campus La Châtaigneraie" class="company-logo" onclick="openLightbox('LogoCampus.jpg')">
                         <div class="job-title">
                             <h3>BTS SIO (Option Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
-                            <div class="company">Campus La Châtaigneraie • 2 rue Charles Scherer, Le Mesnil-Esnard</div>
+                            <div class="company">Campus La Châtaigneraie • Le Mesnil-Esnard</div>
                         </div>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">Brevet de Technicien Supérieur – Services Informatiques aux Organisations. Option Solutions d'Infrastructure, Systèmes et Réseaux. Apprentissage des architectures réseaux logiques et physiques, de la commutation et du déploiement de services.</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Brevet de Technicien Supérieur – Services Informatiques aux Organisations. Apprentissage des architectures réseaux logiques et physiques, de la commutation et du déploiement de services.</p>
                     <div class="skills-container" style="margin: 0.2rem 0;">
                         <span class="badge tools"><i class="fa-brands fa-python"></i> Python</span>
                         <span class="badge tools"><i class="fa-solid fa-window-restore"></i> Système d'exploitation</span>
@@ -674,7 +675,7 @@
                         <img src="LogoBlaise.jpg" alt="Logo Lycée Blaise Pascal" class="company-logo" onclick="openLightbox('LogoBlaise.jpg')">
                         <div class="job-title">
                             <h3>Baccalauréat (Option Européenne)</h3>
-                            <div class="company">Lycée Blaise Pascal • 5 Rue des Emmurées, Rouen</div>
+                            <div class="company">Lycée Blaise Pascal • Rouen</div>
                         </div>
                     </div>
                     <p style="font-weight: 700; font-size: 0.95rem; margin-bottom: -0.5rem;">Niveau : Baccalauréat et certification européenne — Mention Assez Bien</p>
@@ -705,8 +706,8 @@
         </div>
     </section>
 
-    <section id="certifications" style="background-color: rgba(56, 189, 248, 0.02); max-width: 100%;">
-        <div style="max-width: 1140px; margin: 0 auto; padding: 0 2rem;">
+    <section id="certifications" style="max-width: 100%;">
+        <div style="max-width: 1140px; margin: 0 auto;">
             <h2><i class="fa-solid fa-certificate"></i> Licences & Certifications</h2>
             
             <div class="cert-category">
@@ -885,7 +886,7 @@
             }
         }
 
-        /* CONFIGURATION GÉNÉRIQUE DU ZOOM PHOTO & LOGOS */
+        /* LIGHTBOX GÉNÉRIQUE */
         function openLightbox(imageSrc) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -898,34 +899,33 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        /* SCRIPT PARTICULES CYBER INTERACTIVES */
+        /* SCRIPT PARTICULES INTERACTIVES SUR TOUT LE SITE (WINDOW-BASED) */
         const canvas = document.getElementById('cyber-canvas');
         const ctx = canvas.getContext('2d');
-        const headerElement = document.getElementById('hero-header');
 
         let particlesArray = [];
-        const numberOfParticles = 65;
+        const numberOfParticles = 100; /* Augmenté légèrement pour couvrir l'espace complet */
 
         const mouse = {
             x: null,
             y: null,
-            radius: 140
+            radius: 150
         };
 
-        headerElement.addEventListener('mousemove', function(event) {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = event.clientX - rect.left;
-            mouse.y = event.clientY - rect.top;
+        // Suivi de la souris basé sur la fenêtre globale (Fixed context)
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
         });
 
-        headerElement.addEventListener('mouseleave', function() {
+        window.addEventListener('mouseout', function() {
             mouse.x = null;
             mouse.y = null;
         });
 
         function resizeCanvas() {
-            canvas.width = headerElement.offsetWidth;
-            canvas.height = headerElement.offsetHeight;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
             initParticles();
         }
 
@@ -934,8 +934,8 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.6 - 0.3;
-                this.speedY = Math.random() * 0.6 - 0.3;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
             }
             update() {
                 this.x += this.speedX;
@@ -949,14 +949,14 @@
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < mouse.radius) {
-                        this.x += dx * 0.02;
-                        this.y += dy * 0.02;
+                        this.x += dx * 0.015;
+                        this.y += dy * 0.015;
                     }
                 }
             }
             draw() {
                 const isLight = document.body.getAttribute('data-theme') === 'light';
-                ctx.fillStyle = isLight ? 'rgba(14, 165, 233, 0.4)' : 'rgba(56, 189, 248, 0.4)';
+                ctx.fillStyle = isLight ? 'rgba(14, 165, 233, 0.35)' : 'rgba(56, 189, 248, 0.35)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -980,10 +980,10 @@
                     let dy = particlesArray[a].y - particlesArray[b].y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 115) {
-                        let opacity = (1 - (distance / 115)) * 0.15;
+                    if (distance < 120) {
+                        let opacity = (1 - (distance / 120)) * 0.12;
                         ctx.strokeStyle = `${colorLine}${opacity})`;
-                        ctx.lineWidth = 0.8;
+                        ctx.lineWidth = 0.7;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                         ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
