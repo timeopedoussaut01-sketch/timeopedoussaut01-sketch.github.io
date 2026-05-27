@@ -1341,6 +1341,7 @@
     // 2. Le nouveau code pour les langues (à copier-coller juste après)
     function changeLanguage(lang, label) {
         // Change le texte du bouton dropdown
+        console.log("Tentative de traduction vers : " + lang); // Pour déboguer
         document.querySelector('.dropbtn').innerHTML = '<i class="fa-solid fa-globe"></i> ' + label;
         
         // Dictionnaire de traduction
@@ -1365,6 +1366,9 @@
                 },
             es: { nav_exp: "Experiencias", nav_form: "Formación", nav_proj: "Proyectos", nav_cert: "Certificaciones" }
         };
+
+        // Mise à jour bouton
+        document.querySelector('.dropbtn span').textContent = label;
         
         // 3. Traduction automatique de TOUS les éléments marqués "data-translate"
         document.querySelectorAll('[data-translate]').forEach(element => {
