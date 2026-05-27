@@ -178,7 +178,24 @@
             object-fit: contain; /* Garde les proportions */
 	    cursor: zoom-in;
         }
-    
+        .vendor-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition);
+            }
+        .vendor-badge:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px var(--glow);
+        }    
 
         .dropbtn {
             background: rgba(15, 23, 42, 0.6);
@@ -1204,7 +1221,7 @@
             </div>
         </div>
     </section>
-    <section id="skills" class="alt-bg reveal">
+<section id="skills" class="alt-bg reveal">
     <div class="section-container">
         <h2><i class="fas fa-laptop-code"></i> Compétences Techniques & Certifications</h2>
         
@@ -1246,7 +1263,21 @@
                 </ul>
             </div>
 
+        </div> <div style="text-align: center; margin-top: 4rem; margin-bottom: 1.5rem;">
+            <span style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">
+                Technologies & Écosystèmes Maîtrisés
+            </span>
         </div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; padding: 1.5rem; background: var(--section-alt); border-radius: 12px; border: 1px solid var(--border);">
+            <div class="vendor-badge"><i class="fab fa-cisco" style="color: #049fd9;"></i> Cisco</div>
+            <div class="vendor-badge"><i class="fas fa-shield-alt" style="color: #ff5a00;"></i> Stormshield</div>
+            <div class="vendor-badge"><i class="fas fa-network-wired" style="color: #00bcd4;"></i> Keenetic</div>
+            <div class="vendor-badge"><i class="fas fa-server" style="color: #0064a5;"></i> VMware</div>
+            <div class="vendor-badge"><i class="fas fa-cube" style="color: #e24a1f;"></i> Fortinet</div>
+            <div class="vendor-badge"><i class="fab fa-linux" style="color: #f57f17;"></i> RedHat</div>
+        </div>
+
     </div>
 </section>
 
