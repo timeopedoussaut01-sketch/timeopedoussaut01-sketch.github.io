@@ -22,24 +22,6 @@
             --timeline-line: #1e293b;
             --nav-glow: rgba(56, 189, 248, 0.6);
             --particle-opacity: 0.40;
-
-        /* Mode Clair */
-        [data-theme='light'] {
-            --bg-color: #f8fafc;
-            --section-alt: rgba(226, 232, 240, 0.6);
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --card-hover: rgba(241, 245, 249, 0.95);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent: #0284c7; /* Un bleu plus sombre pour mieux contraster sur fond blanc */
-            --accent-green: #059669;
-            --border: #e2e8f0;
-            --glow: rgba(2, 132, 199, 0.15);
-            --timeline-line: #cbd5e1;
-            --term-bg: #ffffff;
-            --term-text: #059669;
-            --term-border: #e2e8f0;
-        }       
             
             /* Terminal Styles */
             --term-bg: rgba(5, 10, 18, 0.95);
@@ -1390,8 +1372,7 @@
                 uptimeElement.innerText = `UPTIME: ${minutes}m ${seconds}s`;
             }
         }, 1000);
-        <button id="theme-toggle" class="theme-btn">
-        <i class="fas fa-sun"></i> </button>
+
 
         /* 2. BOUTONS AVEC EFFET RIPPLE (ONDE DE CHOC LUMINEUSE) */
         const rippleButtons = document.querySelectorAll('.btn, .btn-secondary, .theme-toggle');
