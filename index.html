@@ -156,15 +156,22 @@
             --term-text: #34d399;
             --term-border: #0284c7;
         }
-        .cert-org-link, .footer-info-item {
-            transition: all 0.3s ease;
-            padding: 2px 5px;
-            border-radius: 4px;
+        .cert-org-link, 
+        a[href*="linkedin.com"] {
+            transition: all 0.4s ease !important;
+            color: var(--accent) !important;
+            text-decoration: none !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
         }
+        
         .cert-org-link:hover, .footer-info-item:hover {
-    color: var(--accent) !important;
-    text-shadow: 0 0 8px var(--accent);
-    background: rgba(56, 189, 248, 0.1);
+        a[href*="linkedin.com"]:hover {
+            color: #ffffff !important; /* Texte devient blanc au survol */
+            text-shadow: 0 0 10px var(--accent) !important; /* Lueur sur le texte */
+            background: rgba(56, 189, 248, 0.2) !important; /* Fond léger */
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3) !important; /* Lueur autour du lien */
+        }
         }
 
         * { 
