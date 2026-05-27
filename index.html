@@ -28,6 +28,29 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+
+        /* Mode Clair amélioré pour une accessibilité et un contraste parfaits */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --section-alt: rgba(226, 232, 240, 0.6);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-hover: rgba(255, 255, 255, 1);
+            --text-main: #0f172a;
+            --text-muted: #334155; 
+            --accent: #0284c7; 
+            --accent-green: #059669; 
+            --border: #cbd5e1;
+            --glow: rgba(2, 132, 199, 0.12);
+            --timeline-line: #cbd5e1;
+            --nav-glow: rgba(2, 132, 199, 0.4);
+            --particle-opacity: 0.6; 
+            
+            /* Terminal Styles en Mode Clair */
+            --term-bg: rgba(15, 23, 42, 0.98);
+            --term-text: #34d399;
+            --term-border: #0284c7;
+        }
+
         /* Conteneur carré pour le logo */
         .cert-logo-container {
             width: 60px;    /* Largeur fixe */
@@ -775,6 +798,10 @@
             <li><a href="#projects">Projets</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li>
+                <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+                    <i class="fa-solid fa-sun"></i> <span>Mode Clair</span>
+                </button>
+            </li>
         </ul>
     </nav>
 
