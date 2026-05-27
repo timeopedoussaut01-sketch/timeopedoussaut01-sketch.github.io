@@ -31,8 +31,8 @@
         /* Style du pied de page */
         .site-footer {
             background: var(--section-alt); 
-            padding: 50px 20px;
-            margin-top: 50px;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
             border-top: 1px solid var(--border);
             display: flex;
             flex-direction: column;
@@ -40,6 +40,18 @@
             gap: 20px;
             color: var(--text-main);
         }
+        .footer-container {
+             display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-brand h3 { color: var(--text-main); margin-bottom: 10px; }
+        .footer-brand p { color: var(--text-muted); }
+
+        .footer-contact h4 { color: var(--accent); margin-bottom: 15px; }
 
         .footer-content {
             display: flex;
@@ -47,6 +59,19 @@
             gap: 50px; /* Espace entre le nom et les liens */
             width: 100%;
             max-width: 800px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent); /* Devient bleu clair au survol */
+            transform: translateX(5px); /* Petit effet de mouvement */
         }
 
         .footer-info-item {
@@ -63,12 +88,10 @@
         }
 
         .footer-bottom {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-            width: 100%;
             text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
         /* Mode Clair amélioré pour une accessibilité et un contraste parfaits */
         [data-theme="light"] {
@@ -1679,22 +1702,23 @@
         animate();
     </script>
     <footer class="site-footer">
-    <div class="footer-content">
-        <div class="footer-info">
-            <h3>Timéo Pedoussaut</h3>
-            <p>Infrastructure & Cybersécurité</p>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>Timéo Pedoussaut</h3>
+                <p>Infrastructure & Cybersécurité</p>
+            </div>
+        
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <div class="footer-links">
+                    <a href="tel:0651542159"><i class="fas fa-phone"></i> 06 51 54 21 59</a>
+                    <a href="mailto:timeo.pedoussaut01@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://www.linkedin.com/in/timeopedoussaut/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
         </div>
-
-        <div class="footer-links">
-            <h4>Contact</h4>
-            <a href="tel:0651542159"><i class="fas fa-phone"></i> 06 51 54 21 59</a>
-            <a href="mailto:timeo.pedoussaut01@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://linkedin.com/in/ton-profil" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        </div>
-    </div>
-    
     <div class="footer-bottom">
-        <p>© 2026 — Timéo Pedoussaut • Tous droits réservés</p>
+        <p>© 2026 Timéo Pedoussaut • Conçu avec passion</p>
     </div>
 </footer>
 </body>
