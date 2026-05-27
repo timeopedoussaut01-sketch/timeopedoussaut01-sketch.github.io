@@ -40,6 +40,14 @@
             margin-right: 15px;
             overflow: hidden;
         }
+        .stats-grid a {
+            transition: var(--transition);
+            border-radius: 10px;
+        }
+        .stats-grid a:hover {
+            transform: translateY(-5px);
+            background: rgba(56, 189, 248, 0.05); /* Lueur très légère au survol */
+        }
 
         /* Force l'image à remplir le carré sans se déformer */
         .cert-logo {
@@ -780,10 +788,12 @@
         <a href="mailto:timeo.pedoussaut01@gmail.com" class="btn"><i class="fa-solid fa-envelope"></i> Me contacter par mail</a>
         
         <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-number">2+</span>
-                <span class="stat-label">Ans en Télécoms</span>
-            </div>
+            <a href="#experiences" style="text-decoration: none; display: block;"></a>
+                <div class="stat-item">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">Ans en Télécoms</span>
+                </div>
+            </a>
             <a href="#certifications" style="text-decoration: none; display: block;">
             <div class="stat-item">
                 <span class="stat-number">4</span>
