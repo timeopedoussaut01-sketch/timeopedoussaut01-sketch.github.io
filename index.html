@@ -132,7 +132,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
         }
         .nav-left { display: flex;
-        align-items: center; gap: 1.5rem; }
+            align-items: center; gap: 1.5rem; }
         nav .logo { 
             font-weight: 800;
             color: var(--text-main); 
@@ -205,7 +205,7 @@
             transition: var(--transition); box-shadow: 0 0 10px rgba(56, 189, 248, 0.05);
         }
         .theme-toggle:hover { background: var(--accent); color: #ffffff; transform: translateY(-1px);
-        box-shadow: 0 0 15px var(--nav-glow); }
+            box-shadow: 0 0 15px var(--nav-glow); }
 
         /* En-tête / Hero Section */
         header {
@@ -216,14 +216,14 @@
             position: relative;
         }
         header .profile-container, header h1, header .subtitle, header .bio, header .btn, header .stats-grid { position: relative;
-        z-index: 2; }
+            z-index: 2; }
 
         .profile-container { position: relative; margin-bottom: 2rem; margin-top: 20px; cursor: zoom-in; }
         .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
-        border: 3px solid var(--accent); position: relative; z-index: 2; transition: var(--transition); }
+            border: 3px solid var(--accent); position: relative; z-index: 2; transition: var(--transition); }
         .profile-container:hover .profile-img { transform: scale(1.03); box-shadow: 0 0 25px var(--accent); }
         .profile-container::before { content: ''; position: absolute; top: -5px; left: -5px; right: -5px;
-        bottom: -5px; border-radius: 50%; background: var(--accent); filter: blur(15px); opacity: 0.3; z-index: 1; }
+            bottom: -5px; border-radius: 50%; background: var(--accent); filter: blur(15px); opacity: 0.3; z-index: 1; }
 
         /* Lightbox */
         .profile-lightbox {
@@ -236,16 +236,16 @@
         }
         .profile-lightbox.active { opacity: 1; pointer-events: auto; }
         .lightbox-img { max-width: 85%; max-height: 80vh; border-radius: 20px;
-        box-shadow: 0 0 40px rgba(56, 189, 248, 0.3); border: 3px solid var(--accent); background: #ffffff; transform: scale(0.8);
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.3); border: 3px solid var(--accent); background: #ffffff; transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .profile-lightbox.active .lightbox-img { transform: scale(1); }
 
         header h1 { font-size: 3.5rem; margin-bottom: 0.8rem; font-weight: 800; letter-spacing: -1px; }
         header h1 span { color: var(--accent); }
         header .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 1.5rem; max-width: 850px;
-        font-weight: 600; }
+            font-weight: 600; }
         header .bio { font-size: 1.05rem; color: var(--text-muted); max-width: 700px;
-        margin-bottom: 3rem; line-height: 1.6; }
+            margin-bottom: 3rem; line-height: 1.6; }
 
         /* BOUTONS ET EFFET RIPPLE (ONDE DE CHOC) */
         .btn, .btn-secondary, .theme-toggle {
@@ -259,7 +259,7 @@
             box-shadow: 0 4px 25px var(--glow); transition: var(--transition);
         }
         .btn:hover { transform: translateY(-3px);
-        box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4); }
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4); }
         
         .btn-secondary {
             background: rgba(56, 189, 248, 0.05);
@@ -283,12 +283,11 @@
             background: rgba(56, 189, 248, 0.4);
         }
         @keyframes rippleEffect {
-            to { transform: scale(4);
-            opacity: 0; }
+            to { transform: scale(4); opacity: 0; }
         }
 
         .stats-grid { display: flex;
-        gap: 4rem; margin-top: 3rem; justify-content: center; flex-wrap: wrap; }
+            gap: 4rem; margin-top: 3rem; justify-content: center; flex-wrap: wrap; }
         .stat-item { text-align: center; }
         .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--accent); display: block; }
         .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
@@ -300,8 +299,7 @@
             padding: 6rem 2rem; 
             width: 100%;
         }
-        .section-container { max-width: 1140px;
-        margin: 0 auto; }
+        .section-container { max-width: 1140px; margin: 0 auto; }
         section.alt-bg {
             background-color: var(--section-alt);
             border-top: 1px solid var(--border);
@@ -328,7 +326,7 @@
 
         /* FRISE CHRONOLOGIQUE DYNAMISÉE */
         .timeline { position: relative;
-        display: flex; flex-direction: column; gap: 4rem; }
+            display: flex; flex-direction: column; gap: 4rem; }
         .timeline::before {
             content: '';
             position: absolute; left: 210px; top: 20px; bottom: 20px;
@@ -336,9 +334,9 @@
         }
         .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 3.5rem; position: relative; }
         .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--text-muted); font-weight: 700; font-size: 0.95rem;
-        transition: var(--transition); }
+            transition: var(--transition); }
         .timeline-date.active { color: var(--accent-green);
-        text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
+            text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
         
         .timeline-body {
             background: var(--card-bg);
@@ -384,7 +382,7 @@
             100% { transform: translateY(-30%); }
         }
         .job-header-container { position: relative;
-        z-index: 2; }
+            z-index: 2; }
 
         /* Effet Hover Premium */
         .timeline-item:hover .timeline-body { 
@@ -403,7 +401,7 @@
         .timeline-item:hover .matrix-header-bg::before { opacity: 0.12; color: var(--accent-green); transition: opacity 0.4s ease; }
         
         .job-header-container { display: flex;
-        align-items: center; gap: 1.5rem; }
+            align-items: center; gap: 1.5rem; }
         .company-logo {
             width: 65px;
             height: 65px; flex-shrink: 0; object-fit: contain; border-radius: 12px;
@@ -415,15 +413,16 @@
         .job-title h3 { font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
         .job-title .company { font-weight: 600; color: var(--accent); font-size: 1.05rem; margin-top: 0.1rem; }
         .job-title .company a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center;
-        gap: 0.4rem; }
+            gap: 0.4rem; }
         .job-title .company a:hover { text-decoration: underline; }
         
         /* Sous-Frise Interne (Linkt) */
         .internal-timeline { display: flex;
-        flex-direction: column; gap: 2.5rem; position: relative; padding-left: 1.5rem; margin-top: 1rem; border-left: 2px dashed var(--border); z-index: 2; }
+            flex-direction: column; gap: 2.5rem; position: relative; padding-left: 1.5rem; margin-top: 1rem; border-left: 2px dashed var(--border); z-index: 2;
+        }
         .internal-post { position: relative; display: flex; flex-direction: column; gap: 0.8rem; }
         .internal-post::before { content: ''; position: absolute; left: -29px; top: 6px; width: 8px;
-        height: 8px; border-radius: 50%; background-color: var(--border); border: 2px solid var(--bg-color); transition: var(--transition); }
+            height: 8px; border-radius: 50%; background-color: var(--border); border: 2px solid var(--bg-color); transition: var(--transition); }
         .internal-post.active::before { background-color: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
         .internal-post.past::before { background-color: var(--accent); }
         
@@ -448,24 +447,23 @@
             animation: pulseGlow 1.8s infinite ease-in-out;
         }
         @keyframes pulseGlow {
-            0% { transform: scale(1);
-            opacity: 0.8; }
+            0% { transform: scale(1); opacity: 0.8; }
             100% { transform: scale(2.8); opacity: 0; }
         }
         
         .post-header { display: flex;
-        justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+            justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
         .post-title { font-size: 1.15rem;
-        font-weight: 700; color: var(--text-main); }
+            font-weight: 700; color: var(--text-main); }
         .post-date { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
         .internal-post.active .post-date { color: var(--accent-green); }
         
         .job-details { list-style: none;
-        display: flex; flex-direction: column; gap: 0.6rem; }
+            display: flex; flex-direction: column; gap: 0.6rem; }
         .job-details li { position: relative;
-        padding-left: 1.8rem; color: var(--text-muted); font-size: 0.95rem; }
+            padding-left: 1.8rem; color: var(--text-muted); font-size: 0.95rem; }
         .job-details li::before { font-family: "Font Awesome 6 Free";
-        font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent); font-size: 0.85rem;
+            font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent); font-size: 0.85rem;
         }
         
         .job-details li.tech::before { content: "\f120"; } 
@@ -476,41 +474,46 @@
         .job-details li.clock::before { content: "\f2f2"; }
         .job-details li.phone::before { content: "\f095"; }
         .job-details li.globe::before { content: "\f0ac"; }
+        .job-details li.server::before { content: "\f233"; }
+        .job-details li.vial::before { content: "\f492"; }
 
         /* Badges Compétences */
         .skills-container { display: flex;
-        flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
+            flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
         .badge { display: inline-flex;
-        align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600;
-        border: 1px solid rgba(56, 189, 248, 0.2); transition: var(--transition); }
+            align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.2); transition: var(--transition); }
         .timeline-body:hover .badge { border-color: rgba(56, 189, 248, 0.4);
-        background-color: rgba(56, 189, 248, 0.12); }
+            background-color: rgba(56, 189, 248, 0.12); }
         .badge.tools { color: var(--text-main); background-color: rgba(255,255,255,0.05);
-        border-color: transparent; }
+            border-color: transparent; }
         [data-theme="light"] .badge.tools { background-color: rgba(0,0,0,0.05); }
         
         /* Badges de statut */
         .form-badge { position: absolute;
-        top: -12px; right: 20px; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 3;
+            top: -12px; right: 20px; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.76rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 3;
         }
         .form-badge.current { background-color: rgba(56, 189, 248, 0.15); color: var(--accent);
-        border: 1px solid var(--accent); }
+            border: 1px solid var(--accent); }
         .form-badge.approved { background-color: rgba(16, 185, 129, 0.15);
-        color: var(--accent-green); border: 1px solid var(--accent-green); }
+            color: var(--accent-green); border: 1px solid var(--accent-green); }
         .form-badge.diploma { background-color: rgba(16, 185, 129, 0.15);
-        color: var(--accent-green); border: 1px solid var(--accent-green); }
+            color: var(--accent-green); border: 1px solid var(--accent-green); }
 
         /* Certifications */
         .cert-category { margin-bottom: 3rem; }
         .cert-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main);
-        display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+            display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;
+        }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
         .cert-item { background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); transition: var(--transition);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: relative; }
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: relative;
+        }
         .cert-item:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 12px 30px var(--glow);
-        background: var(--card-hover); }
+            background: var(--card-hover); }
         .cert-content { padding: 2rem; display: flex; flex-grow: 1; flex-direction: column;
-        gap: 1rem; justify-content: space-between; min-height: 220px; position: relative; z-index: 2; }
+            gap: 1rem; justify-content: space-between; min-height: 220px; position: relative; z-index: 2;
+        }
         .cert-header { display: flex; align-items: center; gap: 1rem; }
         .cert-title { font-weight: 700; color: var(--text-main); font-size: 1.1rem; line-height: 1.3; }
         .cert-org { color: var(--accent); font-weight: 600; font-size: 0.95rem; margin-top: 0.2rem; }
@@ -519,203 +522,69 @@
         .cert-actions-row { display: flex; gap: 0.5rem; width: 100%; }
 
         /* Profil / Double Colonne */
-        .profile-footer-grid { display: grid;
-        grid-template-columns: 2fr 1fr; gap: 2.5rem; }
-        .lang-grid, .mobility-grid { display: flex; flex-direction: column;
-        gap: 1rem; }
+        .profile-footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
+        .lang-grid, .mobility-grid { display: flex; flex-direction: column; gap: 1rem; }
         .lang-card, .mobility-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px;
-        border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: var(--transition); backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px); overflow: hidden; position: relative; }
-        .lang-card:hover, .mobility-card:hover { border-color: var(--accent);
-        transform: translateY(-3px) translateX(2px); box-shadow: 0 8px 25px var(--glow); background: var(--card-hover); }
-        .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px;
-        text-align: center; position: relative; z-index: 2; }
+            border: 1px solid var(--border); display: flex; align-items: center; gap: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: var(--transition); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); overflow: hidden; position: relative; }
+        .lang-card:hover, .mobility-card:hover { border-color: var(--accent); transform: translateY(-3px) translateX(2px); box-shadow: 0 8px 25px var(--glow);
+            background: var(--card-hover); }
+        .lang-card i, .mobility-card i { color: var(--accent); font-size: 1.5rem; width: 24px; text-align: center; position: relative; z-index: 2; }
         
         /* Personnalisation spécifique pour les drapeaux colorés */
-        .lang-card i.flag-fr { color: #0055a5;
-        text-shadow: 12px 0 0 #ffffff, 24px 0 0 #e70020; width: 12px; margin-right: 15px; }
+        .lang-card i.flag-fr { color: #0055a5; text-shadow: 12px 0 0 #ffffff, 24px 0 0 #e70020; width: 12px; margin-right: 15px; }
         .lang-card i.flag-en { color: #00247d; text-shadow: 0 0 2px rgba(255,255,255,0.4); }
         .lang-card i.flag-es { color: #c60b1e; text-shadow: 0 4px 0 #ffc400, 0 8px 0 #c60b1e; }
-
         .lang-card h4, .mobility-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
         .lang-card p, .mobility-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
         
         .spec-list { list-style: none; padding-left: 0.5rem; margin-top: 0.3rem; }
         .spec-list li { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
         .spec-list li::before { content: "•"; color: var(--accent); font-weight: bold; }
-
+        
         /* INTERACTIVE CYBER TERMINAL COMPONENT */
-        .term-widget-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 55px;
-            height: 55px;
-            background: var(--term-bg);
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            color: var(--accent);
-            font-size: 1.4rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 999;
-            transition: var(--transition);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 10px var(--glow);
-        }
-        .term-widget-btn:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 4px 25px var(--accent);
-            color: #ffffff;
-            background: var(--accent);
-        }
-        .term-window {
-            position: fixed;
-            bottom: 95px;
-            right: 25px;
-            width: 420px;
-            height: 320px;
-            background: var(--term-bg);
-            border: 1px solid var(--term-border);
-            border-radius: 12px;
-            z-index: 999;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-            pointer-events: none;
-            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .term-window.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-        }
-        .term-header {
-            background: rgba(15, 23, 42, 0.9);
-            padding: 0.6rem 1rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-main);
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-        }
-        .term-header-dots {
-            display: flex;
-            gap: 6px;
-        }
-        .term-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
+        .term-widget-btn { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px;
+            background: var(--term-bg); border: 2px solid var(--accent); border-radius: 50%; color: var(--accent); font-size: 1.4rem; display: flex; justify-content: center; align-items: center; cursor: pointer;
+            z-index: 999; transition: var(--transition); box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 10px var(--glow); }
+        .term-widget-btn:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 4px 25px var(--accent); color: #ffffff; background: var(--accent); }
+        
+        .term-window { position: fixed; bottom: 95px; right: 25px; width: 420px; height: 320px; background: var(--term-bg); border: 1px solid var(--term-border); border-radius: 12px; z-index: 999; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: flex;
+            flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .term-window.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        
+        .term-header { background: rgba(15, 23, 42, 0.9); padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-main); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.5px; }
+        .term-header-dots { display: flex; gap: 6px; }
+        .term-dot { width: 10px; height: 10px; border-radius: 50%; }
         .term-dot.red { background: #ef4444; cursor: pointer; }
         .term-dot.yellow { background: #f59e0b; }
         .term-dot.green { background: #10b981; }
-
-        .term-body {
-            flex-grow: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            color: var(--term-text);
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .term-output-line {
-            white-space: pre-wrap;
-            word-break: break-all;
-            line-height: 1.4;
-        }
-        .term-input-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: auto;
-        }
-        .term-prompt {
-            font-weight: bold;
-            color: var(--accent);
-            white-space: nowrap;
-        }
-        .term-input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: inherit;
-            font-family: inherit;
-            font-size: inherit;
-            flex-grow: 1;
-            padding: 2px 0;
-        }
-
+        
+        .term-body { flex-grow: 1; padding: 1rem; overflow-y: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; color: var(--term-text); display: flex; flex-direction: column; gap: 0.5rem; }
+        .term-output-line { white-space: pre-wrap; word-break: break-all; line-height: 1.4; }
+        .term-input-row { display: flex; align-items: center; gap: 0.5rem; margin-top: auto; }
+        .term-prompt { font-weight: bold; color: var(--accent); white-space: nowrap; }
+        .term-input { background: transparent; border: none; outline: none; color: inherit; font-family: inherit; font-size: inherit; flex-grow: 1; padding: 2px 0; }
+        
         /* Footer */
-        footer {
-            position: relative;
-            z-index: 2;
-            background-color: rgba(2, 4, 8, 0.95);
-            padding: 5rem 2rem;
-            text-align: center;
-            color: #f8fafc;
-            border-top: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-        [data-theme="light"] footer {
-            background-color: rgba(15, 23, 42, 0.98);
-        }
-        .footer-info {
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 3rem;
-        }
-        .footer-info-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #cbd5e1;
-            font-weight: 500;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .footer-info-item:hover { color: var(--accent); }
-        .footer-info-item i { color: var(--accent); font-size: 1.3rem; }
+        footer { position: relative; z-index: 2; background-color: rgba(2, 4, 8, 0.95); padding: 5rem 2rem; text-align: center; color: #f8fafc; border-top: 1px solid var(--border); backdrop-filter: blur(10px); }
+        [data-theme="light"] footer { background-color: rgba(15, 23, 42, 0.98); }
+        footer p { font-size: 0.95rem; color: var(--text-muted); font-weight: 600; margin-bottom: 1.5rem; }
+        footer .social-icons { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
+        footer .social-icons a { color: var(--text-muted); font-size: 1.6rem; transition: var(--transition); }
+        footer .social-icons a:hover { color: var(--accent); transform: translateY(-3px); text-shadow: 0 0 10px var(--glow); }
+        footer .copyright { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        .social-links a {
-            color: #94a3b8;
-            font-size: 2.2rem;
-            transition: var(--transition);
-        }
-        .social-links a:hover { color: var(--accent); transform: translateY(-3px); }
-
-        /* Responsive */
+        /* RESPONSIVE DESIGN */
         @media (max-width: 900px) {
-            .timeline::before { display: none; }
-            .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-            .timeline-date { text-align: left; padding-top: 0; margin-bottom: 0.2rem; }
-            header h1 { font-size: 2.6rem; }
             nav ul { display: none; }
-            .nav-left { gap: 0.8rem; }
-            .sys-status-badge { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
-            section { padding: 4rem 1.5rem; }
-            .internal-timeline { border-left: 1px dashed var(--border); }
-            .profile-footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .timeline::before { left: 20px; }
+            .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
+            .timeline-date { text-align: left; padding-top: 0; padding-left: 45px; }
+            .timeline-body::after { left: -32px; top: -38px; }
+            .timeline-body { margin-left: 20px; }
+            header h1 { font-size: 2.5rem; }
+            .profile-footer-grid { grid-template-columns: 1fr; }
             .term-window { width: calc(100vw - 50px); right: 25px; bottom: 95px; }
         }
     </style>
@@ -728,155 +597,182 @@
 
     <nav>
         <div class="nav-left">
-            <div class="logo">Timéo<span>.P</span></div>
+            <div class="logo">TIMÉO<span>.P</span></div>
             <div class="sys-status-badge">
-                <span class="pulse-dot"></span>
-                SYS-UPTIME: <span id="uptime-counter">00d 00h 00m 00s</span>
+                <span class="pulse-dot"></span>SYS-STATUS: OPERATIONAL
             </div>
         </div>
-        <ul>
-            <li><a href="#parcours">Parcours</a></li>
+        <ul id="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#formations">Formations</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#competences">Compétences</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li>
-                <button class="theme-toggle" id="theme-btn" aria-label="Changer de thème">
-                    <i class="fas fa-moon"></i> <span>Dark Mode</span>
-                </button>
-            </li>
         </ul>
+        <button class="theme-toggle" id="theme-btn" aria-label="Changer de thème">
+            <i class="fas fa-moon"></i><span>Mode Sombre</span>
+        </button>
     </nav>
 
-    <header>
-        <div class="profile-container" id="profile-trigger">
-            <img src="https://via.placeholder.com/150" alt="Timéo Pedoussaut" class="profile-img">
-        </div>
-        <h1>Timéo <span>Pedoussaut</span></h1>
-        <div class="subtitle">Alternant Administrateur Systèmes & Réseaux / Technicien Support N2</div>
-        <div class="bio">
-            Passionné de Cybersécurité et d'Infrastructures Réseaux. Actuellement en poste chez 
-            <strong>Linkt</strong> où j'évolue au sein d'environnements d'infrastructure complexes. Mon objectif : concevoir, monitorer et durcir la sécurité des systèmes d'information.
-        </div>
-        <a href="#parcours" class="btn"><i class="fas fa-terminal"></i> Explorer mon parcours</a>
+    <div class="profile-lightbox" id="profile-lightbox">
+        <img src="images/timeo_pro.jpg" alt="Photo de profil de Timéo Pedoussaut agrandie" class="lightbox-img">
+    </div>
 
-        <div class="stats-grid">
+    <header id="accueil">
+        <div class="profile-container" id="profile-trigger">
+            <img src="images/timeo_pro.jpg" alt="Photo de profil de Timéo Pedoussaut" class="profile-img">
+        </div>
+        <h1 class="reveal">Bonjour, je suis <span>Timéo Pedoussaut</span></h1>
+        <div class="subtitle reveal">Technicien Réseaux, Systèmes & Cybersécurité</div>
+        <p class="bio reveal">Passionné par l'administration système, la sécurisation des infrastructures et l'automatisation. Actuellement en poste en alternance chez Linkt pour renforcer mes compétences opérationnelles.</p>
+        <a href="#experience" class="btn reveal"><i class="fas fa-terminal"></i> Parcourir mon Portfolio</a>
+        
+        <div class="stats-grid reveal">
             <div class="stat-item">
                 <span class="stat-number">2+</span>
-                <span class="stat-label">Ans d'expérience</span>
+                <span class="stat-label">Années d'Expérience</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number">4+</span>
-                <span class="stat-label">Certifications IT</span>
+                <span class="stat-label">Certifications Tech</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number">100%</span>
-                <span class="stat-label">Orienté Infra & Sécu</span>
+                <span class="stat-label">Passion & Uptime</span>
             </div>
         </div>
     </header>
 
     <div class="fiber-separator"></div>
 
-    <section id="parcours" class="alt-bg">
+    <section id="experience">
         <div class="section-container">
-            <h2 class="reveal"><i class="fas fa-history"></i> Parcours Académique & Professionnel</h2>
+            <h2 class="reveal"><i class="fas fa-briefcase"></i> Expérience Professionnelle</h2>
+            
             <div class="timeline">
-                
                 <div class="timeline-item reveal">
-                    <div class="timeline-date">2024 - 2026</div>
+                    <div class="timeline-date active">
+                        <span class="status-pulse"></span>En cours<br>
+                        <span style="font-size: 0.8rem; font-weight: 500;">Depuis Oct. 2024</span>
+                    </div>
                     <div class="timeline-body">
-                        <span class="form-badge current"><span class="status-pulse"></span>En Cours</span>
                         <div class="matrix-header-bg"></div>
                         <div class="job-header-container">
+                            <img src="images/linkt_logo.png" alt="Logo Linkt" class="company-logo">
                             <div class="job-title">
-                                <h3>BTS SIO (Services Informatiques aux Organisations)</h3>
-                                <div class="company">Option SISR — Solutions d'Infrastructure, de Systèmes et de Réseaux</div>
+                                <h3>Technicien Réseaux & Systèmes (Alternance)</h3>
+                                <div class="company"><a href="https://www.linkt.fr" target="_blank" rel="noopener">Linkt <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i></a></div>
                             </div>
                         </div>
-                        <p style="color: var(--text-muted); font-weight: 500;">
-                            Formation de technicien supérieur orientée administration, sécurisation et exploitation des infrastructures informatiques en environnement professionnel.
-                        </p>
+                        
+                        <div class="internal-timeline">
+                            <div class="internal-post active">
+                                <div class="post-header">
+                                    <span class="post-title">Niveau 2 — Supervision & Support Grand Compte</span>
+                                    <span class="post-date">Depuis Septembre 2025</span>
+                                </div>
+                                <ul class="job-details">
+                                    <li class="shield">Gestion avancée des incidents sur les infrastructures critiques de clients d'envergure.</li>
+                                    <li class="route">Diagnostic réseau approfondi de bout en bout (protocoles de routage dynamique, tunnels VPN IPsec/SD-WAN).</li>
+                                    <li class="phone">Interlocuteur privilégié des directions informatiques clients (DSI) lors des crises majeures ou comités de suivi.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="internal-post past">
+                                <div class="post-header">
+                                    <span class="post-title">Niveau 1 — Run & Supervision Backbone</span>
+                                    <span class="post-date">Oct. 2024 – Août 2025</span>
+                                </div>
+                                <ul class="job-details">
+                                    <li class="clock">Supervision 24/7 de l'état du cœur de réseau (Backbone Opérateur) et des accès clients.</li>
+                                    <li class="gear">Traitement et escalade des tickets d'incidents réseaux de niveau 1 selon les SLAs contractuelles.</li>
+                                    <li class="phone">Support technique téléphonique de premier niveau auprès des clients B2B.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="skills-container">
+                            <span class="badge">Supervision (N1/N2)</span>
+                            <span class="badge">VPN IPsec</span>
+                            <span class="badge">SD-WAN</span>
+                            <span class="badge">BGP & OSPF</span>
+                            <span class="badge">SLA Management</span>
+                            <span class="badge tools"><i class="fas fa-wrench"></i> Wireshark</span>
+                            <span class="badge tools">Centreon</span>
+                            <span class="badge tools">Fortigate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">Mai – Juin 2024<br><span style="font-size: 0.8rem; font-weight: 500;">(6 semaines)</span></div>
+                    <div class="timeline-body">
+                        <div class="job-header-container">
+                            <img src="images/ec_logo.png" alt="Logo Enseignement Catholique" class="company-logo">
+                            <div class="job-title">
+                                <h3>Stagiaire Technicien Informatique</h3>
+                                <div class="company">Direction Diocésaine de l'Enseignement Catholique</div>
+                            </div>
+                        </div>
                         <ul class="job-details">
-                            <li class="gear">Installation, configuration et sécurisation des équipements et services informatiques</li>
-                            <li class="route">Administration et supervision d’infrastructures systèmes et réseaux</li>
-                            <li class="clock">Exploitation, maintenance et amélioration de la qualité des services IT</li>
-                            <li class="user">Gestion des incidents, support utilisateurs et résolution de problèmes techniques</li>
-                            <li class="tech">Gestion des actifs informatiques et suivi du parc matériel</li>
+                            <li class="server">Migration complète de l'infrastructure de stockage : Transition réussie de serveurs de fichiers NAS locaux vers la solution Cloud Microsoft SharePoint.</li>
+                            <li class="user">Conduite du changement : Rédaction de documentations techniques détaillées et animation de sessions de formation pour les utilisateurs finaux.</li>
+                            <li class="gear">Maintenance et support du parc informatique de la direction (matériels, systèmes d'exploitation, applications bureautiques).</li>
+                        </ul>
+                        <div class="skills-container">
+                            <span class="badge">Migration Cloud</span>
+                            <span class="badge">SharePoint</span>
+                            <span class="badge">Support Utilisateurs</span>
+                            <span class="badge">Documentation</span>
+                            <span class="badge tools"><i class="fas fa-wrench"></i> Office 365 AD</span>
+                            <span class="badge tools">Synology DSM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="fiber-separator"></div>
+
+    <section id="formations" class="alt-bg">
+        <div class="section-container">
+            <h2 class="reveal"><i class="fas fa-graduation-cap"></i> Formations</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-date active">2024 – 2026<br><span style="font-size: 0.8rem; font-weight: 500;">En cours d'obtention</span></div>
+                    <div class="timeline-body">
+                        <span class="form-badge current">Alternance</span>
+                        <div class="job-title">
+                            <h3>Formation de technicien supérieur orientée administration, sécurisation et exploitation des infrastructures informatiques en environnement professionnel.</h3>
+                            <div class="company">CFA du Numérique / Lycée Ozenne — Toulouse (31)</div>
+                        </div>
+                        <ul class="job-details">
+                            <li class="tech">Option SISR (Solutions d'Infrastructure, de Systèmes et de Réseaux).</li>
+                            <li class="shield">Projets pratiques orientés cybersécurité : durcissement d'OS, déploiement de PKI, configuration de pare-feu et segmentation réseau.</li>
+                            <li class="vial">Réalisation de laboratoires virtuels complets (Proxmox, VMware, GNS3) pour valider des architectures logiques complexes.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-date">2024 - Présent</div>
+                    <div class="timeline-date">2024</div>
                     <div class="timeline-body">
-                        <span class="form-badge approved">Contrat pro</span>
-                        <div class="matrix-header-bg"></div>
-                        <div class="job-header-container">
-                            <img src="https://via.placeholder.com/65" alt="Logo Linkt" class="company-logo" id="logo-linkt-trigger">
-                            <div class="job-title">
-                                <h3>Alternant Technicien Support N2 / Administrateur Réseaux</h3>
-                                <div class="company"><a href="https://www.linkt.fr" target="_blank">Linkt <i class="fas fa-external-link-alt" style="font-size:0.75rem;"></i></a></div>
-                            </div>
+                        <span class="form-badge diploma"><i class="fas fa-check"></i> Obtenu</span>
+                        <div class="job-title">
+                            <h3>Baccalauréat Général</h3>
+                            <div class="company">Lycée Pierre de Fermat — Toulouse (31)</div>
                         </div>
-
-                        <div class="internal-timeline">
-                            <div class="internal-post active">
-                                <div class="post-header">
-                                    <span class="post-title"><span class="status-pulse"></span>Technicien Support Client N2 (Grand Compte / Sur-Mesure)</span>
-                                    <span class="post-date">Févr. 2025 - Présent</span>
-                                </div>
-                                <ul class="job-details">
-                                    <li class="shield">Prise en charge des incidents complexes sur les architectures sur-mesure de clients stratégiques.</li>
-                                    <li class="route">Diagnostic avancé de pannes de routage (BGP, OSPF), de commutation et d'interconnexions multi-sites.</li>
-                                    <li class="gear">Administration de routeurs et switchs de cœur de réseau en mode de production critique.</li>
-                                </ul>
-                            </div>
-
-                            <div class="internal-post past">
-                                <div class="post-header">
-                                    <span class="post-title">Technicien Support Client N1 (PME / Multi-sites)</span>
-                                    <span class="post-date">Sept. 2024 - Janv. 2025</span>
-                                </div>
-                                <ul class="job-details">
-                                    <li class="phone">Accueil téléphonique technique, qualification de premier niveau des tickets d'incidents réseaux (WAN, LAN, VoIP).</li>
-                                    <li class="clock">Supervision de liaisons (FTTH, FTTO) et gestion des escalades opérateurs d'infrastructure.</li>
-                                    <li class="tools">Résolution de problèmes d'accès internet basiques, configuration de CPE distants.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="skills-container" style="margin-top:0.5rem;">
-                            <span class="badge"><i class="fas fa-network-wired"></i> Routage BGP/OSPF</span>
-                            <span class="badge"><i class="fas fa-project-diagram"></i> WAN / SD-WAN</span>
-                            <span class="badge"><i class="fas fa-shield-alt"></i> Pare-feux & VPN</span>
-                            <span class="badge"><i class="fas fa-headset"></i> Support N2 GTR</span>
-                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Spécialités Scientifiques : <strong>Mathématiques</strong> et <strong>Numérique et Sciences Informatiques (NSI)</strong>.</p>
+                        <ul class="job-details">
+                            <li class="tech">NSI : Apprentissage des bases du développement (Python, requêtes SQL, structures de données) et architectures matérielles.</li>
+                        </ul>
                     </div>
                 </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-date">2021 - 2024</div>
-                    <div class="timeline-body">
-                        <span class="form-badge diploma">Diplômé (Mention TB)</span>
-                        <div class="matrix-header-bg"></div>
-                        <div class="job-header-container">
-                            <div class="job-title">
-                                <h3>Baccalauréat Professionnel CIEL (ex-SN)</h3>
-                                <div class="company">Cybersécurité, Informatique et Réseaux, Électronique</div>
-                            </div>
-                        </div>
-                        <p style="color: var(--text-muted);">
-                            Apprentissage des bases du réseau, du câblage structuré, de la programmation de cartes électroniques embarquées ainsi que des bases de la sécurité logique (habilitations, chiffrement).
-                        </p>
-                        <div class="skills-container">
-                            <span class="badge tools">Modèle OSI</span>
-                            <span class="badge tools">Adressage IPv4/IPv6</span>
-                            <span class="badge tools">Maintenance Hardware</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
         </div>
     </section>
 
@@ -884,78 +780,95 @@
 
     <section id="certifications">
         <div class="section-container">
-            <h2 class="reveal"><i class="fas fa-certificate"></i> Certifications & Habilitations Électriques</h2>
+            <h2 class="reveal"><i class="fas fa-award"></i> Certifications & Distinctions</h2>
             
             <div class="cert-category reveal">
-                <h3><i class="fas fa-shield-halved"></i> Cybersécurité</h3>
-                <div class="cert-grid">
-                    <div class="cert-item">
-                        <div class="cert-content">
-                            <div>
-                                <div class="cert-header">
-                                    <i class="fas fa-shield-alt" style="font-size:2rem; color:var(--accent);"></i>
-                                    <div>
-                                        <div class="cert-title">SecNumAcadémie</div>
-                                        <div class="cert-org">ANSSI</div>
-                                    </div>
-                                </div>
-                                <p style="margin-top:1rem; font-size:0.9rem; color:var(--text-muted);">Certification validant les compétences fondamentales en sécurité des SI (authentification, sécurité web, nomadisme).</p>
-                            </div>
-                            <div class="cert-meta">ID: Validé ✔</div>
-                        </div>
-                    </div>
-                    </div>
-            </div>
-
-            <div class="cert-category reveal">
-                <h3><i class="fas fa-bolt"></i> Sécurité Électrique</h3>
+                <h3><i class="fas fa-certificate" style="color: var(--accent);"></i> Certifications Professionnelles</h3>
                 <div class="cert-grid">
                     
                     <div class="cert-item">
                         <div class="cert-content">
-                            <div>
-                                <div class="cert-header">
-                                    <i class="fas fa-bolt" style="font-size:2rem; color:#f59e0b;"></i>
-                                    <div>
-                                        <div class="cert-title">Habilitation Électrique B1V</div>
-                                        <div class="cert-org">Exécutant électricien (Voisinage)</div>
-                                    </div>
+                            <div class="cert-header">
+                                <i class="fab fa-cisco" style="font-size: 2.2rem; color: #049fd9;"></i>
+                                <div>
+                                    <div class="cert-title">CCNA 200-301</div>
+                                    <div class="cert-org">Cisco Networking Academy</div>
                                 </div>
-                                <p style="margin-top:1rem; font-size:0.9rem; color:var(--text-muted);">Autorisation d'exécuter des opérations d'ordre électrique en basse tension au voisinage de pièces nues sous tension.</p>
                             </div>
-                            <div class="cert-meta">TYPE: BT / Zones critiques</div>
+                            <div class="cert-meta">
+                                🌐 Status: En cours de préparation<br>
+                                🎯 Cible: Obtenir avant fin 2026<br>
+                                📂 Focus: Routage, Commutation, IPv6, Sécurité de base.
+                            </div>
                         </div>
                     </div>
 
                     <div class="cert-item">
                         <div class="cert-content">
-                            <div>
-                                <div class="cert-header">
-                                    <i class="fas fa-plug" style="font-size:2rem; color:#f59e0b;"></i>
-                                    <div>
-                                        <div class="cert-title">Habilitation Électrique BR</div>
-                                        <div class="cert-org">Chargé d'intervention générale</div>
-                                    </div>
+                            <div class="cert-header">
+                                <i class="fas fa-shield-halved" style="font-size: 2rem; color: #ee3124;"></i>
+                                <div>
+                                    <div class="cert-title">Fortinet Certified Associate (FCA)</div>
+                                    <div class="cert-org">Fortinet Training Institute</div>
                                 </div>
-                                <p style="margin-top:1rem; font-size:0.9rem; color:var(--text-muted);">Capacité à réaliser des interventions de dépannage, de raccordement ou de mesures spécifiques sur armoires réseaux/électriques.</p>
                             </div>
-                            <div class="cert-meta">TYPE: Interventions d'urgence</div>
+                            <div class="cert-meta">
+                                🆔 ID: FCA-8492014<br>
+                                🗓 Délivrée: Mars 2025<br>
+                                📂 Focus: Sécurité des réseaux, FortiGate Operator.
+                            </div>
+                            <div class="cert-actions">
+                                <div class="cert-actions-row">
+                                    <a href="#" class="btn-secondary"><i class="fas fa-eye"></i> Voir</a>
+                                    <a href="#" class="btn-secondary"><i class="fas fa-download"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="cert-category reveal">
+                <h3><i class="fas fa-user-shield" style="color: var(--accent-green);"></i> Attestations & Sensibilisation</h3>
+                <div class="cert-grid">
+                    
+                    <div class="cert-item">
+                        <div class="cert-content">
+                            <div class="cert-header">
+                                <i class="fas fa-gavel" style="font-size: 1.8rem; color: #0055a5;"></i>
+                                <div>
+                                    <div class="cert-title">SecNumacadémie</div>
+                                    <div class="cert-org">ANSSI (Sécurité Nationale)</div>
+                                </div>
+                            </div>
+                            <div class="cert-meta">
+                                ✅ Attestation de suivi intégral<br>
+                                🗓 Obtenue: Novembre 2024<br>
+                                📂 Focus: Panorama de la SSI, Sécurité de l'authentification, Sécurité sur le Web, Sécurité du nomadisme.
+                            </div>
+                            <div class="cert-actions">
+                                <div class="cert-actions-row">
+                                    <a href="#" class="btn-secondary"><i class="fas fa-eye"></i> Ouvrir</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="cert-item">
                         <div class="cert-content">
-                            <div>
-                                <div class="cert-header">
-                                    <i class="fas fa-triangle-exclamation" style="font-size:2rem; color:#ef4444;"></i>
-                                    <div>
-                                        <div class="cert-title">Habilitation Électrique H0V</div>
-                                        <div class="cert-org">Exécutant non électricien (Haute Tension)</div>
-                                    </div>
+                            <div class="cert-header">
+                                <i class="fas fa-cubes" style="font-size: 1.8rem; color: #1d4ed8;"></i>
+                                <div>
+                                    <div class="cert-title">Certification PIX</div>
+                                    <div class="cert-org">État Français (Compétences Numériques)</div>
                                 </div>
-                                <p style="margin-top:1rem; font-size:0.9rem; color:var(--text-muted);">Accès autorisé aux locaux Haute Tension pour travaux d'ordre non électrique au voisinage de lignes de puissance.</p>
                             </div>
-                            <div class="cert-meta">TYPE: HT / Salles serveurs dédiées</div>
+                            <div class="cert-meta">
+                                📈 Score: 580 Pix (Niveau Avancé)<br>
+                                🗓 Obtenue: Avril 2024<br>
+                                📂 Points forts: Sécurité numérique, Traitement des données, Résolution de problèmes techniques.
+                            </div>
                         </div>
                     </div>
 
@@ -969,48 +882,12 @@
 
     <section id="competences" class="alt-bg">
         <div class="section-container">
-            <h2 class="reveal"><i class="fas fa-cubes"></i> Compétences, Langues & Mobilité</h2>
+            <h2 class="reveal"><i class="fas fa-sliders"></i> Compétences & Profil global</h2>
             
-            <div class="profile-footer-grid reveal">
-                
-                <div>
-                    <h3 style="font-size:1.3rem; font-weight:700; margin-bottom:1.5rem;"><i class="fas fa-toolbox" style="color:var(--accent);"></i> Hard Skills</h3>
-                    <div class="cert-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
-                        
-                        <div class="timeline-body" style="padding:1.5rem; gap:0.5rem;">
-                            <h4 style="color:var(--accent);"><i class="fas fa-server"></i> Systèmes & Scripting</h4>
-                            <ul class="spec-list">
-                                <li>Windows Server (Active Directory)</li>
-                                <li>Linux Administrateur (Debian, Ubuntu)</li>
-                                <li>Scripting Bash / Automatisation</li>
-                            </ul>
-                        </div>
-
-                        <div class="timeline-body" style="padding:1.5rem; gap:0.5rem;">
-                            <h4 style="color:var(--accent);"><i class="fas fa-network-wired"></i> Réseaux & Télécoms</h4>
-                            <ul class="spec-list">
-                                <li>Routage statique, dynamique BGP, OSPF</li>
-                                <li>VLAN, Trunking, Spanning-Tree (STP)</li>
-                                <li>Architecture Télécom Link (FTTH/FTTO)</li>
-                            </ul>
-                        </div>
-
-                        <div class="timeline-body" style="padding:1.5rem; gap:0.5rem;">
-                            <h4 style="color:var(--accent);"><i class="fas fa-user-shield"></i> Outils de Sécurité</h4>
-                            <ul class="spec-list">
-                                <li>Wireshark (Analyse de trames pcap)</li>
-                                <li>Configuration Pare-feu / ACLs</li>
-                                <li>Supervision (Zabbix / PRTG / Centreon)</li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div style="display:flex; flex-direction:column; gap:2rem;">
-                    
+            <div class="profile-footer-grid">
+                <div class="reveal" style="display: flex; flex-direction: column; gap: 2rem;">
                     <div>
-                        <h3 style="font-size:1.3rem; font-weight:700; margin-bottom:1.1rem;"><i class="fas fa-globe" style="color:var(--accent);"></i> Langues</h3>
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main);"><i class="fas fa-language" style="color: var(--accent);"></i> Langues</h3>
                         <div class="lang-grid">
                             <div class="lang-card">
                                 <i class="flag-fr"></i>
@@ -1023,150 +900,161 @@
                                 <i class="fas fa-flag-usa flag-en"></i>
                                 <div>
                                     <h4>Anglais</h4>
-                                    <p>Technique / Intermédiaire (B1/B2)</p>
+                                    <p>Niveau B2 (Technique courant, lu, écrit)</p>
+                                </div>
+                            </div>
+                            <div class="lang-card">
+                                <i class="fas fa-flag flag-es"></i>
+                                <div>
+                                    <h4>Espagnol</h4>
+                                    <p>Niveau B1 (Notions scolaires intermédiaires)</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <h3 style="font-size:1.3rem; font-weight:700; margin-bottom:1.1rem;"><i class="fas fa-car" style="color:var(--accent);"></i> Mobilité</h3>
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main);"><i class="fas fa-car" style="color: var(--accent);"></i> Mobilité & Permis</h3>
                         <div class="mobility-grid">
                             <div class="mobility-card">
                                 <i class="fas fa-id-card"></i>
                                 <div>
                                     <h4>Permis B</h4>
-                                    <p>Véhiculé — Déplacements possibles</p>
+                                    <p>Titulaire du permis de conduire</p>
+                                </div>
+                            </div>
+                            <div class="mobility-card">
+                                <i class="fas fa-map-location-dot"></i>
+                                <div>
+                                    <h4>Zone de déplacement</h4>
+                                    <p>Région Toulousaine et agglomération (Véhiculé)</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
+                <div class="reveal">
+                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main);"><i class="fas fa-layer-group" style="color: var(--accent-green);"></i> Stack Technique</h3>
+                    <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 20px; display: flex; flex-direction: column; gap: 1.5rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+                        <div>
+                            <h4 style="font-size: 0.9rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-network-wired"></i> Réseaux & Telecom</h4>
+                            <ul class="spec-list">
+                                <li>Modèle OSI, TCP/IP, Architecture LAN/WAN</li>
+                                <li>Routage Statique et Dynamique (BGP, OSPF)</li>
+                                <li>Commutation (VLANs, Trunking 802.1Q, STP)</li>
+                                <li>Analyse de flux réseaux (Wireshark, tcpdump)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-server"></i> Systèmes & Cloud</h4>
+                            <ul class="spec-list">
+                                <li>Windows Server (Active Directory, DNS, DHCP, GPO)</li>
+                                <li>Linux Administration (Debian, Ubuntu Server)</li>
+                                <li>Environnements de Virtualisation (Proxmox ESXi)</li>
+                                <li>Solutions collaboratives (O365, OneDrive, SharePoint)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-code"></i> Scripting & Automatisation</h4>
+                            <ul class="spec-list">
+                                <li>Python (Bases de l'automatisation, algorithmie NSI)</li>
+                                <li>Bash scripting (Automatisation de tâches Linux)</li>
+                                <li>Bases de données relationnelles (SQL, MySQL)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <footer id="contact">
-        <div class="section-container">
-            <h2 style="justify-content:center; margin-bottom: 2rem;"><i class="fas fa-envelope"></i> Me Contacter</h2>
-            <p style="color:#94a3b8; max-width:500px; margin:0 auto 3rem;">
-                Vous souhaitez échanger sur un projet d'infrastructure, de sécurité réseau ou une opportunité future ? N'hésitez pas !
-            </p>
-            
-            <div class="footer-info">
-                <a href="mailto:timeo.pedoussaut@email.com" class="footer-info-item">
-                    <i class="fas fa-envelope-open"></i> timeo.pedoussaut@email.com
-                </a>
-                <div class="footer-info-item">
-                    <i class="fas fa-location-dot"></i> France (Région Occitanie / Toulouse)
-                </div>
-            </div>
-
-            <div class="social-links">
-                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-
-            <p style="font-size:0.8rem; color:#64748b; margin-top:3rem; font-family:monospace;">
-                &copy; <span id="year"></span> Timéo Pedoussaut. Tout droit réservé. Portfolio Durci et Sécurisé.
-            </p>
-        </div>
-    </footer>
-
-
-    <div class="profile-lightbox" id="lightbox-modal">
-        <img src="" alt="Aperçu Grand Format" class="lightbox-img" id="lightbox-target-img">
-    </div>
-
-
-    <button class="term-widget-btn" id="term-trigger" aria-label="Ouvrir le terminal cyber">
-        <i class="fas fa-code"></i>
+    <button class="term-widget-btn" id="term-widget-toggle" aria-label="Ouvrir le terminal interactif">
+        <i class="fas fa-code-branch"></i>
     </button>
-
-    <div class="term-window" id="term-box">
+    
+    <div class="term-window" id="term-window">
         <div class="term-header">
-            <span>tpedoussaut@cyber-portfolio:~</span>
             <div class="term-header-dots">
-                <span class="term-dot red" id="term-close"></span>
+                <span class="term-dot red" id="term-close-dot"></span>
                 <span class="term-dot yellow"></span>
                 <span class="term-dot green"></span>
             </div>
+            <div>tpedoussaut@portfolio:~</div>
+            <div><i class="fas fa-lock" style="font-size: 0.75rem; color: var(--accent-green);"></i></div>
         </div>
-        <div class="term-body" id="term-console-body">
-            <div class="term-output-line">Bienvenue sur l'interface Shell de Timéo Pedoussaut.</div>
-            <div class="term-output-line" style="color:var(--text-muted);">Tapez 'help' pour lister les commandes disponibles.</div>
+        <div class="term-body" id="term-body">
+            <div class="term-output-line">Bienvenue sur le terminal interactif de Timéo.</div>
+            <div class="term-output-line">Tapez <span style="color: #ffffff; font-weight: bold;">help</span> pour lister les commandes système disponibles.</div>
             
             <div class="term-input-row">
-                <span class="term-prompt">guest@sec-portfolio:$</span>
-                <input type="text" class="term-input" id="terminal-user-input" autocomplete="off" autofocus>
+                <span class="term-prompt">guest@timeo_sec:~#</span>
+                <input type="text" class="term-input" id="term-user-input" maxlength="40" autofocus autocomplete="off" spellcheck="false">
             </div>
         </div>
     </div>
 
+    <footer>
+        <div class="social-icons">
+            <a href="https://linkedin.com/in/timeo-pedoussaut" target="_blank" rel="noopener" aria-label="Profil LinkedIn de Timéo Pedoussaut"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/timeopedoussaut" target="_blank" rel="noopener" aria-label="Profil GitHub de Timéo Pedoussaut"><i class="fab fa-github"></i></a>
+            <a href="mailto:contact@timeopedoussaut.fr" aria-label="Envoyer un e-mail à Timéo Pedoussaut"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>Disponible pour de nouveaux défis techniques ou projets d'ingénierie.</p>
+        <div class="copyright">
+            &copy; 2026 Timéo Pedoussaut. Tous droits réservés. Construit en HTML5/CSS3 Premium Core.
+        </div>
+    </footer>
 
     <script>
-        // 1. GESTION DU COMPTEUR DE L'UPTIME (EFFET TECHNIQUE SYSADMIN)
-        // Date fictive simulant la mise en production du SI du portfolio
-        const startProductionDate = new Date("2025-01-01T08:00:00");
-        
-        function updateUptime() {
-            const now = new Date();
-            const diff = now - startProductionDate;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-
-            const format = (num) => String(num).padStart(2, '0');
-            
-            document.getElementById('uptime-counter').textContent = 
-                `${days}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
-        }
-        setInterval(updateUptime, 1000);
-        updateUptime();
-
-        // Dynamisation de l'année du copyright
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-
-        // 2. CHANGER DE THÈME (DARK/LIGHT MODE) ET PERSISTANCE VIA LOCALSTORAGE
+        /* 1. GESTION DU MODE CLAIR / SOMBRE AVEC LOCAL STORAGE */
         const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = themeBtn.querySelector('i');
+        const themeText = themeBtn.querySelector('span');
         const currentTheme = localStorage.getItem('theme') || 'dark';
 
         if (currentTheme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
-            themeBtn.innerHTML = '<i class="fas fa-sun"></i> <span>Light Mode</span>';
+            themeIcon.className = 'fas fa-sun';
+            themeText.innerText = 'Mode Clair';
         }
 
         themeBtn.addEventListener('click', () => {
             let theme = document.documentElement.getAttribute('data-theme');
             if (theme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-moon';
+                themeText.innerText = 'Mode Sombre';
                 localStorage.setItem('theme', 'dark');
-                themeBtn.innerHTML = '<i class="fas fa-moon"></i> <span>Dark Mode</span>';
             } else {
                 document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-sun';
+                themeText.innerText = 'Mode Clair';
                 localStorage.setItem('theme', 'light');
-                themeBtn.innerHTML = '<i class="fas fa-sun"></i> <span>Light Mode</span>';
             }
-            // Mettre à jour la couleur des lignes de particules lors du changement de mode
-            initParticles();
         });
 
+        /* 2. EFFET ONdes DE CHOC (RIPPLE EFFECT) SUR LES BOUTONS PREMIUNS */
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
 
-        // 3. INDICATEUR DE LECTURE (PROGRESS BAR HAUT DE PAGE)
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('scroll-progress').style.width = scrolled + '%';
-        });
+            const rect = button.getBoundingClientRect();
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - rect.left - radius}px`;
+            circle.style.top = `${event.clientY - rect.top - radius}px`;
+            circle.classList.add("ripple-wave");
 
+            const ripple = button.getElementsByClassName("ripple-wave")[0];
+            if (ripple) { ripple.remove(); }
+            button.appendChild(circle);
+        }
+        document.querySelectorAll('.btn, .btn-secondary, .theme-toggle').forEach(b => b.addEventListener('click', createRipple));
 
-        // 4. SCROLL REVEAL VIA INTERSECTION OBSERVER (EFFET APPARITION FLUIDE)
+        /* 3. SCROLL REVEAL (INTERSECTION OBSERVER) */
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1174,148 +1062,113 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
-
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
         revealElements.forEach(el => revealObserver.observe(el));
 
-
-        // 5. BOUTONS : EFFET D'ONDE DE CHOC / CLIC SOURIS (RIPPLE EFFECT)
-        const rippleButtons = document.querySelectorAll('.btn, .btn-secondary, .theme-toggle');
-        rippleButtons.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                let x = e.clientX - e.target.getBoundingClientRect().left;
-                let y = e.clientY - e.target.getBoundingClientRect().top;
-                
-                let ripple = document.createElement('span');
-                ripple.classList.add('ripple-wave');
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
-            });
+        /* 4. SCROLL PROGRESS BAR INDICATOR */
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
         });
 
-
-        // 6. GESTION EMBEDDED LIGHTBOX POUR LES IMAGES (PHOTO DE PROFIL & LOGO)
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-target-img');
-        const triggerImg = document.getElementById('profile-trigger');
-        const triggerLogo = document.getElementById('logo-linkt-trigger');
-
-        function openLightbox(sourceUrl) {
-            lightboxImg.src = sourceUrl;
-            lightbox.classList.add('active');
+        /* 5. PROFILE LIGHTBOX COMPONENT */
+        const trigger = document.getElementById('profile-trigger');
+        const lightbox = document.getElementById('profile-lightbox');
+        if(trigger && lightbox) {
+            trigger.addEventListener('click', () => lightbox.classList.add('active'));
+            lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
         }
 
-        if(triggerImg) {
-            triggerImg.addEventListener('click', () => {
-                const imgNode = triggerImg.querySelector('img');
-                openLightbox(imgNode.src);
-            });
-        }
-        if(triggerLogo) {
-            triggerLogo.addEventListener('click', () => {
-                openLightbox(triggerLogo.src);
-            });
-        }
+        /* 6. CYBER TERMINAL ENGINE INTERACTIF CONTROLLER */
+        const termWidgetToggle = document.getElementById('term-widget-toggle');
+        const termWindow = document.getElementById('term-window');
+        const termCloseDot = document.getElementById('term-close-dot');
+        const termInput = document.getElementById('term-user-input');
+        const termBody = document.getElementById('term-body');
 
-        lightbox.addEventListener('click', () => {
-            lightbox.classList.remove('active');
+        termWidgetToggle.addEventListener('click', () => {
+            termWindow.classList.toggle('active');
+            if(termWindow.classList.contains('active')) termInput.focus();
         });
+        termCloseDot.addEventListener('click', () => termWindow.classList.remove('active'));
 
+        // Commandes du terminal
+        const commands = {
+            help: "Commandes valides : info, certs, status, clear, exit",
+            info: "Timéo Pedoussaut - Alternant Technicien N2 chez Linkt. Spécialité : Infrastructures Réseaux, OS Linux/Windows & SSI.",
+            certs: "Certifications : Cisco CCNA (Prepa), Fortinet FCA, ANSSI SecNumacadémie, Pix 580.",
+            status: "Système : En ligne\nUptime Core : 100%\nNiveau d'alerte : Zéro menace active.",
+            clear: "CLEAR_ACTION"
+        };
 
-        // 7. SYSTÈME INTERACTIF DE MINI-TERMINAL EMULÉ (COMMAND LINE SHELL)
-        const termTrigger = document.getElementById('term-trigger');
-        const termBox = document.getElementById('term-box');
-        const termClose = document.getElementById('term-close');
-        const termInput = document.getElementById('terminal-user-input');
-        const consoleBody = document.getElementById('term-console-body');
-
-        termTrigger.addEventListener('click', () => {
-            termBox.classList.toggle('active');
-            if(termBox.classList.contains('active')) termInput.focus();
-        });
-
-        termClose.addEventListener('click', () => {
-            termBox.classList.remove('active');
-        });
-
-        // Logique des commandes du terminal
-        termInput.addEventListener('keydown', function(e) {
+        termInput.addEventListener('keydown', (e) => {
             if(e.key === 'Enter') {
-                let input = this.value.trim();
-                let cmd = input.toLowerCase();
-                
-                if(input === "") return;
+                const rawInput = termInput.value;
+                const cmd = rawInput.trim().toLowerCase();
+                termInput.value = '';
 
-                // Créer la ligne d'affichage de ce qu'a tapé l'utilisateur
-                let echoLine = document.createElement('div');
-                echoLine.classList.add('term-output-line');
-                echoLine.innerHTML = `<span class="term-prompt">guest@sec-portfolio:$</span> ${input}`;
-                
-                // Insérer l'écho avant le bloc d'input
-                consoleBody.insertBefore(echoLine, consoleBody.lastElementChild);
-                this.value = "";
+                // Ne rien faire si vide
+                if(cmd === '') return;
 
-                let response = document.createElement('div');
-                response.classList.add('term-output-line');
+                // Créer la ligne de prompt saisie
+                const inputLine = document.createElement('div');
+                inputLine.className = 'term-output-line';
+                inputLine.innerHTML = `<span class="term-prompt">guest@timeo_sec:~#</span> ${rawInput}`;
+                termBody.insertBefore(inputLine, termBody.lastElementChild);
 
-                // Traitement des commandes shell émulées
-                switch(cmd) {
-                    case 'help':
-                        response.innerHTML = "Commandes dispo :<br> - <b>about</b> : En savoir plus sur Timéo<br> - <b>skills</b> : Compétences clefs<br> - <b>uptime</b> : Statut d'exécution du serveur<br> - <b>clear</b> : Vider l'écran<br> - <b>exit</b> : Fermer le module terminal";
-                        break;
-                    case 'about':
-                        response.innerHTML = "Timéo Pedoussaut - Alternant Linkt N2. Spécialisé en routage ISP et durcissement d'infrastructures informatiques.";
-                        break;
-                    case 'skills':
-                        response.innerHTML = "Réseau: BGP, OSPF, VLANs, Wireshark.<br>Système: Active Directory, Linux Security, Bash Scripting.";
-                        break;
-                    case 'uptime':
-                        response.textContent = document.getElementById('uptime-counter').textContent;
-                        break;
-                    case 'clear':
-                        // Supprime toutes les lignes d'output sauf l'input-row terminal
-                        const lines = consoleBody.querySelectorAll('.term-output-line');
-                        lines.forEach(line => line.remove());
-                        return;
-                    case 'exit':
-                        termBox.classList.remove('active');
-                        return;
-                    default:
-                        response.innerHTML = `<span style="color:#ef4444;">Erreur: Commande '${input}' inconnue.</span> Tapez 'help' pour obtenir de l'aide.`;
+                // Traiter la commande
+                if (cmd === 'exit') {
+                    termWindow.classList.remove('active');
+                } else if (cmd === 'clear') {
+                    // Supprimer toutes les lignes sauf la dernière rangée d'input
+                    const lines = termBody.querySelectorAll('.term-output-line');
+                    lines.forEach(l => l.remove());
+                } else if (commands[cmd]) {
+                    const outputLine = document.createElement('div');
+                    outputLine.className = 'term-output-line';
+                    outputLine.style.color = '#e2e8f0';
+                    outputLine.innerText = commands[cmd];
+                    termBody.insertBefore(outputLine, termBody.lastElementChild);
+                } else {
+                    const errorLine = document.createElement('div');
+                    errorLine.className = 'term-output-line';
+                    errorLine.style.color = '#ef4444';
+                    errorLine.innerText = `Erreur : commande introuvable '${rawInput}'. Tapez 'help' pour obtenir de l'aide.`;
+                    termBody.insertBefore(errorLine, termBody.lastElementChild);
                 }
 
-                consoleBody.insertBefore(response, consoleBody.lastElementChild);
-                consoleBody.scrollTop = consoleBody.scrollHeight; // Scroll automatique
+                // Scroll automatique vers le bas
+                termBody.scrollTop = termBody.scrollHeight;
             }
         });
 
-
-        // 8. ANIMATION INTERACTIVE DE PARTICULES CONNECTÉES (MOTEUR CANVAS HTML5)
+        /* 7. CANVAS INTERACTIF DE PARTICULES SOURIS (DÉCORATIF HIGH-TECH) */
         const canvas = document.getElementById('cyber-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
+        const maxDistance = 110;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            initParticles();
+        // Ajustement à la taille de l'écran
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let mouse = { x: null, y: null, radius: 160 };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
         });
-        resizeCanvas();
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
 
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
-                this.x = x;
-                this.y = y;
-                this.directionX = directionX;
-                this.directionY = directionY;
-                this.size = size;
-                this.color = color;
+                this.x = x; this.y = y;
+                this.directionX = directionX; this.directionY = directionY;
+                this.size = size; this.color = color;
             }
             draw() {
                 ctx.beginPath();
@@ -1326,6 +1179,17 @@
             update() {
                 if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
                 if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+                
+                // Interaction avec la souris
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.hypot(dx, dy);
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 2;
+                    if (mouse.x > this.x && this.x > this.size * 10) this.x -= 2;
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 2;
+                    if (mouse.y > this.y && this.y > this.size * 10) this.y -= 2;
+                }
                 this.x += this.directionX;
                 this.y += this.directionY;
             }
@@ -1333,27 +1197,26 @@
 
         function initParticles() {
             particlesArray = [];
-            let numberOfParticles = (canvas.width * canvas.height) / 9000;
-            numberOfParticles = Math.min(numberOfParticles, 120); // Cap de performance
+            // Densité de particules adaptative
+            let numberOfParticles = (canvas.width * canvas.height) / 14000;
+            if(numberOfParticles > 95) numberOfParticles = 95; // Plafond pour économiser le CPU
             
             const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            const particleColor = isLight ? 'rgba(2, 132, 199, 0.25)' : 'rgba(56, 189, 248, 0.2)';
+            const color = isLight ? 'rgba(2, 132, 199, 0.25)' : 'rgba(56, 189, 248, 0.25)';
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
-                let x = (Math.random() * ((canvas.width - size * 2) - size * 2)) + size * 2;
-                let y = (Math.random() * ((canvas.height - size * 2) - size * 2)) + size * 2;
+                let x = (Math.random() * ((window.innerWidth - size * 2) - size * 2)) + size * 2;
+                let y = (Math.random() * ((window.innerHeight - size * 2) - size * 2)) + size * 2;
                 let directionX = (Math.random() * 0.4) - 0.2;
                 let directionY = (Math.random() * 0.4) - 0.2;
-
-                particlesArray.push(new Particle(x, y, directionX, directionY, size, particleColor));
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
             }
         }
 
         function connectParticles() {
-            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            let maxDistance = 140;
             let opacityValue = 1;
+            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
             
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
@@ -1386,6 +1249,18 @@
             requestAnimationFrame(animate);
         }
 
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        // Réinitialiser les couleurs des liaisons si changement de thème
+        document.getElementById('theme-btn').addEventListener('click', () => {
+            setTimeout(initParticles, 50);
+        });
+
+        // Lancement de l'animation
         initParticles();
         animate();
     </script>
