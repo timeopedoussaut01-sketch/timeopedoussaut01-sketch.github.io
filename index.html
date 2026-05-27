@@ -588,14 +588,32 @@
 
         /* FRISE CHRONOLOGIQUE DYNAMISÉE */
         .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
+
         .timeline::before {
-            content: ''; position: absolute; left: 210px; top: 20px; bottom: 20px;
+            content: ''; position: absolute; 
+            left: 210px; /* On garde ta ligne à 210px */
+            top: 20px; bottom: 20px;
             width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); opacity: 0.4;
         }
-        .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 3.5rem; position: relative; }
-        .timeline-date { text-align: right; padding-top: 2.2rem; color: var(--text-muted); font-weight: 700; font-size: 0.95rem; transition: var(--transition); }
+
+        .timeline-item { 
+            display: grid; 
+            grid-template-columns: 180px 1fr; 
+            gap: 3.75rem; /* Ajusté à 60px pour un calcul parfait */
+            position: relative; 
+        }
+
+        .timeline-date { 
+            text-align: right; 
+            padding-top: 1.8rem; /* Légèrement remonté pour s'aligner horizontalement avec le point */
+            color: var(--text-muted); 
+            font-weight: 700; 
+            font-size: 0.95rem; 
+            transition: var(--transition); 
+        }
+
         .timeline-date.active { color: var(--accent-green); text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
-        
+
         .timeline-body {
             background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
             border: 1px solid var(--border); transition: var(--transition); position: relative;
@@ -604,8 +622,13 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             overflow: visible;
         }
+
+        /* LE POINT CORRIGÉ */
         .timeline-body::after {
-            content: ''; position: absolute; left: -32px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
+            content: ''; position: absolute; 
+            left: -31px; /* Ajusté de -32px à -31px pour tomber pile au centre des 2px de la ligne */
+            top: 28px; 
+            width: 10px; height: 10px; border-radius: 50%;
             background-color: var(--border); border: 2px solid var(--border); z-index: 5; transition: var(--transition);
         }
         
