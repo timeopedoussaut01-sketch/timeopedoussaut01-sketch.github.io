@@ -811,9 +811,7 @@
 
     <section id="experiences">
         <div class="section-container">
-            <h2><i class="fa-solid fa-briefcase"></i>
-                <span data-translate="exp_title">Expériences Professionnelles</span>
-            </h2>
+            <h2><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
             <div class="timeline">
                 
                 <div class="timeline-item reveal">
@@ -1344,8 +1342,8 @@
     function changeLanguage(lang, label) {
         // Change le texte du bouton dropdown
         console.log("Tentative de traduction vers : " + lang); // Pour déboguer
-        document.querySelector('.dropbtn').innerHTML = '<i class="fa-solid fa-globe"></i> <span>' + label + '</span>';
-
+        document.querySelector('.dropbtn').innerHTML = '<i class="fa-solid fa-globe"></i> ' + label;
+        
         // Dictionnaire de traduction
         const translations = {
             fr: {
@@ -1378,16 +1376,6 @@
             if (translations[lang] && translations[lang][key]) {
                 element.textContent = translations[lang][key];
             }
-        // Traduction spécifique du menu
-        const menuMapping = {
-            'a[href="#experiences"]': 'nav_exp',
-            'a[href="#formations"]': 'nav_edu',
-            'a[href="#projects"]': 'nav_proj',
-            'a[href="#certifications"]': 'nav_cert'
-        };
-        for (let selector in menuMapping) {
-            const el = document.querySelector(selector);
-            if (el) el.textContent = translations[lang][menuMapping[selector]];
         });
 
         // 4. Traduction spécifique du menu (si les liens n'ont pas de data-translate)
