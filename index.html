@@ -28,6 +28,26 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+        /* Conteneur carré pour le logo */
+        .cert-logo-container {
+            width: 60px;    /* Largeur fixe */
+            height: 60px;   /* Hauteur fixe */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05); /* Petit fond léger */
+            border-radius: 8px;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+
+        /* Force l'image à remplir le carré sans se déformer */
+        .cert-logo {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain; /* Garde les proportions */
+        }
+    
 
         .dropbtn {
             background: rgba(15, 23, 42, 0.6);
@@ -1088,7 +1108,18 @@
                     </div>
                         </div>
                     </div>
-
+                    <div class="cert-item">
+                        <div class="cert-header">
+                            <div class="cert-logo-container">
+                                <img src="LogoFortinet.jpg" alt="Logo Fortinet" class="cert-logo">
+                            </div>
+        
+                            <div>
+                                <span class="cert-title">Fortinet Certified Fundamentals (NSE 1 & 2)</span><br>
+                                <a href="#" class="cert-org-link">Fortinet</a>
+                            </div>
+                        </div>
+                        </div>
                     <div class="cert-item">
                         <div class="cert-content">
                             <div>
