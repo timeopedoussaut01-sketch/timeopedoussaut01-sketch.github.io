@@ -28,6 +28,18 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+        /* --- LA POIGNÉE VISUELLE EN HAUT À GAUCHE --- */
+        .term-resizer-tl {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 14px;
+            height: 14px;
+            cursor: nwse-resize; /* Curseur flèche diagonale */
+            z-index: 1001;       /* Passe au-dessus du contenu du terminal */
+            background: linear-gradient(135deg, var(--accent) 35%, transparent 35%);
+            border-top-left-radius: 11px; /* Épouse parfaitement l'arrondi de ton terminal */
+        }
         .cert-lightbox-overlay {
             display: none;
             position: fixed;
@@ -943,8 +955,6 @@
             overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none;
             transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             /* --- AJOUT POUR LE REDIMENSIONNEMENT À LA SOURIS --- */
-            resize: both;          /* Active le redimensionnement largeur et hauteur */
-            overflow: hidden;      /* Obligatoire pour que le resize fonctionne */
             min-width: 320px;      /* Sécurité pour ne pas le rendre trop petit */
             min-height: 200px;     /* Sécurité hauteur */
             max-width: 90vw;       /* Évite qu'il ne dépasse de l'écran du PC */
