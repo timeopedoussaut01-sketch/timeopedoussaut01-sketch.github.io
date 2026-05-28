@@ -935,6 +935,13 @@
             z-index: 999; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column;
             overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none;
             transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            /* --- AJOUT POUR LE REDIMENSIONNEMENT À LA SOURIS --- */
+            resize: both;          /* Active le redimensionnement largeur et hauteur */
+            overflow: hidden;      /* Obligatoire pour que le resize fonctionne */
+            min-width: 320px;      /* Sécurité pour ne pas le rendre trop petit */
+            min-height: 200px;     /* Sécurité hauteur */
+            max-width: 90vw;       /* Évite qu'il ne dépasse de l'écran du PC */
+            max-height: 85vh;      /* Évite qu'il ne dépasse en hauteur */
         }
         .term-window.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
         
