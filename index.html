@@ -28,6 +28,39 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+        .cert-lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh;
+            background-color: rgba(3, 7, 18, 0.92); /* Fond très sombre */
+            z-index: 999999; /* Force l'affichage au-dessus de tout (Terminal, Canvas, etc.) */
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+        .cert-lightbox-overlay img {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.15);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(0.95);
+            cursor: default;
+        }
+        .cert-lightbox-overlay.active img {
+        transform: scale(1);
+        }
+        .cert-lightbox-close {
+            position: absolute;
+            top: 25px; right: 35px;
+            color: #94a3b8; font-size: 42px; font-family: Arial, sans-serif;
+            line-height: 1; cursor: pointer; transition: 0.2s;
+        }
+        .cert-lightbox-close:hover {
+            color: var(--accent);
+        }
         .timeline-body {
             padding: 2.5rem 2.5rem 2rem 2.5rem; /* Réduit la quatrième valeur (le bas) à 2rem ou 1.5rem */
         }
@@ -959,7 +992,50 @@
     </style>
 </head>
 <body>
+    <div id="independentCertLightbox" class="cert-lightbox-overlay">
+        <span class="cert-lightbox-close">&times;</span>
+        <img id="independentCertImg" src="" alt="Certificat" onclick="event.stopPropagation();">
+    </div>
 
+    <script>
+    (function() {
+        window.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('independentCertLightbox');
+            const lightboxImg = document.getElementById('independentCertImg');
+            
+            if (!lightbox || !lightboxImg) return;
+
+            const allLinks = document.querySelectorAll('a');
+            
+            allLinks.forEach(link => {
+                if (link.textContent && link.textContent.includes("Voir le certificat")) {
+                    link.addEventListener('click', function(event) {
+                        const imagePath = this.getAttribute('href');
+                        
+                        if (imagePath && (imagePath.endsWith('.jpg') || imagePath.endsWith('.png') || imagePath.endsWith('.jpeg'))) {
+                            event.preventDefault(); 
+                            
+                            lightboxImg.src = imagePath;
+                            lightbox.style.display = 'flex';
+                            
+                            setTimeout(() => lightbox.classList.add('active'), 15);
+                        }
+                    });
+                }
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                setTimeout(() => {
+                    lightbox.style.display = 'none';
+                    lightboxImg.src = '';
+                }, 250);
+            }
+
+            lightbox.addEventListener('click', closeLightbox);
+        });
+    })();
+    </script>
     <div id="scroll-progress"></div>
 
     <canvas id="cyber-canvas"></canvas>
