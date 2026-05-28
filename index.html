@@ -1729,6 +1729,15 @@
                 modalImg.src = ""; 
             }, 300);
         }
+    }
+    if (typeof particlesJS !== 'undefined') {
+        // Remplace 'particles-js' par l'ID de ta div de fond et 'particles.json' par ton fichier s'il a un autre nom
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('Particules rechargées avec succès !');
+        });
+    } else {
+        console.log('Le script global de Particles.js est manquant plus haut dans le HTML.');
+    }
     });
     </script>
 
