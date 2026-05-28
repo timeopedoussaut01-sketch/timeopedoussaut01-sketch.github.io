@@ -1880,7 +1880,7 @@ PROFILE STATUS: ACTIVE
            ↳ Management des Infrastructures & Cybersécurité
 
 ============================================================
-🎯 CORE FOCUS & PASSIONS
+CORE FOCUS & PASSIONS
 ============================================================
 [+] Architectures Réseaux d'Entreprise
 [+] Commutation Avancée & Routage
@@ -1888,9 +1888,26 @@ PROFILE STATUS: ACTIVE
 
 ============================================================
 Type 'help' ou 'competences' pour en savoir plus.`;
-                    break;
-                case 'competences':
-                    output = `[RÉSEAUX] : BGP, WAN, LAN, Cisco ASR/ISR, Huawei Switches, Juniper, MikroTik.\n[SÉCURITÉ] : Fortigate Firewalls, GPO, Active Directory, Normes ANSSI (SecNumacad).\n[OUTILS] : Grafana, Radius, SecureCRT, Vue.js, Python.`;
+                    case 'competences':
+                    output = `============================================================
+ARCHITECTURE TECHNIQUE & SKILLS
+============================================================
+[+] RÉSEAUX :
+    • Protocoles : BGP, WAN, LAN, Routage & Commutation etc...
+    • Équipements : Cisco ASR/ISR, Keenetic, Zyxel
+                    Juniper, MikroTik, 
+
+[+] SÉCURITÉ :
+    • Firewalls : Fortigate (Périmètre & Tunnels VPN)
+    • Système   : GPO, Active Directory
+    • Normes    : Recommandations ANSSI (SecNumacad)
+
+[+] OUTILS & OPS :
+    • Observabilité : Grafana, Radius, SecureCRT
+    • Scripting     : HTML, Python
+
+============================================================
+Type 'logs' ou 'history' pour analyser l'infrastructure.`;
                     break;
                 case 'logs':
                     output = `[INFO] -- ${new Date().toISOString()}\n[OK] Fortigate-Core-FW: Secure tunnel established successfully.\n[OK] Radius-Server: Sync done with active directory database.\n[WARN] Core-Switch-Huawei: High traffic spike detected on trunk port 24 (Bascule LAN client info).\n[INFO] Analytics: Recruiter session uptime tracking active. No packet drop.`;
