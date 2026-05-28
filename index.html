@@ -28,6 +28,21 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+        .matrix-mode {
+            filter: sepia(0.2) hue-rotate(100deg) brightness(1.2);
+            transition: all 1s ease;
+        }
+
+        /* On peut même ajouter un effet de scanline discret par-dessus */
+        .matrix-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 9999;
+        }
         /* Style du pied de page */
         .site-footer {
             background: rgba(15, 23, 42, 0.5); /* Couleur un peu plus claire que le fond */
@@ -912,34 +927,10 @@
             .job-header-container { gap: 1rem; }
             .company-logo { width: 55px; height: 55px; }
             .term-window { width: calc(100vw - 40px); right: 20px; left: 20px; bottom: 85px; }
-        .log-overlay {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 300px;
-            height: 150px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--accent);
-            color: var(--accent-green);
-            font-family: 'Courier New', monospace;
-            font-size: 10px;
-            padding: 10px;
-            overflow: hidden;
-            pointer-events: none; /* Très important pour pouvoir cliquer à travers */
-            z-index: 100;
-            opacity: 0.7;
-        }
-
-        #log-container {
-            display: flex;
-            flex-direction: column;
         }
     </style>
 </head>
 <body>
-    <div id="log-overlay" class="log-overlay">
-        <div id="log-container"></div>
-    </div>
 
     <div id="scroll-progress"></div>
 
@@ -1559,37 +1550,6 @@
             }
         });
 
-        const logContainer = document.getElementById('log-container');
-        const logs = [
-            "Connection authenticated: Recruiter_01",
-            "Traffic analyzed on Port 443",
-            "Security patch v2.3 applied",
-            "Database sync: Success",
-            "Firewall rule updated: Allow internal",
-            "Packet loss: 0%",
-            "System integrity check: PASS",
-            "Routing table optimized"
-        ];
-
-        function addLog() {
-            const logEntry = document.createElement('div');
-            const timestamp = new Date().toLocaleTimeString().split(' ')[0];
-            logEntry.textContent = `[${timestamp}] ${logs[Math.floor(Math.random() * logs.length)]}`;
-    
-            logContainer.appendChild(logEntry);
-    
-            // Garder seulement les 10 derniers logs pour ne pas saturer la mémoire
-            if (logContainer.children.length > 10) {
-                logContainer.removeChild(logContainer.firstChild);
-        }
-    
-            // Rappel récursif avec un temps aléatoire pour le côté "naturel"
-            setTimeout(addLog, Math.random() * 2000 + 500);
-}
-
-        // Lancement de la simulation
-        addLog();
-
         setInterval(() => {
             const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
             if (elapsedSeconds < 60) {
@@ -1669,6 +1629,21 @@
         document.getElementById('cyberTerminal').addEventListener('click', () => {
             termInput.focus();
         });
+        case 'matrix':
+            document.body.classList.toggle('matrix-mode');
+    
+        // Création d'un élément overlay pour les scanlines si nécessaire
+        if (document.body.classList.contains('matrix-mode')) {
+            const overlay = document.createElement('div');
+            overlay.className = 'matrix-overlay';
+            document.body.appendChild(overlay);
+            output = "[SYSTEM] Mode Matrix activé. Décodage en cours...";
+        } else {
+            const overlay = document.querySelector('.matrix-overlay');
+            if (overlay) overlay.remove();
+            output = "[SYSTEM] Mode Matrix désactivé.";
+    }
+    break;
 
         function executeCommand(cmd) {
             if(!cmd) return;
