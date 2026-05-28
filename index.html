@@ -1062,28 +1062,6 @@
             window.removeEventListener('mousemove', resize);
             window.removeEventListener('mouseup', stopResize);
             terminal.style.transition = 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-
-            if (command === 'about') {
-                const aboutText = `============================================================
-                PROFILE STATUS: ACTIVE
-                ============================================================
-                • NOM : Timéo Pedoussaut
-                • STATUT : Alternant Coordinateur Technique @ Linkt
-                • CURSUS : Étudiant en Master MICSI (CESI)
-                    ↳ Management des Infrastructures & Cybersécurité
-
-                ============================================================
-                CORE FOCUS & PASSIONS
-                ============================================================
-                [+] Architectures Réseaux d'Entreprise
-                [+] Commutation Avancée & Routage
-                [+] Sécurité des Systèmes & Infrastructures
-
-                ============================================================
-                Type 'help' ou 'skills' pour en savoir plus.`;
-
-                    printLine(aboutText); 
-                }
         }
     });
 })();
