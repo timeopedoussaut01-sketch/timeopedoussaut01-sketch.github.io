@@ -1907,7 +1907,16 @@ ARCHITECTURE TECHNIQUE & SKILLS
     • Scripting     : HTML, Python
 
 ============================================================
-Type 'logs' ou 'history' pour analyser l'infrastructure.`;
+                    break;
+                case 'contact':
+                    output = `============================================================
+COMMUNICATIONS / CHANNELS DATA
+============================================================
+[+] EMAIL    : <a href="mailto:ton.email@exemple.com" class="term-link">ton.email@exemple.com</a>
+[+] LINKEDIN : <a href="https://linkedin.com/in/timeo-pedoussaut" target="_blank" class="term-link">linkedin.com/in/timeo-pedoussaut</a>
+[+] GITHUB   : <a href="https://github.com/ton-pseudo" target="_blank" class="term-link">github.com/ton-pseudo</a>
+
+Clique directement sur les liens pour y accéder !`;
                     break;
                 case 'logs':
                     output = `[INFO] -- ${new Date().toISOString()}\n[OK] Fortigate-Core-FW: Secure tunnel established successfully.\n[OK] Radius-Server: Sync done with active directory database.\n[WARN] Core-Switch-Huawei: High traffic spike detected on trunk port 24 (Bascule LAN client info).\n[INFO] Analytics: Recruiter session uptime tracking active. No packet drop.`;
