@@ -28,6 +28,9 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+        .timeline-body {
+            padding: 2.5rem 2.5rem 2rem 2.5rem; /* Réduit la quatrième valeur (le bas) à 2rem ou 1.5rem */
+        }
         /* Style du pied de page */
         .site-footer {
             background: rgba(15, 23, 42, 0.5); /* Couleur un peu plus claire que le fond */
@@ -176,8 +179,26 @@
             max-width: 80%;
             max-height: 80%;
             object-fit: contain; /* Garde les proportions */
+	    cursor: zoom-in;
         }
-    
+        .vendor-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition);
+            }
+        .vendor-badge:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px var(--glow);
+        }    
 
         .dropbtn {
             background: rgba(15, 23, 42, 0.6);
@@ -478,9 +499,18 @@
         header .profile-container, header h1, header .subtitle, header .bio, header .btn, header .stats-grid { position: relative; z-index: 2; }
 
         .profile-container { position: relative; margin-bottom: 2rem; margin-top: 20px; cursor: zoom-in; }
-        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); position: relative; z-index: 2; transition: var(--transition); }
+        .profile-img {
+            width: 220px;   /* Augmente cette valeur (ex: 200px, 250px) */
+            height: 220px;  /* Mets exactement la même valeur pour garder un carré parfait */
+            border-radius: 50%; /* Conserve le rendu parfaitement circulaire */
+            object-fit: cover;  /* Évite que l'image ne soit écrasée ou déformée */
+            border: 3px solid var(--accent); /* Ton contour lumineux */
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            position: relative;
+            z-index: 2;
+        }
         .profile-container:hover .profile-img { transform: scale(1.03); box-shadow: 0 0 25px var(--accent); }
-        .profile-container::before { content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 50%; background: var(--accent); filter: blur(15px); opacity: 0.3; z-index: 1; }
+        .profile-container::before { content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 50%; background: var(--accent); filter: blur(15px); opacity: 0.15; z-index: -1; }
 
         /* Lightbox */
         .profile-lightbox {
@@ -569,61 +599,63 @@
         }
 
         /* FRISE CHRONOLOGIQUE DYNAMISÉE */
-        .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; }
+        .timeline { position: relative; display: flex; flex-direction: column; gap: 4rem; padding-bottom: 5rem; }
+
         .timeline::before {
-            content: ''; position: absolute; left: 210px; top: 20px; bottom: 20px;
+            content: ''; position: absolute; 
+            left: 210px; /* On garde ta ligne à 210px */
+            top: 20px; bottom: 20px;
             width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); opacity: 0.4;
         }
+
         .timeline-item { 
             display: grid; 
             grid-template-columns: 180px 1fr; 
-            gap: 3.5rem; 
+            gap: 3.75rem; /* Ajusté à 60px pour un calcul parfait */
             position: relative; 
         }
-        .timeline-date {
+
+        .timeline-date { 
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Aligne tout à droite */
-            padding-top: 2.2rem;
-            gap: 15px;             /* Espace entre les deux lignes de date */
+            justify-content: space-between; /* Envoie la date de début en haut, la date de fin tout en bas */
+            text-align: right; 
+            padding-top: 0.8rem;    /* Aligne "Sept. 2025" avec le haut de la carte */
+            padding-bottom: 0.8rem; /* Aligne "Oct. 2027" avec le bas de la carte */
+            color: var(--text-muted); 
+            font-weight: 700; 
+            font-size: 0.95rem; 
+            transition: var(--transition); 
             position: relative;
+            height: 100%;
         }
-        .date-point {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-right: -20px;
-        }
-        .date-point::after {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background-color: var(--accent); /* Couleur de votre accent */
-            border-radius: 50%;
-            margin-left: 12px;               /* Espace entre le texte et le point */
-            box-shadow: 0 0 8px var(--accent);
-            z-index: 2;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 180px; /* Aligné avec la fin de votre première colonne */
-            top: 2.2rem;
-            bottom: 0;
-            width: 2px;
-            background: var(--border);
-                z-index: 1;
+        .timeline-date::before {
+            content: ''; position: absolute; 
+            left: 209px; /* Tombe pile sur les 2px de la ligne à 210px */
+            top: 2.1rem; /* Aligné horizontalement avec le texte de début */
+            width: 10px; height: 10px; border-radius: 50%;
+            background-color: var(--border); border: 2px solid var(--bg-color); 
+            z-index: 5; transition: var(--transition);
         }
 
-        /* Style spécifique au survol */
-        .timeline-item:hover .timeline-date { 
-            color: var(--text-main); 
+        .timeline-date::after {
+            content: ''; position: absolute; 
+            left: 209px; 
+            bottom: 2.1rem; /* Aligné horizontalement avec le texte de fin */
+            width: 10px; height: 10px; border-radius: 50%;
+            background-color: var(--border); border: 2px solid var(--bg-color); 
+            z-index: 5; transition: var(--transition);
         }
+
+        .timeline-date.active { color: var(--accent-green); }
         .timeline-date.active { color: var(--accent-green); text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
-        
+        .timeline-date.active::before,
+        .timeline-date.active::after {
+            background-color: var(--accent-green);
+            border-color: var(--bg-color);
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+        }
+
         .timeline-body {
             background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
             border: 1px solid var(--border); transition: var(--transition); position: relative;
@@ -632,8 +664,17 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             overflow: visible;
         }
+
         .timeline-body::after {
-            content: ''; position: absolute; left: -32px; top: 28px; width: 10px; height: 10px; border-radius: 50%;
+            display: none !important;
+        }
+
+        /* LE POINT CORRIGÉ */
+        .timeline-body::after {
+            content: ''; position: absolute; 
+            left: -31px; /* Ajusté de -32px à -31px pour tomber pile au centre des 2px de la ligne */
+            top: 28px; 
+            width: 10px; height: 10px; border-radius: 50%;
             background-color: var(--border); border: 2px solid var(--border); z-index: 5; transition: var(--transition);
         }
         
@@ -678,6 +719,7 @@
             box-shadow: 0 0 14px var(--accent); 
             transform: scale(1.3); 
         }
+        .timeline-item:hover .timeline-date { color: var(--text-main); }
         .timeline-item:hover .matrix-header-bg::before { opacity: 0.12; color: var(--accent-green); transition: opacity 0.4s ease; }
         
         .job-header-container { display: flex; align-items: center; gap: 1.5rem; }
@@ -746,7 +788,7 @@
         .job-details li.vial::before { content: "\f492"; }
 
         /* Badges Compétences */
-        .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
+        .competences-container { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
         .badge { display: inline-flex; align-items: center; gap: 0.4rem; background-color: rgba(56, 189, 248, 0.08); color: var(--accent); padding: 0.35rem 0.85rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(56, 189, 248, 0.2); transition: var(--transition); }
         .timeline-body:hover .badge { border-color: rgba(56, 189, 248, 0.4); background-color: rgba(56, 189, 248, 0.12); }
         .badge.tools { color: var(--text-main); background-color: rgba(255,255,255,0.05); border-color: transparent; }
@@ -899,6 +941,7 @@
         @media (max-width: 900px) {
             .timeline::before { display: none; }
             .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .timeline-date { text-align: left; padding-top: 0; margin-bottom: 0.2rem; }
             header h1 { font-size: 2.6rem; }
             nav ul { display: none; }
             .nav-left { gap: 0.8rem; }
@@ -938,8 +981,9 @@
         <ul>
             <li><a href="#experiences">Expériences</a></li>
             <li><a href="#formations">Formations</a></li>
-            <li><a href="#projects">Projets</a></li>
+            <li><a href="#competences">Compétences</a></li>
             <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#projects">Projets</a></li>
             <li>
                 <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
                     <i class="fa-solid fa-sun"></i> <span>Mode Clair</span>
@@ -970,10 +1014,12 @@
                 <span class="stat-label">Certifications</span>
             </div>
         </a>
+        <a href="#competences" style="text-decoration: none; display: block;">
         <div class="stat-item">
             <span class="stat-number">10+</span>
-            <span class="stat-label">Constructeurs Validés</span>
+            <span class="stat-label">Écosystèmes Maîtrisés</span>
         </div>
+    </a>
     </header>
 
     <div class="fiber-separator"></div>
@@ -984,7 +1030,10 @@
             <div class="timeline">
                 
                 <div class="timeline-item reveal">
-                    <div class="timeline-date active">Sept. 2024 - Présent</div>
+                    <div class="timeline-date active">
+                        <span class="date-start">Présent</span>
+                        <span class="date-end">Sept. 2024</span>
+                    </div>
                     <div class="timeline-body">
                         <div class="matrix-header-bg"></div>
 
@@ -1037,7 +1086,7 @@
                             </div>
                         </div>
 
-                        <div class="skills-container" style="margin-top: 1rem;">
+                        <div class="competences-container" style="margin-top: 1rem;">
                             <span class="badge">Routage BGP</span>
                             <span class="badge">Cisco ASR/ISR & Fortigate</span>
                             <span class="badge">Supervision Grafana</span>
@@ -1048,25 +1097,28 @@
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-date">Janv. 2024 - Févr. 2024</div>
+                    <div class="timeline-date">
+                        <span class="date-start">Févr. 2024</span>
+                        <span class="date-end">Janv. 2024</span>
+                </div>
                     <div class="timeline-body">
                         <div class="matrix-header-bg"></div>
                         <div class="job-header-container">
                             <img src="LogoBecquerel.jpg" alt="Logo Henri Becquerel" class="company-logo" onclick="openLightbox('LogoBecquerel.jpg')">
                             <div class="job-title">
-                                <h3>Technicien Informatique</h3>
+                                <h3>Technicien Informatique (Stage)</h3>
                                 <div class="company">
                                     <a href="https://www.linkedin.com/company/centre-henri-becquerel/posts/?feedView=all" target="_blank">
-                                        Centre Henri-Becquerel (Stage) — Rouen <i class="fa-brands fa-linkedin"></i>
+                                        Centre Henri-Becquerel — Rouen <i class="fa-brands fa-linkedin"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <ul class="job-details">
-                            <li class="gear"><strong>Gestion de Parc :</strong> Déploiement matériel, masterisation et maintenance logicielle en autonomie.</li>
+                            <li class="gear"><strong>Gestion de Parc :</strong> Déploiement matériel, masterisation et maintenance logicielle en totale autonomie.</li>
                             <li class="tech"><strong>Infrastructure :</strong> Support utilisateur de proximité, migration de systèmes d'exploitation et supervision courante du réseau local.</li>
                         </ul>
-                        <div class="skills-container">
+                        <div class="competences-container">
                             <span class="badge">Maintenance Parc IT</span>
                             <span class="badge">Migration OS</span>
                             <span class="badge">Support Proximité</span>
@@ -1076,16 +1128,16 @@
 
                 <div class="timeline-item reveal">
                     <div class="timeline-date">
-                        <div class="date-point"><span>Mai 2023</span></div>
-                        <div class="date-point"><span>Juin 2023</span></div>
-                    </div>
+                        <span class="date-start">Juin. 2023</span>
+                        <span class="date-end">Mai. 2023</span>
+                </div>
                     <div class="timeline-body">
                         <div class="matrix-header-bg"></div>
                         <div class="job-header-container">
                             <img src="LogoDarnetal.jpg" alt="Logo Mairie de Darnétal" class="company-logo" onclick="openLightbox('LogoDarnetal.jpg')">
                             <div class="job-title">
-                                <h3>Administrateur Système & Réseau</h3>
-                                <div class="company">Mairie de Darnétal (Stage) — Darnétal</div>
+                                <h3>Administrateur Système & Réseau (Stage)</h3>
+                                <div class="company">Mairie de Darnétal — Darnétal</div>
                             </div>
                         </div>
                         <ul class="job-details">
@@ -1093,7 +1145,7 @@
                             <li class="shield"><strong>Sécurisation Système :</strong> Conception et application de stratégies de groupe (GPO) restrictives pour durcis la sécurité.</li>
                             <li class="shield"><strong>Conformité :</strong> Analyse de l'existant et mise en application des directives RGPD.</li>
                         </ul>
-                        <div class="skills-container">
+                        <div class="competences-container">
                             <span class="badge">Active Directory</span>
                             <span class="badge">GPO (Group Policies)</span>
                             <span class="badge">Normes RGPD / ANSSI</span>
@@ -1102,153 +1154,229 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <div class="fiber-separator"></div>
-
-    <section id="formations" class="alt-bg">
-        <div class="section-container">
-            <h2><i class="fa-solid fa-graduation-cap"></i> Formations & Diplômes</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item reveal">
-                    <div class="timeline-date active">Sept. 2025 – Oct. 2027</div>
-                    <div class="timeline-body">
-                        <div class="matrix-header-bg"></div>
-                        <div class="form-badge current"><span class="status-pulse"></span>En cours</div>
-                        <div class="job-header-container">
-                            <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
-                            <div class="job-title">
-                                <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
-                                <div class="company">
-                                    <a href="https://www.linkedin.com/school/cesi-officiel/posts/?feedView=all" target="_blank">
-                                        CESI • Saint-Étienne-du-Rouvray <i class="fa-brands fa-linkedin"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <p style="color: var(--text-muted); font-size: 0.95rem;">Formation axée sur la conception, la sécurisation et la gestion des systèmes d’information. Elle combine compétences techniques (réseaux, cloud, cybersécurité, DevSecOps) et managériales (gestion de projet, gouvernance SI).</p>
-                        
-                        <ul class="job-details" style="margin-top: 0.2rem;">
-                            <li class="route">Conception et sécurisation d’infrastructures réseaux et cloud</li>
-                            <li class="shield">Cybersécurité, audit et conformité des systèmes d’information</li>
-                            <li class="gear">Gestion de projets IT et méthodes agiles</li>
-                            <li class="globe">Gouvernance et urbanisation du SI</li>
-                            <li class="user">Management des équipes et accompagnement de la transformation</li>
-                        </ul>
-                    </div>
+<section id="formations" class="alt-bg">
+    <div class="section-container">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Formations & Diplômes</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-date active">
+                    <span class="date-start">Oct. 2027</span>
+                    <span class="date-end">Sept. 2025</span>
                 </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-date">Oct. 2024 – Sept. 2025</div>
-                    <div class="timeline-body">
-                        <div class="matrix-header-bg"></div>
-                        <div class="form-badge approved">Admis</div>
-                        <div class="job-header-container">
-                            <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
-                            <div class="job-title">
-                                <h3>Bachelor Administrateur Système Réseau</h3>
-                                <div class="company">
-                                    <a href="https://www.linkedin.com/school/cesi-officiel/posts/?feedView=all" target="_blank">
-                                        CESI • Saint-Étienne-du-Rouvray <i class="fa-brands fa-linkedin"></i>
-                                    </a>
-                                </div>
+                <div class="timeline-body">
+                    <div class="matrix-header-bg"></div>
+                    <div class="form-badge current"><span class="status-pulse"></span>En cours</div>
+                    <div class="job-header-container">
+                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
+                        <div class="job-title">
+                            <h3>Master Manager en Infrastructures et Cybersécurité des SI (MICSI)</h3>
+                            <div class="company">
+                                <a href="https://www.linkedin.com/school/cesi-officiel/posts/?feedView=all" target="_blank">
+                                    CESI • Rouen Madrillet Innovation <i class="fa-brands fa-linkedin"></i>
+                                </a>
                             </div>
-                        </div>
-                        <p style="color: var(--text-muted); font-size: 0.95rem;">Formation professionnalisante axée sur l’administration, le déploiement et la sécurisation des infrastructures systèmes et réseaux en environnement d’entreprise.</p>
-                        
-                        <ul class="job-details" style="margin-top: 0.2rem;">
-                            <li class="server">Administration et exploitation des systèmes (Windows Server, Linux) et réseaux</li>
-                            <li class="route">Conception, déploiement et virtualisation d’infrastructures IT</li>
-                            <li class="shield">Sécurisation des infrastructures et mise en place de bonnes pratiques (MCO, PRA/PCA)</li>
-                            <li class="gear">Automatisation et supervision des environnements systèmes et réseaux</li>
-                            <li class="vial">Gestion de projets techniques et méthodes agiles</li>
-                            <li class="user">Pratique professionnelle en entreprise et validation des compétences en conditions réelles</li>
-                        </ul>
-                        
-                        <div class="skills-container" style="margin: 0.5rem 0 0 0;">
-                            <span class="badge tools"><i class="fa-solid fa-diagram-project"></i> Gestion de projet</span>
-                            <span class="badge tools"><i class="fa-solid fa-cloud"></i> Cloud Computing</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-date">Sept. 2022 – Mai 2024</div>
-                    <div class="timeline-body">
-                        <div class="matrix-header-bg"></div>
-                        <div class="form-badge approved">Admis</div>
-                        <div class="job-header-container">
-                            <img src="LogoCampus.jpg" alt="Logo Campus La Châtaigneraie" class="company-logo" onclick="openLightbox('LogoCampus.jpg')">
-                            <div class="job-title">
-                                <h3>BTS SIO (Option Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
-                                <div class="company">
-                                    <a href="https://www.linkedin.com/school/campus-la-chataigneraie/posts/?feedView=all" target="_blank">
-                                        Campus La Châtaigneraie • Le Mesnil-Esnard <i class="fa-brands fa-linkedin"></i>
-                                    </a>
-				</div>
-                            </div>
-                        </div>
-                        <p style="color: var(--text-muted); font-size: 0.95rem;">Formation de technicien supérieur orientée administration, sécurisation et exploitation des infrastructures informatiques en environnement professionnel.</p>
-                        <ul class="job-details" style="margin-top: 0.2rem;">
-                            <li class="server">Installation, configuration et sécurisation des équipements et services informatiques</li>
-                            <li class="route">Administration et supervision d’infrastructures systèmes et réseaux</li>
-                            <li class="shield">Exploitation, maintenance et amélioration de la qualité des services IT</li>
-                            <li class="gear">Automatisation et supervision des environnements systèmes et réseaux</li>
-                            <li class="vial">Gestion des incidents, support utilisateurs et résolution de problèmes techniques</li>
-                            <li class="user">Gestion des actifs informatiques et suivi du parc matériel</li>
-                        </ul>
-
-                        <div class="skills-container" style="margin: 0.2rem 0;">
-                            <span class="badge tools"><i class="fa-brands fa-python"></i> Python</span>
-                            <span class="badge tools"><i class="fa-solid fa-window-restore"></i> Systèmes d'exploitation</span>
-                        </div>
-                        <a href="https://www.la-chataigneraie.org/bts-service-informatiques-aux-organisations-solutions-d-infrastructure-systemes-reseaux/" target="_blank" class="btn-secondary">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
-                        </a>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-date">Janv. 2019 – Mai 2022</div>
-                    <div class="timeline-body">
-                        <div class="matrix-header-bg"></div>
-                        <div class="form-badge diploma">Admis</div>
-                        <div class="job-header-container">
-                            <img src="LogoBlaise.jpg" alt="Logo Lycée Blaise Pascal" class="company-logo" onclick="openLightbox('LogoBlaise.jpg')">
-                            <div class="job-title">
-                                <h3>Baccalauréat (Option Européenne)</h3>
-                                <div class="company">Lycée Blaise Pascal • Rouen</div>
-                            </div>
-                        </div>
-                        <p style="font-weight: 700; font-size: 0.95rem; margin-bottom: -0.5rem;">Niveau : Baccalauréat et certification européenne — Mention Assez Bien</p>
-                        
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.2rem;">
-                            <div>
-                                <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">Spécialités Terminale :</span>
-                                <ul class="spec-list">
-                                    <li>Mathématiques</li>
-                                    <li>Sciences de l'ingénieur</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">Spécialités Première :</span>
-                                <ul class="spec-list">
-                                    <li>Mathématiques</li>
-                                    <li>Sciences de l'ingénieur</li>
-                                    <li>Physique Chimie</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <a href="https://pascal.lycee.ac-normandie.fr/spip.php?article12" target="_blank" class="btn-secondary" style="margin-top: 0.5rem;">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
-                        </a>
-                    </div>
-                </div>
-
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Formation axée sur la conception, la sécurisation et la gestion des systèmes d’information. Elle combine compétences techniques (réseaux, cloud, cybersécurité, DevSecOps) et managériales (gestion de projet, gouvernance SI).</p>
+                    
+                    <ul class="job-details" style="margin-top: 0.2rem;">
+                        <li class="route">Conception et sécurisation d’infrastructures réseaux et cloud</li>
+                        <li class="shield">Cybersécurité, audit et conformité des systèmes d’information</li>
+                        <li class="gear">Gestion de projets IT et méthodes agiles</li>
+                        <li class="globe">Gouvernance et urbanisation du SI</li>
+                        <li class="user">Management des équipes et accompagnement de la transformation</li>
+                    </ul>
+                     <a href="https://www.cesi.fr/formation/mastere-professionnel-manager-en-infrastructures-et-cybersecurite-des-si-en-alternance-2371644/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
+                     </a> </div>
             </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-date">
+                    <span class="date-start">Sept. 2025</span>
+                    <span class="date-end">Oct. 2024</span>
+                </div>
+                <div class="timeline-body">
+                    <div class="matrix-header-bg"></div>
+                    <div class="form-badge approved">Admis</div>
+                    <div class="job-header-container">
+                        <img src="LogoCESI.jpg" alt="Logo CESI" class="company-logo" onclick="openLightbox('LogoCESI.jpg')">
+                        <div class="job-title">
+                            <h3>Bachelor Administrateur Système Réseau</h3>
+                            <div class="company">
+                                <a href="https://www.linkedin.com/school/cesi-officiel/posts/?feedView=all" target="_blank">
+                                    CESI • Rouen Madrillet Innovation <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Formation professionnalisante axée sur l’administration, le déploiement et la sécurisation des infrastructures systèmes et réseaux en environnement d’entreprise.</p>
+                    
+                    <ul class="job-details" style="margin-top: 0.2rem;">
+                        <li class="server">Administration et exploitation des systèmes (Windows Server, Linux) et réseaux</li>
+                        <li class="route">Conception, déploiement et virtualisation d’infrastructures IT</li>
+                        <li class="shield">Sécurisation des infrastructures et mise en place de bonnes pratiques (MCO, PRA/PCA)</li>
+                        <li class="gear">Automatisation et supervision des environnements systèmes et réseaux</li>
+                        <li class="vial">Gestion de projets techniques et méthodes agiles</li>
+                        <li class="user">Pratique professionnelle en entreprise et validation des compétences en conditions réelles</li>
+                    </ul>
+                    <a href="https://www.cesi.fr/formation/admission-parallele-bachelor-administrateur-trice-systemes-et-reseaux-en-alternance-2520464/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
+                    </a>
+                    <a href="ASR24-3_PEDOUSSAUT-Timéo_Mémoire.pdf" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Mémoire
+                    </a>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-date">
+                    <span class="date-start">Mai. 2024</span>
+                    <span class="date-end">Sept. 2022</span>
+                </div>
+                <div class="timeline-body">
+                    <div class="matrix-header-bg"></div>
+                    <div class="form-badge approved">Admis</div>
+                    <div class="job-header-container">
+                        <img src="LogoCampus.jpg" alt="Logo Campus La Châtaigneraie" class="company-logo" onclick="openLightbox('LogoCampus.jpg')">
+                        <div class="job-title">
+                            <h3>BTS SIO (Option Solutions d'Infrastructure, Systèmes et Réseaux)</h3>
+                            <div class="company">
+                                <a href="https://www.linkedin.com/school/campus-la-chataigneraie/posts/?feedView=all" target="_blank">
+                                    Campus La Châtaigneraie • Le Mesnil-Esnard <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Formation de technicien supérieur orientée administration, sécurisation et exploitation des infrastructures informatiques en environnement professionnel.</p>
+                    <ul class="job-details" style="margin-top: 0.2rem;">
+                        <li class="server">Installation, configuration et sécurisation des équipements et services informatiques</li>
+                        <li class="route">Administration et supervision d’infrastructures systèmes et réseaux</li>
+                        <li class="shield">Exploitation, maintenance et amélioration de la qualité des services IT</li>
+                        <li class="gear">Automatisation et supervision des environnements systèmes et réseaux</li>
+                        <li class="vial">Gestion des incidents, support utilisateurs et résolution de problèmes techniques</li>
+                        <li class="user">Gestion des actifs informatiques et suivi du parc matériel</li>
+                    </ul>
+                    <a href="https://www.la-chataigneraie.org/bts-service-informatiques-aux-organisations-solutions-d-infrastructure-systemes-reseaux/" target="_blank" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
+                    </a>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-date">
+                    <span class="date-start">Mai. 2022</span>
+                    <span class="date-end">Janv. 2019</span>
+                </div>
+                <div class="timeline-body">
+                    <div class="matrix-header-bg"></div>
+                    <div class="form-badge diploma">Admis</div>
+                    <div class="job-header-container">
+                        <img src="LogoBlaise.jpg" alt="Logo Lycée Blaise Pascal" class="company-logo" onclick="openLightbox('LogoBlaise.jpg')">
+                        <div class="job-title">
+                            <h3>Baccalauréat (Option Européenne)</h3>
+                            <div class="company">Lycée Blaise Pascal • Rouen</div>
+                        </div>
+                    </div>
+                    <p style="font-weight: 700; font-size: 0.95rem; margin-bottom: -0.5rem;">Niveau : Baccalauréat et certification européenne — Mention Assez Bien</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.2rem;">
+                        <div>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">Spécialités Terminale :</span>
+                            <ul class="spec-list">
+                                <li>Mathématiques</li>
+                                <li>Sciences de l'ingénieur</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">Spécialités Première :</span>
+                            <ul class="spec-list">
+                                <li>Mathématiques</li>
+                                <li>Sciences de l'ingénieur</li>
+                                <li>Physique Chimie</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="https://pascal.lycee.ac-normandie.fr/spip.php?article12" target="_blank" class="btn-secondary" style="margin-top: 0.5rem;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Site web de ma formation
+                    </a>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+<section id="competences" class="alt-bg reveal">
+    <div class="section-container">
+        <h2><i class="fas fa-laptop-code"></i> Compétences Techniques & Écosystèmes Maîtrisés</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            
+            <div class="timeline-body" style="gap: 1rem;">
+                <div class="matrix-header-bg"></div>
+                <div class="job-header-container">
+                    <div class="post-title" style="font-size: 1.3rem; color: var(--accent);"><i class="fas fa-server"></i> Infrastructures & OS</div>
+                </div>
+                <ul class="job-details">
+                    <li class="server"><strong>Systèmes :</strong> Linux (Debian, Ubuntu, RedHat), Windows Server (AD DS, GPO, DNS, DHCP)</li>
+                    <li class="gear"><strong>Virtualisation & Cloud :</strong> VMware vSphere/ESXi, Proxmox VE, Hyper-V, AWS (Notions)</li>
+                    <li class="tech"><strong>Conteneurisation / DevOps :</strong> Docker, Docker Compose, Ansible (Automatisation)</li>
+                </ul>
+            </div>
+
+            <div class="timeline-body" style="gap: 1rem;">
+                <div class="matrix-header-bg"></div>
+                <div class="job-header-container">
+                    <div class="post-title" style="font-size: 1.3rem; color: var(--accent);"><i class="fas fa-network-wired"></i> Réseaux & Sécurité</div>
+                </div>
+                <ul class="job-details">
+                    <li class="route"><strong>Routage & Commutation :</strong> Protocoles OSPF, BGP, VLANs, Spanning-Tree (Cisco, HPE)</li>
+                    <li class="shield"><strong>Sécurité Périmétrique :</strong> Firewalls (Fortinet FortiGate, Stormshield, pfSense)</li>
+                    <li class="shield"><strong>Cybersécurité :</strong> Analyse de logs, durcissement système (Anssi), VPN (IPsec, OpenVPN)</li>
+                </ul>
+            </div>
+
+            <div class="timeline-body" style="gap: 1rem;">
+                <div class="matrix-header-bg"></div>
+                <div class="job-header-container">
+                    <div class="post-title" style="font-size: 1.3rem; color: var(--accent);"><i class="fas fa-tools"></i> Outillage & Méthodes</div>
+                </div>
+                <ul class="job-details">
+                    <li class="gear"><strong>Supervision :</strong> Zabbix, Centreon, Suite Elastic (ELK), Grafana</li>
+                    <li class="tech"><strong>Scripting & Code :</strong> Bash, PowerShell, Python (Automatisation de tâches)</li>
+                    <li class="user"><strong>Méthodologies :</strong> Gestion d'incidents, ITIL, Documentation technique, Veille technologique</li>
+                </ul>
+            </div>
+
+        </div> <div style="text-align: center; margin-top: 4rem; margin-bottom: 1.5rem;">
+            <span style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">
+                Technologies & Écosystèmes Maîtrisés
+            </span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; padding: 1.5rem; background: var(--section-alt); border-radius: 12px; border: 1px solid var(--border);">
+
+            <div class="vendor-badge"><i class="fab fa-cisco" style="color: #049fd9;"></i> Cisco</div>
+            <div class="vendor-badge"><i class="fas fa-network-wired" style="color: #306ca4;"></i> MikroTik</div>
+            <div class="vendor-badge"><i class="fas fa-network-wired" style="color: #172a88;"></i> Zyxel</div>
+            <div class="vendor-badge"><i class="fas fa-network-wired" style="color: #00bcd4;"></i> Keenetic</div>
+            <div class="vendor-badge"><i class="fas fa-server" style="color: #4e5d94;"></i> HPE Aruba</div>
+
+            <div class="vendor-badge"><i class="fas fa-shield-alt" style="color: #ff5a00;"></i> Stormshield</div>
+            <div class="vendor-badge"><i class="fas fa-cube" style="color: #e24a1f;"></i> Fortinet</div>
+            <div class="vendor-badge"><i class="fas fa-lock" style="color: #00a3e0;"></i> Sophos</div>
+            <div class="vendor-badge"><i class="fas fa-shield-halved" style="color: #000000;"></i> pfSense</div>
+
+            <div class="vendor-badge"><i class="fas fa-server" style="color: #0064a5;"></i> VMware</div>
+            <div class="vendor-badge"><i class="fas fa-layer-group" style="color: #e24329;"></i> Proxmox</div>
+            <div class="vendor-badge"><i class="fab fa-windows" style="color: #0078d4;"></i> Microsoft</div>
+            <div class="vendor-badge"><i class="fab fa-linux" style="color: #f57f17;"></i> RedHat</div>
+            <div class="vendor-badge"><i class="fab fa-aws" style="color: #ff9900;"></i> AWS</div>
+        </div>
+</section>
+
+<div class="fiber-separator"></div>
 
     <div class="fiber-separator"></div>
 
@@ -1258,14 +1386,17 @@
             <div class="timeline">
                 
                 <div class="timeline-item reveal">
-                    <div class="timeline-date">Oct. 2024 – Juin 2025</div>
+                    <div class="timeline-date active">
+                        <span class="date-start">Juin 2025</span>
+                        <span class="date-end">Oct. 2024</span>
+                    </div>
                     <div class="timeline-body">
                         <div class="matrix-header-bg"></div>
                         <div class="job-header-container">
                             <img src="LogoLinkt.jpg" alt="Logo Linkt" class="company-logo" onclick="openLightbox('LogoLinkt.jpg')">
                             <div class="job-title">
                                 <h3>Amélioration de l’Expérience Client & Outil Technique</h3>
-                                <div class="company">Associé à Linkt — Projet Transverse</div>
+                                <div class="company">Associé à Linkt — Projet </div>
                             </div>
                         </div>
                         <p>Conception globale et participation active au développement d’un ensemble d’outils applicatifs visant à optimiser les processus de support et l’autonomie des clients de l'opérateur.</p>
@@ -1273,10 +1404,10 @@
                             <li class="gear"><strong>Refonte du système de notation :</strong> Intégration d'un menu déroulant intelligent forçant la qualification des notes attribuées, couplée à une fonctionnalité permettant de réouvrir directement un ticket.</li>
                             <li class="tech"><strong>Application de fiches d'auto-diagnostic :</strong> Centralisation et mise à disposition de fiches techniques via une interface web fluide pour décharger le support N1.</li>
                         </ul>
-                        <div class="skills-container">
-                            <span class="badge tools"><i class="fa-brands fa-vuejs"></i> Expérience client</span>
-                            <span class="badge tools"><i class="fa-solid fa-puzzle-piece"></i> Travail en équipe</span>
-                            <span class="badge tools"><i class="fa-solid fa-users"></i> Gestion de projet</span>
+                        <div class="competences-container">
+                            <span class="badge tools"><i class="fa-brands fa-vuejs"></i> Vue.js</span>
+                            <span class="badge tools"><i class="fa-solid fa-puzzle-piece"></i> WXT Extension</span>
+                            <span class="badge tools"><i class="fa-solid fa-users"></i> UX / Relation Client</span>
                         </div>
                         <a href="https://www.linkt.fr/guides-autodiagnostique/" target="_blank" class="btn-secondary" style="margin-top: 0.5rem;">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i> Voir le Guide d'Auto-diagnostic
@@ -1292,13 +1423,17 @@
 
     <section id="certifications" class="alt-bg">
         <div class="section-container">
-            <h2>
-                <i class="fa-solid fa-certificate"></i> 
+            <h2><i class="fa-solid fa-certificate"></i>
                 <span data-translate="cert_title">Licences & Certifications</span>
             </h2>
             
             <div class="cert-category reveal">
-                <div class="cert-grid">
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin: 2rem 0 1.5rem 0; color: var(--text-main); display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                    <i class="fa-solid fa-network-wired" style="color: var(--accent);"></i> Réseaux & Infrastructures
+                </h3>
+                
+                <div class="cert-grid" style="margin-bottom: 3rem;">
+                    
                     <div class="cert-item">
                         <div class="cert-content">
                             <div>
@@ -1312,84 +1447,78 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">Émise en avril 2026<br>ID : 7302635329TP</div>
-                            <p class="cert-description" style="margin: 10px 0; font-size: 0.9em; color: #ffffff;">
-                                Cette certification couvre les fondamentaux de la cybersécurité, incluant les menaces réseau et les solutions de sécurité Fortinet.
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.5rem 0 0.8rem 0; line-height: 1.4;">
+                                Validation des connaissances fondamentales en cybersécurité réseau : identification des menaces courantes, principes du Zero Trust, sécurisation des accès cloud et concepts clés des pare-feux de nouvelle génération (NGFW).
                             </p>
+                            <div class="cert-meta">Émise en avril 2026<br>ID : 7302635329TP</div>
                             <div class="cert-actions">
                                 <a href="CertificatForti.jpg" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
                                 <a href="https://training.fortinet.com" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-user-check"></i> Vérifier le certificat</a>
-                                </div>
+                            </div>
                         </div>
                     </div>
-                        </div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-header">
-                        </div>
+
                     <div class="cert-item">
                         <div class="cert-content">
                             <div>
                                 <div class="cert-header">
-                                    <img src="LogoANSII.jpg" class="cert-logo-small">
+                                    <img src="LogoCisco.jpg" alt="Logo" class="cert-logo-small">
                                     <div>
-                                        <span class="cert-title">SecNumacad</span><br>
-                                        <a href="https://www.linkedin.com/company/anssi/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
+                                        <span class="cert-title">Introduction à la Cybersécurité </span><br>
+                                        <a href="https://www.linkedin.com/company/cisco/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
+                                            <span class="cert-org"><i class="fa-brands fa-linkedin"></i> Cisco Networking Academy</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.5rem 0 0.8rem 0; line-height: 1.4;">
+                                Maîtrise des architectures réseaux fondamentales : protocoles de communication (IP, TCP/UDP), routage, commutation, adressage IPv4/IPv6, et configuration initiale des équipements (routeurs et commutateurs).
+                            </p>
+                            <div class="cert-meta">Émise en 2024<br>Cisco Networking Academy</div>
+                            <div class="cert-actions">
+                                <a href="CertificatCisco.jpg" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="cert-category reveal">
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin: 2rem 0 1.5rem 0; color: var(--text-main); display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Cybersécurité & Numérique
+                </h3>
+                
+                <div class="cert-grid">
+
+                    <div class="cert-item">
+                        <div class="cert-content">
+                            <div>
+                                <div class="cert-header">
+                                    <img src="LogoANSII.jpg" alt="Logo" class="cert-logo-small">
+                                    <div>
+                                        <span class="cert-title">MOOC SecNumacadémie</span><br>
+                                        <a href="https://www.linkedin.com/company/anssi-fr/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
                                             <span class="cert-org"><i class="fa-brands fa-linkedin"></i> ANSSI</span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">Émise en mars 2024<br>ID : Sans ID</div>
-                            <p class="cert-description" style="margin: 10px 0; font-size: 0.9em; color: #ffffff;">
-                                Programme d'initiation à la cybersécurité axé sur les bonnes pratiques d'hygiène numérique et la protection des données sensibles.
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.5rem 0 0.8rem 0; line-height: 1.4;">
+                                Attestation de suivi validée par l'Agence Nationale de la Sécurité des Systèmes d'Information. Validation des modules sur l'authentification sécurisée, la sécurité du nomadisme, des postes de travail et la protection d'un réseau.
                             </p>
+                            <div class="cert-meta">Émise en 2024<br>SecNumacadémie</div>
                             <div class="cert-actions">
-                                <a href="CertificatSecnum.pdf" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
-                                <a href="https://secnumacad.gouv.fr" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-user-check"></i> Vérifier le certificat</a>
+                                <a href="CertificatMOOC.jpg" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="cert-category reveal">
-                <h3><i class="fa-solid fa-network-wired" style="color: #38bdf8;"></i> Réseaux & Infrastructures</h3>
-                <div class="cert-grid">
+                    
                     <div class="cert-item">
                         <div class="cert-content">
                             <div>
                                 <div class="cert-header">
-                                    <img src="LogoCisco.jpg" class="cert-logo-small">
-                                    <div>
-                                        <span class="cert-title">Introduction to Cybersecurity</span><br>
-                                        <a href="https://www.linkedin.com/company/cisco/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
-                                            <span class="cert-org"><i class="fa-brands fa-linkedin"></i> Cisco</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cert-meta">Émise en mai 2024<br>ID : Sans ID</div>
-                            <p class="cert-description" style="margin: 10px 0; font-size: 0.9em; color: #ffffff;">
-                                Exploration des enjeux de la cybersécurité, incluant l'analyse des menaces, la protection des données et les stratégies de défense réseau.
-                            </p>
-                            <div class="cert-actions">
-                                <a href="CertificatCisco.jpg" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
-                                <a href="https://www.netacad.com" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-user-check"></i> Vérifier le certificat</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cert-category reveal" style="margin-bottom: 0;">
-                <h3><i class="fa-solid fa-laptop-code" style="color: #a855f7;"></i> Système & Environnement Numérique</h3>
-                <div class="cert-grid">
-                    <div class="cert-item">
-                        <div class="cert-content">
-                            <div>
-                                <div class="cert-header">
-                                    <i class="fa-solid fa-certificate" style="color: #38bdf8; font-size: 1.8rem;"></i>
+                                    <img src="LogoPix.jpg" alt="Logo" class="cert-logo-small">
                                     <div>
                                         <span class="cert-title">Certification Pix</span><br>
                                         <a href="https://www.linkedin.com/company/gip-pix/" target="_blank" rel="noopener noreferrer" class="cert-org-link">
@@ -1398,18 +1527,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cert-meta">Émise en avril 2024<br>Score : 542 Pix</div>
-                            <p class="cert-description" style="margin: 10px 0; font-size: 0.9em; color: #ffffff;">
-                                Évaluation certifiée des compétences numériques transversales : information, communication, création de contenu et protection de l'environnement numérique.
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.5rem 0 0.8rem 0; line-height: 1.4;">
+                                Attestation officielle de la maîtrise des compétences numériques fondamentales : sécurisation de l'environnement numérique, gestion des données, traitement de l'information et collaboration en ligne.
                             </p>
+                            <div class="cert-meta">Émise en avril 2024<br>Score : 542 Pix</div>
                             <div class="cert-actions">
-                                <a href="CertificatPix.pdf" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
+                                <a href="CertificatPix.jpg" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-eye"></i> Voir le certificat</a>
                                 <a href="https://pix.fr" target="_blank" class="btn-secondary" style="justify-content: center;"><i class="fa-solid fa-user-check"></i> Vérifier le certificat</a>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+            
         </div>
     </section>
 
@@ -1628,12 +1759,12 @@
 
             switch(cmd) {
                 case 'help':
-                    output = `Commandes disponibles :\n  - about   : Résumé rapide de mon profil\n  - skills  : Liste abrégée de mes compétences clés\n  - logs    : Afficher le flux de supervision du pare-feu\n  - history : Historique récent des mises à jour de l'infra du site\n  - secret  : Lancer un audit de sécurité simulé\n  - clear   : Vider l'écran de la console`;
+                    output = `Commandes disponibles :\n  - about   : Résumé rapide de mon profil\n  - competences  : Liste abrégée de mes compétences clés\n  - logs    : Afficher le flux de supervision du pare-feu\n  - history : Historique récent des mises à jour de l'infra du site\n  - secret  : Lancer un audit de sécurité simulé\n  - clear   : Vider l'écran de la console`;
                     break;
                 case 'about':
                     output = `Timéo Pedoussaut - 2026\nAlternant Coordinateur Technique chez Linkt et étudiant en Master MICSI (Infrastructures & Cybersécurité) au CESI.\nPassionné d'architectures réseaux d'entreprise, commutation et sécurité système.`;
                     break;
-                case 'skills':
+                case 'competences':
                     output = `[RÉSEAUX] : BGP, WAN, LAN, Cisco ASR/ISR, Huawei Switches, Juniper, MikroTik.\n[SÉCURITÉ] : Fortigate Firewalls, GPO, Active Directory, Normes ANSSI (SecNumacad).\n[OUTILS] : Grafana, Radius, SecureCRT, Vue.js, Python.`;
                     break;
                 case 'logs':
