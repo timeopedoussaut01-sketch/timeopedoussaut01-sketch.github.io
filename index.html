@@ -576,23 +576,35 @@
         }
         .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 3.5rem; position: relative; }
         .timeline-date {
-            text-align: right; 
-            padding-top: 2.2rem; 
-            color: var(--text-muted); 
-            font-weight: 700; 
-            font-size: 0.95rem; 
-            transition: var(--transition);
-    
-            /* Pour forcer la mise en forme en colonne */
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Aligne le texte à droite dans le flex */
+            align-items: flex-end; /* Aligne tout à droite */
+            padding-top: 2.2rem;
+            gap: 15px;             /* Espace entre les deux lignes de date */
+            transition: var(--transition);
+        }
+        .date-point {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .date-point::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent); /* Couleur de votre accent */
+            border-radius: 50%;
+            margin-left: 12px;               /* Espace entre le texte et le point */
+            box-shadow: 0 0 8px var(--accent);
         }
 
-/* Style spécifique au survol */
-.timeline-item:hover .timeline-date { 
-    color: var(--text-main); 
-}
+        /* Style spécifique au survol */
+        .timeline-item:hover .timeline-date { 
+            color: var(--text-main); 
+        }
         .timeline-date.active { color: var(--accent-green); text-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
         
         .timeline-body {
@@ -1047,9 +1059,8 @@
 
                 <div class="timeline-item reveal">
                     <div class="timeline-date">
-                        <span>Mai 2023</span>
-                        <br>
-                        <span style="font-size: 0.8em; color: #94a3b8;">Juin 2023</span>
+                        <div class="date-point"><span>Mai 2023</span></div>
+                        <div class="date-point"><span>Juin 2023</span></div>
                     </div>
                     <div class="timeline-body">
                         <div class="matrix-header-bg"></div>
