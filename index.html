@@ -1062,6 +1062,28 @@
             window.removeEventListener('mousemove', resize);
             window.removeEventListener('mouseup', stopResize);
             terminal.style.transition = 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+
+            if (command === 'about') {
+                const aboutText = `============================================================
+                PROFILE STATUS: ACTIVE
+                ============================================================
+                • NOM : Timéo Pedoussaut
+                • STATUT : Alternant Coordinateur Technique @ Linkt
+                • CURSUS : Étudiant en Master MICSI (CESI)
+                    ↳ Management des Infrastructures & Cybersécurité
+
+                ============================================================
+                CORE FOCUS & PASSIONS
+                ============================================================
+                [+] Architectures Réseaux d'Entreprise
+                [+] Commutation Avancée & Routage
+                [+] Sécurité des Systèmes & Infrastructures
+
+                ============================================================
+                Type 'help' ou 'skills' pour en savoir plus.`;
+
+                    printLine(aboutText); 
+                }
         }
     });
 })();
@@ -1730,7 +1752,7 @@
         <div class="term-body" id="termBody">
             <div class="term-output-line">Console d'accès sécurisée v2.2. Type 'help' pour lister les commandes disponibles.</div>
             <div class="term-input-row">
-                <span class="term-prompt">timeo_cli></span>
+                <span class="term-prompt">Invité></span>
                 <input type="text" class="term-input" id="termInput" autocomplete="off">
             </div>
         </div>
@@ -1860,7 +1882,7 @@
             const inputRow = document.querySelector('.term-input-row');
             const historyLine = document.createElement('div');
             historyLine.className = 'term-output-line';
-            historyLine.innerHTML = `<span class="term-prompt">timeo_cli></span> ${cmd}`;
+            historyLine.innerHTML = `<span class="term-prompt">Invité></span> ${cmd}`;
             termBody.insertBefore(historyLine, inputRow);
 
             let output = '';
