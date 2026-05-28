@@ -28,6 +28,50 @@
             --term-text: #34d399;
             --term-border: #1e293b;
         }
+        /* STYLE DE LA BOÎTE FLOTTANTE (MODALE) */
+        .modal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            z-index: 9999; /* Passe au-dessus de tout le reste */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Fond noir transparent */
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* L'image du certificat */
+        .modal-content {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 4px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        /* Quand la modale s'ouvre, on affiche l'image à sa taille normale */
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        /* Le bouton de fermeture (La croix X) */
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent); /* Devient cyan au survol si tu as cette variable */
+        }
         .timeline-body {
             padding: 2.5rem 2.5rem 2rem 2.5rem; /* Réduit la quatrième valeur (le bas) à 2rem ou 1.5rem */
         }
@@ -1087,11 +1131,11 @@
                         </div>
 
                         <div class="competences-container" style="margin-top: 1rem;">
-                            <span class="badge">Routage BGP</span>
                             <span class="badge">Cisco ASR/ISR & Fortigate</span>
-                            <span class="badge">Supervision Grafana</span>
+                            <span class="badge">WAN & LAN</span>
+                            <span class="badge">Supervision</span>
                             <span class="badge">Radius</span>
-                            <span class="badge">Coordination LAN / Huawei</span>
+                            <span class="badge">Support Client</span>
                         </div>
                     </div>
                 </div>
@@ -1641,6 +1685,52 @@
             btn.innerHTML = '<i class="fa-solid fa-moon"></i> <span>Mode Sombre</span>';
         }
     }
+    // --- SCRIPT POUR L'OUVERTURE SUR PLACE DE TES CERTIFICATS ---
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("cert-modal");
+        const modalImg = document.getElementById("modal-img");
+        const closeBtn = document.querySelector(".modal-close");
+
+        // Cible tous les liens qui pointent vers tes images de certificats
+        const viewButtons = document.querySelectorAll('a[href$=".jpg"], a[href$=".png"]');
+
+        viewButtons.forEach(button => {
+            // Si le bouton sert à "Voir le certificat", on applique l'effet
+            if (button.innerHTML.includes("Voir le certificat")) {
+                button.addEventListener("click", function (e) {
+                    e.preventDefault(); // Bloque l'ouverture du nouvel onglet
+                    const imgSrc = this.getAttribute("href"); // Récupère l'image (.jpg)
+                    
+                    modalImg.src = imgSrc; // Charge l'image dans la boîte
+                    modal.style.display = "flex"; // Affiche la boîte
+                    setTimeout(() => modal.classList.add("open"), 10);
+                });
+            }
+        });
+
+        // Fermer en cliquant sur la croix X
+        if (closeBtn) {
+            closeBtn.addEventListener("click", closeModal);
+        }
+
+        // Fermer en cliquant n'importe où sur le fond noir
+        if (modal) {
+            modal.addEventListener("click", function (e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        }
+
+        function closeModal() {
+            modal.classList.remove("open");
+            setTimeout(() => {
+                modal.style.display = "none";
+                modalImg.src = ""; 
+            }, 300);
+        }
+    });
+    </script>
 
         function openLightbox(imageSrc) {
             const lightbox = document.getElementById('lightbox');
@@ -1947,4 +2037,8 @@
     </div>
 </footer>
 </body>
+<div id="cert-modal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modal-img" src="" alt="Certificat">
+</div>
 </html>
