@@ -2020,6 +2020,51 @@
             connectParticles();
             requestAnimationFrame(animate);
         }
+        document.addEventListener("DOMContentLoaded", function () {
+        // Lancement des particules
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animate();
+
+        // Gestion de la boîte de certificat (Modale)
+        const modal = document.getElementById("cert-modal");
+        const modalImg = document.getElementById("modal-img");
+        const closeBtn = document.querySelector(".modal-close");
+
+        const viewButtons = document.querySelectorAll('a[href$=".jpg"], a[href$=".png"]');
+
+        viewButtons.forEach(button => {
+            if (button.innerHTML.includes("Voir le certificat")) {
+                button.addEventListener("click", function (e) {
+                    e.preventDefault(); 
+                    const imgSrc = this.getAttribute("href"); 
+                    
+                    if (modal && modalImg) {
+                        modalImg.src = imgSrc; 
+                        modal.style.display = "flex"; 
+                        setTimeout(() => modal.classList.add("open"), 10);
+                    }
+                });
+            }
+        });
+
+        if (closeBtn) closeBtn.addEventListener("click", closeModal);
+        if (modal) {
+            modal.addEventListener("click", function (e) {
+                if (e.target === modal) closeModal();
+            });
+        }
+
+        function closeModal() {
+            if (modal && modalImg) {
+                modal.classList.remove("open");
+                setTimeout(() => {
+                    modal.style.display = "none";
+                    modalImg.src = ""; 
+                }, 300);
+            }
+        }
+    });
 
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
